@@ -8,12 +8,18 @@
 
 import UIKit
 import SnapKit
+//cell的标识
+let YKCoinDetailCellId = "YKCoinDetailCellId"
+let YKCoinId = "YKCoinId"
+let YKCoinDetailContentId = "YKCoinDetailContentId"
 
+
+let namespace = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
 let guideCount = 4
 //屏幕的尺寸信息
-let ScreenWidth = UIScreen.main.bounds.width
+let ScreenWidth: CGFloat = UIScreen.main.bounds.width
 
-let ScreenHeight = UIScreen.main.bounds.height
+let ScreenHeight: CGFloat = UIScreen.main.bounds.height
 
 //比例
 let pt2x :CGFloat = 2.0
@@ -82,8 +88,21 @@ func dangerousHeight()->CGFloat{
     }
     return 0.0
 }
+//头视图高
+let coinDetailtopViewHeight: CGFloat = ykmargin(margin:  240.0)
+//详情section高
+let detailSectionHeight: CGFloat = 44.0
+
+//pageTitle高
+let newsTitleHeight :CGFloat  = 44.0
+//指示器宽
+let newsIndicatorWidth: CGFloat = ykmargin(margin:  40.0)
+let indicatorHeight: CGFloat = 3.0
+//按钮间距
+let newsTitleMargin :CGFloat = ykmargin(margin: 70.0)
 //定义全局的格式化对象
 let sharedDateFormater = DateFormatter()
+//获取当前控制器
 func getCurrentVC() -> UIViewController? {
     for window in UIApplication.shared.windows.reversed() {
         var tempView: UIView? = window.subviews.last

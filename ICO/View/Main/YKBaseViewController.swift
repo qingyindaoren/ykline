@@ -8,21 +8,31 @@
 
 import UIKit
 
-class YKBaseViewController: UIViewController {
+open class YKBaseViewController: UIViewController,UIGestureRecognizerDelegate{
 
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
   self.view.backgroundColor = ykrandomColor()
+     
+        self.hideLine()
         // Do any additional setup after loading the view.
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self 
        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
   //取消侧滑
 //        if self.navigationController?.interactivePopGestureRecognizer?.isEnabled == true {
 //            self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 //        }
     }
+//    - (UIInterfaceOrientationMask)supportedInterfaceOrientations
+//    {
+//    return UIInterfaceOrientationMaskLandscape;
+//    }
+//    - (BOOL)shouldAutorotate
+//    {
+//    return NO;
+//    }
 
-    override func didReceiveMemoryWarning() {
+    override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -41,7 +51,7 @@ class YKBaseViewController: UIViewController {
 }
 
 extension YKBaseViewController:reloadDelegate{
-    override func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         AlamofireMenager.shared.ykNoNetv.noNetdelegate = self
     }
 }

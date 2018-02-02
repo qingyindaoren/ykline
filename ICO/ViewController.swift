@@ -8,14 +8,45 @@
 
 import UIKit
 
+//  let identify =  String(describing: self.classForCoder) //转化为类的字符串名称
+//        let vcName = ""//字符串转换为类
+//        let cls = NSClassFromString(namespace + "." + vcName) as! UIViewController.Type
+//        let vc = cls.init()
 
 class ViewController: YKBaseViewController {
 
+    @objc private func didClickPush(btn: UIButton){
+                let v = Y_StockChartViewController()
+//        let v = ViewController()
+        v.view.backgroundColor = ykrandomColor()
+        v.modalTransitionStyle = .crossDissolve
+        self.present(v, animated: true, completion: nil)
+        
+        
+    }
+    
+    
+    private lazy var pushBtn: UIButton = {
+        let btn = UIButton(title: "全屏", fontSize: 30.0, textColor: #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1))
+        
+        btn.addTarget(self, action: #selector(didClickPush(btn:)), for: .touchUpInside)
+        return btn
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
- 
-   demo1()
-
+        setupUI()
+       demo1()
+     
+    }
+   
+    private func setupUI(){
+        view.addSubview(pushBtn)
+        pushBtn.snp.makeConstraints { (make) in
+            make.center.equalTo(view)
+        }
+        
     }
      func demo1(){
         //例子：
@@ -26,12 +57,23 @@ class ViewController: YKBaseViewController {
                           "city":"北京",
                           "page":"1",
                           "sign":"93AD7448260235FCB3F691EF4CE8B2B12E6C0472"]
-        
-        AlamofireMenager.shared.loadData(Path: "v1/deal/find_deals", HTTPMethod: .get, parameters, .query, Success: { (banner: DataModel,netData)  in
+
+//        AlamofireMenager.shared.loadData(Path: "v1/deal/find_deals", HTTPMethod: .get, parameters, .query, Success: { (banner: DataModel,netData)  in
+//
+//        }) { (str) in
+//
+//        }
+        AlamofireMenager.shared.loadData(Path: "v1/deal/find_deals", HTTPMethod: .get, parameters,  .query, Success: { (banner:[DataModelArray], netData) in
             
         }) { (str) in
             
         }
+ 
+        
+
+        
+       
+
     }
     
     

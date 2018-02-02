@@ -15,13 +15,15 @@ extension UIWindow{
         let currentVersion = Bundle.main.infoDictionary![key] as! String
         if currentVersion == lastVersion {
             self.rootViewController = YKTabBarController()
-
+    
+   
         }else{
 //            新版本
             UserDefaults.standard.set(currentVersion, forKey: lastKey)
             UserDefaults.standard.synchronize()
             //删除用户信息
             rootViewController = YKGuideViewController()
+        
         }
         
     }

@@ -20,7 +20,9 @@ class YKTabBarController: UITabBarController {
     //添加子视图控制器
     //private 不希望外界能够访问到该方法, 只能在本类中访问
     private func addChildViewControllers() {
-        addChildViewController(vc: YKHomeViewController(), title: "行情", imageName: "home_hover",index:0)
+        let vc = YKHomeViewController()
+//        vc.isRightEdge = true
+        addChildViewController(vc: vc, title: "行情", imageName: "home_hover",index:0)
       
         addChildViewController(vc: YKInfomationViewController(), title: "资讯", imageName: "home_hover",index:1)
           addChildViewController(vc: YKVirtualViewController(), title: "虚拟盘", imageName: "home_hover",index:2)

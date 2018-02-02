@@ -12,9 +12,9 @@ import Alamofire
 class YKNetworkStatus :NSObject{
    
         static let sharedInstance = YKNetworkStatus()
-    var isConnect :Bool = false {
+    var isConnect: Bool? {
         didSet{
-            print(isConnect)
+            print(isConnect as Any)
         }
     }
     

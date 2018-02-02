@@ -33,23 +33,11 @@
     }
 }
 -(void)hideLine{
-    for (UIView*v in self.navigationController.navigationBar.subviews) {
-        if (v.height == 0.5) {
-            
-            v.hidden = YES;
-            
-            
-        }
-    }
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 -(void)showLine{
-    for (UIView*v in self.navigationController.navigationBar.subviews) {
-        if (v.height == 0.5) {
-            
-            v.hidden = NO;
-            v.backgroundColor = [UIColor darkTextColor];
-            
-        }
-    }
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:nil];  
 }
 @end

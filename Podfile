@@ -8,6 +8,7 @@ target 'ICO' do
 pod 'AlamofireObjectMapper'
 pod 'ObjectMapper'
 pod 'SnapKit'
+ pod 'SGPagingView'
   # Pods for ICO
 
 end

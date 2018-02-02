@@ -8,10 +8,67 @@
 
 /* Begin PBXBuildFile section */
 		7A7FFFE9B79458ECC6F7D201 /* Pods_ICO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE68E0B8D51AC77827C0B42 /* Pods_ICO.framework */; };
+		EB04AFCE20232428001F24E8 /* YKKLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04AFCD20232428001F24E8 /* YKKLineViewController.swift */; };
 		EB51813A2018943100887A8F /* UIViewController+SelectPhotoIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181392018943000887A8F /* UIViewController+SelectPhotoIcon.m */; };
 		EB51813E201972CC00887A8F /* YKNetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB51813D201972CC00887A8F /* YKNetworkStatus.swift */; };
 		EB5181412019B1EB00887A8F /* YKNoNetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5181402019B1EB00887A8F /* YKNoNetView.swift */; };
 		EB51814D2019F25A00887A8F /* UIButton+CS_FixMultiClick.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51814C2019F25A00887A8F /* UIButton+CS_FixMultiClick.m */; };
+		EB518190201B2FAD00887A8F /* Y_StockChartGlobalVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518157201B2FAD00887A8F /* Y_StockChartGlobalVariable.m */; };
+		EB518191201B2FAD00887A8F /* UIColor+Y_StockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51815A201B2FAD00887A8F /* UIColor+Y_StockChart.m */; };
+		EB518192201B2FAD00887A8F /* Y_AccessoryMAView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51815E201B2FAD00887A8F /* Y_AccessoryMAView.m */; };
+		EB518193201B2FAD00887A8F /* Y_KLineAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518162201B2FAD00887A8F /* Y_KLineAccessory.m */; };
+		EB518194201B2FAD00887A8F /* Y_KLineAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518164201B2FAD00887A8F /* Y_KLineAccessoryView.m */; };
+		EB518195201B2FAD00887A8F /* Y_KLineMAView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518167201B2FAD00887A8F /* Y_KLineMAView.m */; };
+		EB518196201B2FAD00887A8F /* Y_KLine.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51816B201B2FAD00887A8F /* Y_KLine.m */; };
+		EB518197201B2FAD00887A8F /* Y_MALine.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51816D201B2FAD00887A8F /* Y_MALine.m */; };
+		EB518198201B2FAD00887A8F /* Y_KLineMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51816F201B2FAD00887A8F /* Y_KLineMainView.m */; };
+		EB518199201B2FAD00887A8F /* KDJ介绍.md in Resources */ = {isa = PBXBuildFile; fileRef = EB518172201B2FAD00887A8F /* KDJ介绍.md */; };
+		EB51819A201B2FAD00887A8F /* MA-EMA-MACD介绍.md in Resources */ = {isa = PBXBuildFile; fileRef = EB518173201B2FAD00887A8F /* MA-EMA-MACD介绍.md */; };
+		EB51819B201B2FAD00887A8F /* Y_KLineGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518175201B2FAD00887A8F /* Y_KLineGroupModel.m */; };
+		EB51819C201B2FAD00887A8F /* Y_KLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518177201B2FAD00887A8F /* Y_KLineModel.m */; };
+		EB51819D201B2FAD00887A8F /* Y_KLinePositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518179201B2FAD00887A8F /* Y_KLinePositionModel.m */; };
+		EB51819E201B2FAD00887A8F /* Y_KLineVolumePositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51817B201B2FAD00887A8F /* Y_KLineVolumePositionModel.m */; };
+		EB51819F201B2FAD00887A8F /* 指标公式.md in Resources */ = {isa = PBXBuildFile; fileRef = EB51817C201B2FAD00887A8F /* 指标公式.md */; };
+		EB5181A0201B2FAD00887A8F /* Y_StockChartRightYView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51817F201B2FAD00887A8F /* Y_StockChartRightYView.m */; };
+		EB5181A1201B2FAD00887A8F /* Y_StockChartSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518182201B2FAD00887A8F /* Y_StockChartSegmentView.m */; };
+		EB5181A2201B2FAD00887A8F /* Y_VolumeMAView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518185201B2FAD00887A8F /* Y_VolumeMAView.m */; };
+		EB5181A3201B2FAD00887A8F /* Y_KLineVolume.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518189201B2FAD00887A8F /* Y_KLineVolume.m */; };
+		EB5181A4201B2FAD00887A8F /* Y_KLineVolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51818B201B2FAD00887A8F /* Y_KLineVolumeView.m */; };
+		EB5181A5201B2FAD00887A8F /* Y_KLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51818D201B2FAD00887A8F /* Y_KLineView.m */; };
+		EB5181A6201B2FAD00887A8F /* Y_StockChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51818F201B2FAD00887A8F /* Y_StockChartView.m */; };
+		EB5181E8201B322D00887A8F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB5181CE201B322D00887A8F /* Info.plist */; };
+		EB5181E9201B322D00887A8F /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181D0201B322D00887A8F /* MASCompositeConstraint.m */; };
+		EB5181EA201B322D00887A8F /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181D3201B322D00887A8F /* MASConstraint.m */; };
+		EB5181EB201B322D00887A8F /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181D5201B322D00887A8F /* MASConstraintMaker.m */; };
+		EB5181EC201B322D00887A8F /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181D7201B322D00887A8F /* MASLayoutConstraint.m */; };
+		EB5181ED201B322D00887A8F /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181DB201B322D00887A8F /* MASViewAttribute.m */; };
+		EB5181EE201B322D00887A8F /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181DD201B322D00887A8F /* MASViewConstraint.m */; };
+		EB5181EF201B322D00887A8F /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181DF201B322D00887A8F /* NSArray+MASAdditions.m */; };
+		EB5181F0201B322D00887A8F /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181E2201B322D00887A8F /* NSLayoutConstraint+MASDebugAdditions.m */; };
+		EB5181F1201B322D00887A8F /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181E4201B322D00887A8F /* View+MASAdditions.m */; };
+		EB5181F2201B322D00887A8F /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181E7201B322D00887A8F /* ViewController+MASAdditions.m */; };
+		EB518217201B32C400887A8F /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181F6201B32C400887A8F /* AFHTTPSessionManager.m */; };
+		EB518218201B32C400887A8F /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181F9201B32C400887A8F /* AFNetworkReachabilityManager.m */; };
+		EB518219201B32C400887A8F /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181FB201B32C400887A8F /* AFSecurityPolicy.m */; };
+		EB51821A201B32C400887A8F /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181FD201B32C400887A8F /* AFURLRequestSerialization.m */; };
+		EB51821B201B32C400887A8F /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5181FF201B32C400887A8F /* AFURLResponseSerialization.m */; };
+		EB51821C201B32C400887A8F /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518201201B32C400887A8F /* AFURLSessionManager.m */; };
+		EB51821D201B32C400887A8F /* AFAutoPurgingImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518204201B32C400887A8F /* AFAutoPurgingImageCache.m */; };
+		EB51821E201B32C400887A8F /* AFImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518206201B32C400887A8F /* AFImageDownloader.m */; };
+		EB51821F201B32C400887A8F /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518208201B32C400887A8F /* AFNetworkActivityIndicatorManager.m */; };
+		EB518220201B32C400887A8F /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51820A201B32C400887A8F /* UIActivityIndicatorView+AFNetworking.m */; };
+		EB518221201B32C400887A8F /* UIButton+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51820C201B32C400887A8F /* UIButton+AFNetworking.m */; };
+		EB518222201B32C400887A8F /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51820F201B32C400887A8F /* UIImageView+AFNetworking.m */; };
+		EB518223201B32C400887A8F /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518212201B32C400887A8F /* UIProgressView+AFNetworking.m */; };
+		EB518224201B32C400887A8F /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518214201B32C400887A8F /* UIRefreshControl+AFNetworking.m */; };
+		EB518225201B32C400887A8F /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518216201B32C400887A8F /* UIWebView+AFNetworking.m */; };
+		EB518229201B32CA00887A8F /* NetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = EB518228201B32CA00887A8F /* NetWorking.m */; };
+		EB51822C201B336D00887A8F /* Y_StockChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB51822B201B336C00887A8F /* Y_StockChartViewController.m */; };
+		EB51825320201B2100887A8F /* YKBaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB51825220201B2000887A8F /* YKBaseTableViewController.swift */; };
+		EB51825620207E8000887A8F /* YKCoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB51825520207E8000887A8F /* YKCoinViewController.swift */; };
+		EB51825820215E7800887A8F /* YKCoinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB51825720215E7800887A8F /* YKCoinDetailViewController.swift */; };
+		EB51825A20219E8D00887A8F /* YKCoinBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB51825920219E8D00887A8F /* YKCoinBaseViewController.swift */; };
+		EB51825C2021ADBE00887A8F /* YKCoinDetailContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB51825B2021ADBE00887A8F /* YKCoinDetailContentViewController.swift */; };
 		EB977058201706EC00EBEEFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB977057201706EC00EBEEFE /* AppDelegate.swift */; };
 		EB97705A201706EC00EBEEFE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB977059201706EC00EBEEFE /* ViewController.swift */; };
 		EB97705D201706EC00EBEEFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB97705B201706EC00EBEEFE /* Main.storyboard */; };
@@ -56,12 +113,125 @@
 		5FE68E0B8D51AC77827C0B42 /* Pods_ICO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ICO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A702CBC4AA5187991FA59ADD /* Pods-ICO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ICO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ICO/Pods-ICO.debug.xcconfig"; sourceTree = "<group>"; };
 		CA87DA35C49DA351D76470E4 /* Pods-ICO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ICO.release.xcconfig"; path = "Pods/Target Support Files/Pods-ICO/Pods-ICO.release.xcconfig"; sourceTree = "<group>"; };
+		EB04AFCD20232428001F24E8 /* YKKLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YKKLineViewController.swift; sourceTree = "<group>"; };
 		EB5181382018943000887A8F /* UIViewController+SelectPhotoIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SelectPhotoIcon.h"; sourceTree = "<group>"; };
 		EB5181392018943000887A8F /* UIViewController+SelectPhotoIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SelectPhotoIcon.m"; sourceTree = "<group>"; };
 		EB51813D201972CC00887A8F /* YKNetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YKNetworkStatus.swift; sourceTree = "<group>"; };
 		EB5181402019B1EB00887A8F /* YKNoNetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YKNoNetView.swift; sourceTree = "<group>"; };
 		EB51814B2019F25A00887A8F /* UIButton+CS_FixMultiClick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+CS_FixMultiClick.h"; sourceTree = "<group>"; };
 		EB51814C2019F25A00887A8F /* UIButton+CS_FixMultiClick.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CS_FixMultiClick.m"; sourceTree = "<group>"; };
+		EB518154201B2FAD00887A8F /* Y_StockChartConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartConstant.h; sourceTree = "<group>"; };
+		EB518156201B2FAD00887A8F /* Y_StockChartGlobalVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartGlobalVariable.h; sourceTree = "<group>"; };
+		EB518157201B2FAD00887A8F /* Y_StockChartGlobalVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_StockChartGlobalVariable.m; sourceTree = "<group>"; };
+		EB518159201B2FAD00887A8F /* UIColor+Y_StockChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Y_StockChart.h"; sourceTree = "<group>"; };
+		EB51815A201B2FAD00887A8F /* UIColor+Y_StockChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Y_StockChart.m"; sourceTree = "<group>"; };
+		EB51815D201B2FAD00887A8F /* Y_AccessoryMAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_AccessoryMAView.h; sourceTree = "<group>"; };
+		EB51815E201B2FAD00887A8F /* Y_AccessoryMAView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_AccessoryMAView.m; sourceTree = "<group>"; };
+		EB518161201B2FAD00887A8F /* Y_KLineAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineAccessory.h; sourceTree = "<group>"; };
+		EB518162201B2FAD00887A8F /* Y_KLineAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineAccessory.m; sourceTree = "<group>"; };
+		EB518163201B2FAD00887A8F /* Y_KLineAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineAccessoryView.h; sourceTree = "<group>"; };
+		EB518164201B2FAD00887A8F /* Y_KLineAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineAccessoryView.m; sourceTree = "<group>"; };
+		EB518166201B2FAD00887A8F /* Y_KLineMAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineMAView.h; sourceTree = "<group>"; };
+		EB518167201B2FAD00887A8F /* Y_KLineMAView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineMAView.m; sourceTree = "<group>"; };
+		EB51816A201B2FAD00887A8F /* Y_KLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLine.h; sourceTree = "<group>"; };
+		EB51816B201B2FAD00887A8F /* Y_KLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLine.m; sourceTree = "<group>"; };
+		EB51816C201B2FAD00887A8F /* Y_MALine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_MALine.h; sourceTree = "<group>"; };
+		EB51816D201B2FAD00887A8F /* Y_MALine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_MALine.m; sourceTree = "<group>"; };
+		EB51816E201B2FAD00887A8F /* Y_KLineMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineMainView.h; sourceTree = "<group>"; };
+		EB51816F201B2FAD00887A8F /* Y_KLineMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineMainView.m; sourceTree = "<group>"; };
+		EB518172201B2FAD00887A8F /* KDJ介绍.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "KDJ介绍.md"; sourceTree = "<group>"; };
+		EB518173201B2FAD00887A8F /* MA-EMA-MACD介绍.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "MA-EMA-MACD介绍.md"; sourceTree = "<group>"; };
+		EB518174201B2FAD00887A8F /* Y_KLineGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineGroupModel.h; sourceTree = "<group>"; };
+		EB518175201B2FAD00887A8F /* Y_KLineGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineGroupModel.m; sourceTree = "<group>"; };
+		EB518176201B2FAD00887A8F /* Y_KLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineModel.h; sourceTree = "<group>"; };
+		EB518177201B2FAD00887A8F /* Y_KLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineModel.m; sourceTree = "<group>"; };
+		EB518178201B2FAD00887A8F /* Y_KLinePositionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLinePositionModel.h; sourceTree = "<group>"; };
+		EB518179201B2FAD00887A8F /* Y_KLinePositionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLinePositionModel.m; sourceTree = "<group>"; };
+		EB51817A201B2FAD00887A8F /* Y_KLineVolumePositionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineVolumePositionModel.h; sourceTree = "<group>"; };
+		EB51817B201B2FAD00887A8F /* Y_KLineVolumePositionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineVolumePositionModel.m; sourceTree = "<group>"; };
+		EB51817C201B2FAD00887A8F /* 指标公式.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "指标公式.md"; sourceTree = "<group>"; };
+		EB51817E201B2FAD00887A8F /* Y_StockChartRightYView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartRightYView.h; sourceTree = "<group>"; };
+		EB51817F201B2FAD00887A8F /* Y_StockChartRightYView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_StockChartRightYView.m; sourceTree = "<group>"; };
+		EB518181201B2FAD00887A8F /* Y_StockChartSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartSegmentView.h; sourceTree = "<group>"; };
+		EB518182201B2FAD00887A8F /* Y_StockChartSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_StockChartSegmentView.m; sourceTree = "<group>"; };
+		EB518184201B2FAD00887A8F /* Y_VolumeMAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_VolumeMAView.h; sourceTree = "<group>"; };
+		EB518185201B2FAD00887A8F /* Y_VolumeMAView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_VolumeMAView.m; sourceTree = "<group>"; };
+		EB518188201B2FAD00887A8F /* Y_KLineVolume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineVolume.h; sourceTree = "<group>"; };
+		EB518189201B2FAD00887A8F /* Y_KLineVolume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineVolume.m; sourceTree = "<group>"; };
+		EB51818A201B2FAD00887A8F /* Y_KLineVolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineVolumeView.h; sourceTree = "<group>"; };
+		EB51818B201B2FAD00887A8F /* Y_KLineVolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineVolumeView.m; sourceTree = "<group>"; };
+		EB51818C201B2FAD00887A8F /* Y_KLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_KLineView.h; sourceTree = "<group>"; };
+		EB51818D201B2FAD00887A8F /* Y_KLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_KLineView.m; sourceTree = "<group>"; };
+		EB51818E201B2FAD00887A8F /* Y_StockChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartView.h; sourceTree = "<group>"; };
+		EB51818F201B2FAD00887A8F /* Y_StockChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_StockChartView.m; sourceTree = "<group>"; };
+		EB5181CE201B322D00887A8F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB5181CF201B322D00887A8F /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
+		EB5181D0201B322D00887A8F /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
+		EB5181D1201B322D00887A8F /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
+		EB5181D2201B322D00887A8F /* MASConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraint.h; sourceTree = "<group>"; };
+		EB5181D3201B322D00887A8F /* MASConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraint.m; sourceTree = "<group>"; };
+		EB5181D4201B322D00887A8F /* MASConstraintMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraintMaker.h; sourceTree = "<group>"; };
+		EB5181D5201B322D00887A8F /* MASConstraintMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraintMaker.m; sourceTree = "<group>"; };
+		EB5181D6201B322D00887A8F /* MASLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASLayoutConstraint.h; sourceTree = "<group>"; };
+		EB5181D7201B322D00887A8F /* MASLayoutConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASLayoutConstraint.m; sourceTree = "<group>"; };
+		EB5181D8201B322D00887A8F /* Masonry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Masonry.h; sourceTree = "<group>"; };
+		EB5181D9201B322D00887A8F /* MASUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASUtilities.h; sourceTree = "<group>"; };
+		EB5181DA201B322D00887A8F /* MASViewAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewAttribute.h; sourceTree = "<group>"; };
+		EB5181DB201B322D00887A8F /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
+		EB5181DC201B322D00887A8F /* MASViewConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewConstraint.h; sourceTree = "<group>"; };
+		EB5181DD201B322D00887A8F /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
+		EB5181DE201B322D00887A8F /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASAdditions.h"; sourceTree = "<group>"; };
+		EB5181DF201B322D00887A8F /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MASAdditions.m"; sourceTree = "<group>"; };
+		EB5181E0201B322D00887A8F /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		EB5181E1201B322D00887A8F /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
+		EB5181E2201B322D00887A8F /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
+		EB5181E3201B322D00887A8F /* View+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASAdditions.h"; sourceTree = "<group>"; };
+		EB5181E4201B322D00887A8F /* View+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+MASAdditions.m"; sourceTree = "<group>"; };
+		EB5181E5201B322D00887A8F /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		EB5181E6201B322D00887A8F /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
+		EB5181E7201B322D00887A8F /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		EB5181F5201B32C400887A8F /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		EB5181F6201B32C400887A8F /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		EB5181F7201B32C400887A8F /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		EB5181F8201B32C400887A8F /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		EB5181F9201B32C400887A8F /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		EB5181FA201B32C400887A8F /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		EB5181FB201B32C400887A8F /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		EB5181FC201B32C400887A8F /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		EB5181FD201B32C400887A8F /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		EB5181FE201B32C400887A8F /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		EB5181FF201B32C400887A8F /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		EB518200201B32C400887A8F /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		EB518201201B32C400887A8F /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		EB518203201B32C400887A8F /* AFAutoPurgingImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAutoPurgingImageCache.h; sourceTree = "<group>"; };
+		EB518204201B32C400887A8F /* AFAutoPurgingImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAutoPurgingImageCache.m; sourceTree = "<group>"; };
+		EB518205201B32C400887A8F /* AFImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageDownloader.h; sourceTree = "<group>"; };
+		EB518206201B32C400887A8F /* AFImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageDownloader.m; sourceTree = "<group>"; };
+		EB518207201B32C400887A8F /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		EB518208201B32C400887A8F /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		EB518209201B32C400887A8F /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
+		EB51820A201B32C400887A8F /* UIActivityIndicatorView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActivityIndicatorView+AFNetworking.m"; sourceTree = "<group>"; };
+		EB51820B201B32C400887A8F /* UIButton+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+AFNetworking.h"; sourceTree = "<group>"; };
+		EB51820C201B32C400887A8F /* UIButton+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AFNetworking.m"; sourceTree = "<group>"; };
+		EB51820D201B32C400887A8F /* UIImage+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AFNetworking.h"; sourceTree = "<group>"; };
+		EB51820E201B32C400887A8F /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		EB51820F201B32C400887A8F /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		EB518210201B32C400887A8F /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+AFNetworking.h"; sourceTree = "<group>"; };
+		EB518211201B32C400887A8F /* UIProgressView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIProgressView+AFNetworking.h"; sourceTree = "<group>"; };
+		EB518212201B32C400887A8F /* UIProgressView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIProgressView+AFNetworking.m"; sourceTree = "<group>"; };
+		EB518213201B32C400887A8F /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
+		EB518214201B32C400887A8F /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
+		EB518215201B32C400887A8F /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
+		EB518216201B32C400887A8F /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		EB518227201B32CA00887A8F /* NetWorking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorking.h; sourceTree = "<group>"; };
+		EB518228201B32CA00887A8F /* NetWorking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorking.m; sourceTree = "<group>"; };
+		EB51822A201B336C00887A8F /* Y_StockChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Y_StockChartViewController.h; sourceTree = "<group>"; };
+		EB51822B201B336C00887A8F /* Y_StockChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Y_StockChartViewController.m; sourceTree = "<group>"; };
+		EB51825220201B2000887A8F /* YKBaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YKBaseTableViewController.swift; sourceTree = "<group>"; };
+		EB51825520207E8000887A8F /* YKCoinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YKCoinViewController.swift; sourceTree = "<group>"; };
+		EB51825720215E7800887A8F /* YKCoinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YKCoinDetailViewController.swift; sourceTree = "<group>"; };
+		EB51825920219E8D00887A8F /* YKCoinBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YKCoinBaseViewController.swift; sourceTree = "<group>"; };
+		EB51825B2021ADBE00887A8F /* YKCoinDetailContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YKCoinDetailContentViewController.swift; sourceTree = "<group>"; };
 		EB977054201706EC00EBEEFE /* ICO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ICO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB977057201706EC00EBEEFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB977059201706EC00EBEEFE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +318,312 @@
 			path = NetWorkView;
 			sourceTree = "<group>";
 		};
+		EB518150201B2BC900887A8F /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				EB518226201B32CA00887A8F /* NetWorking */,
+				EB5181F3201B32C400887A8F /* AFNetworking */,
+				EB5181CD201B322D00887A8F /* Masonry */,
+				EB518151201B2FAD00887A8F /* BTC_K线图 */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		EB518151201B2FAD00887A8F /* BTC_K线图 */ = {
+			isa = PBXGroup;
+			children = (
+				EB518152201B2FAD00887A8F /* Config */,
+				EB51815B201B2FAD00887A8F /* KLine */,
+				EB51818E201B2FAD00887A8F /* Y_StockChartView.h */,
+				EB51818F201B2FAD00887A8F /* Y_StockChartView.m */,
+			);
+			path = "BTC_K线图";
+			sourceTree = "<group>";
+		};
+		EB518152201B2FAD00887A8F /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				EB518153201B2FAD00887A8F /* Constant */,
+				EB518155201B2FAD00887A8F /* GlobalVariable */,
+				EB518158201B2FAD00887A8F /* Theme */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		EB518153201B2FAD00887A8F /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				EB518154201B2FAD00887A8F /* Y_StockChartConstant.h */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		EB518155201B2FAD00887A8F /* GlobalVariable */ = {
+			isa = PBXGroup;
+			children = (
+				EB518156201B2FAD00887A8F /* Y_StockChartGlobalVariable.h */,
+				EB518157201B2FAD00887A8F /* Y_StockChartGlobalVariable.m */,
+			);
+			path = GlobalVariable;
+			sourceTree = "<group>";
+		};
+		EB518158201B2FAD00887A8F /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				EB518159201B2FAD00887A8F /* UIColor+Y_StockChart.h */,
+				EB51815A201B2FAD00887A8F /* UIColor+Y_StockChart.m */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		EB51815B201B2FAD00887A8F /* KLine */ = {
+			isa = PBXGroup;
+			children = (
+				EB51815C201B2FAD00887A8F /* Accessory_MAView */,
+				EB51815F201B2FAD00887A8F /* AccessoryView */,
+				EB518165201B2FAD00887A8F /* KLine_MAView */,
+				EB518168201B2FAD00887A8F /* MainKLineView */,
+				EB518170201B2FAD00887A8F /* Model */,
+				EB51817D201B2FAD00887A8F /* PriceView */,
+				EB518180201B2FAD00887A8F /* SegmentView */,
+				EB518183201B2FAD00887A8F /* Volume_MAView */,
+				EB518186201B2FAD00887A8F /* VolumeView */,
+				EB51818C201B2FAD00887A8F /* Y_KLineView.h */,
+				EB51818D201B2FAD00887A8F /* Y_KLineView.m */,
+			);
+			path = KLine;
+			sourceTree = "<group>";
+		};
+		EB51815C201B2FAD00887A8F /* Accessory_MAView */ = {
+			isa = PBXGroup;
+			children = (
+				EB51815D201B2FAD00887A8F /* Y_AccessoryMAView.h */,
+				EB51815E201B2FAD00887A8F /* Y_AccessoryMAView.m */,
+			);
+			path = Accessory_MAView;
+			sourceTree = "<group>";
+		};
+		EB51815F201B2FAD00887A8F /* AccessoryView */ = {
+			isa = PBXGroup;
+			children = (
+				EB518160201B2FAD00887A8F /* Line */,
+				EB518163201B2FAD00887A8F /* Y_KLineAccessoryView.h */,
+				EB518164201B2FAD00887A8F /* Y_KLineAccessoryView.m */,
+			);
+			path = AccessoryView;
+			sourceTree = "<group>";
+		};
+		EB518160201B2FAD00887A8F /* Line */ = {
+			isa = PBXGroup;
+			children = (
+				EB518161201B2FAD00887A8F /* Y_KLineAccessory.h */,
+				EB518162201B2FAD00887A8F /* Y_KLineAccessory.m */,
+			);
+			path = Line;
+			sourceTree = "<group>";
+		};
+		EB518165201B2FAD00887A8F /* KLine_MAView */ = {
+			isa = PBXGroup;
+			children = (
+				EB518166201B2FAD00887A8F /* Y_KLineMAView.h */,
+				EB518167201B2FAD00887A8F /* Y_KLineMAView.m */,
+			);
+			path = KLine_MAView;
+			sourceTree = "<group>";
+		};
+		EB518168201B2FAD00887A8F /* MainKLineView */ = {
+			isa = PBXGroup;
+			children = (
+				EB518169201B2FAD00887A8F /* Line */,
+				EB51816E201B2FAD00887A8F /* Y_KLineMainView.h */,
+				EB51816F201B2FAD00887A8F /* Y_KLineMainView.m */,
+			);
+			path = MainKLineView;
+			sourceTree = "<group>";
+		};
+		EB518169201B2FAD00887A8F /* Line */ = {
+			isa = PBXGroup;
+			children = (
+				EB51816A201B2FAD00887A8F /* Y_KLine.h */,
+				EB51816B201B2FAD00887A8F /* Y_KLine.m */,
+				EB51816C201B2FAD00887A8F /* Y_MALine.h */,
+				EB51816D201B2FAD00887A8F /* Y_MALine.m */,
+			);
+			path = Line;
+			sourceTree = "<group>";
+		};
+		EB518170201B2FAD00887A8F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EB518171201B2FAD00887A8F /* KLineModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EB518171201B2FAD00887A8F /* KLineModel */ = {
+			isa = PBXGroup;
+			children = (
+				EB518172201B2FAD00887A8F /* KDJ介绍.md */,
+				EB518173201B2FAD00887A8F /* MA-EMA-MACD介绍.md */,
+				EB518174201B2FAD00887A8F /* Y_KLineGroupModel.h */,
+				EB518175201B2FAD00887A8F /* Y_KLineGroupModel.m */,
+				EB518176201B2FAD00887A8F /* Y_KLineModel.h */,
+				EB518177201B2FAD00887A8F /* Y_KLineModel.m */,
+				EB518178201B2FAD00887A8F /* Y_KLinePositionModel.h */,
+				EB518179201B2FAD00887A8F /* Y_KLinePositionModel.m */,
+				EB51817A201B2FAD00887A8F /* Y_KLineVolumePositionModel.h */,
+				EB51817B201B2FAD00887A8F /* Y_KLineVolumePositionModel.m */,
+				EB51817C201B2FAD00887A8F /* 指标公式.md */,
+			);
+			path = KLineModel;
+			sourceTree = "<group>";
+		};
+		EB51817D201B2FAD00887A8F /* PriceView */ = {
+			isa = PBXGroup;
+			children = (
+				EB51817E201B2FAD00887A8F /* Y_StockChartRightYView.h */,
+				EB51817F201B2FAD00887A8F /* Y_StockChartRightYView.m */,
+			);
+			path = PriceView;
+			sourceTree = "<group>";
+		};
+		EB518180201B2FAD00887A8F /* SegmentView */ = {
+			isa = PBXGroup;
+			children = (
+				EB518181201B2FAD00887A8F /* Y_StockChartSegmentView.h */,
+				EB518182201B2FAD00887A8F /* Y_StockChartSegmentView.m */,
+			);
+			path = SegmentView;
+			sourceTree = "<group>";
+		};
+		EB518183201B2FAD00887A8F /* Volume_MAView */ = {
+			isa = PBXGroup;
+			children = (
+				EB518184201B2FAD00887A8F /* Y_VolumeMAView.h */,
+				EB518185201B2FAD00887A8F /* Y_VolumeMAView.m */,
+			);
+			path = Volume_MAView;
+			sourceTree = "<group>";
+		};
+		EB518186201B2FAD00887A8F /* VolumeView */ = {
+			isa = PBXGroup;
+			children = (
+				EB518187201B2FAD00887A8F /* Line */,
+				EB51818A201B2FAD00887A8F /* Y_KLineVolumeView.h */,
+				EB51818B201B2FAD00887A8F /* Y_KLineVolumeView.m */,
+			);
+			path = VolumeView;
+			sourceTree = "<group>";
+		};
+		EB518187201B2FAD00887A8F /* Line */ = {
+			isa = PBXGroup;
+			children = (
+				EB518188201B2FAD00887A8F /* Y_KLineVolume.h */,
+				EB518189201B2FAD00887A8F /* Y_KLineVolume.m */,
+			);
+			path = Line;
+			sourceTree = "<group>";
+		};
+		EB5181CD201B322D00887A8F /* Masonry */ = {
+			isa = PBXGroup;
+			children = (
+				EB5181CE201B322D00887A8F /* Info.plist */,
+				EB5181CF201B322D00887A8F /* MASCompositeConstraint.h */,
+				EB5181D0201B322D00887A8F /* MASCompositeConstraint.m */,
+				EB5181D1201B322D00887A8F /* MASConstraint+Private.h */,
+				EB5181D2201B322D00887A8F /* MASConstraint.h */,
+				EB5181D3201B322D00887A8F /* MASConstraint.m */,
+				EB5181D4201B322D00887A8F /* MASConstraintMaker.h */,
+				EB5181D5201B322D00887A8F /* MASConstraintMaker.m */,
+				EB5181D6201B322D00887A8F /* MASLayoutConstraint.h */,
+				EB5181D7201B322D00887A8F /* MASLayoutConstraint.m */,
+				EB5181D8201B322D00887A8F /* Masonry.h */,
+				EB5181D9201B322D00887A8F /* MASUtilities.h */,
+				EB5181DA201B322D00887A8F /* MASViewAttribute.h */,
+				EB5181DB201B322D00887A8F /* MASViewAttribute.m */,
+				EB5181DC201B322D00887A8F /* MASViewConstraint.h */,
+				EB5181DD201B322D00887A8F /* MASViewConstraint.m */,
+				EB5181DE201B322D00887A8F /* NSArray+MASAdditions.h */,
+				EB5181DF201B322D00887A8F /* NSArray+MASAdditions.m */,
+				EB5181E0201B322D00887A8F /* NSArray+MASShorthandAdditions.h */,
+				EB5181E1201B322D00887A8F /* NSLayoutConstraint+MASDebugAdditions.h */,
+				EB5181E2201B322D00887A8F /* NSLayoutConstraint+MASDebugAdditions.m */,
+				EB5181E3201B322D00887A8F /* View+MASAdditions.h */,
+				EB5181E4201B322D00887A8F /* View+MASAdditions.m */,
+				EB5181E5201B322D00887A8F /* View+MASShorthandAdditions.h */,
+				EB5181E6201B322D00887A8F /* ViewController+MASAdditions.h */,
+				EB5181E7201B322D00887A8F /* ViewController+MASAdditions.m */,
+			);
+			name = Masonry;
+			path = "../../../../Y_KLine-master/BTC-Kline/Masonry";
+			sourceTree = "<group>";
+		};
+		EB5181F3201B32C400887A8F /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				EB5181F4201B32C400887A8F /* AFNetworking */,
+				EB518202201B32C400887A8F /* UIKit+AFNetworking */,
+			);
+			name = AFNetworking;
+			path = "../../../../Y_KLine-master/BTC-Kline/AFNetworking";
+			sourceTree = "<group>";
+		};
+		EB5181F4201B32C400887A8F /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				EB5181F5201B32C400887A8F /* AFHTTPSessionManager.h */,
+				EB5181F6201B32C400887A8F /* AFHTTPSessionManager.m */,
+				EB5181F7201B32C400887A8F /* AFNetworking.h */,
+				EB5181F8201B32C400887A8F /* AFNetworkReachabilityManager.h */,
+				EB5181F9201B32C400887A8F /* AFNetworkReachabilityManager.m */,
+				EB5181FA201B32C400887A8F /* AFSecurityPolicy.h */,
+				EB5181FB201B32C400887A8F /* AFSecurityPolicy.m */,
+				EB5181FC201B32C400887A8F /* AFURLRequestSerialization.h */,
+				EB5181FD201B32C400887A8F /* AFURLRequestSerialization.m */,
+				EB5181FE201B32C400887A8F /* AFURLResponseSerialization.h */,
+				EB5181FF201B32C400887A8F /* AFURLResponseSerialization.m */,
+				EB518200201B32C400887A8F /* AFURLSessionManager.h */,
+				EB518201201B32C400887A8F /* AFURLSessionManager.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		EB518202201B32C400887A8F /* UIKit+AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				EB518203201B32C400887A8F /* AFAutoPurgingImageCache.h */,
+				EB518204201B32C400887A8F /* AFAutoPurgingImageCache.m */,
+				EB518205201B32C400887A8F /* AFImageDownloader.h */,
+				EB518206201B32C400887A8F /* AFImageDownloader.m */,
+				EB518207201B32C400887A8F /* AFNetworkActivityIndicatorManager.h */,
+				EB518208201B32C400887A8F /* AFNetworkActivityIndicatorManager.m */,
+				EB518209201B32C400887A8F /* UIActivityIndicatorView+AFNetworking.h */,
+				EB51820A201B32C400887A8F /* UIActivityIndicatorView+AFNetworking.m */,
+				EB51820B201B32C400887A8F /* UIButton+AFNetworking.h */,
+				EB51820C201B32C400887A8F /* UIButton+AFNetworking.m */,
+				EB51820D201B32C400887A8F /* UIImage+AFNetworking.h */,
+				EB51820E201B32C400887A8F /* UIImageView+AFNetworking.h */,
+				EB51820F201B32C400887A8F /* UIImageView+AFNetworking.m */,
+				EB518210201B32C400887A8F /* UIKit+AFNetworking.h */,
+				EB518211201B32C400887A8F /* UIProgressView+AFNetworking.h */,
+				EB518212201B32C400887A8F /* UIProgressView+AFNetworking.m */,
+				EB518213201B32C400887A8F /* UIRefreshControl+AFNetworking.h */,
+				EB518214201B32C400887A8F /* UIRefreshControl+AFNetworking.m */,
+				EB518215201B32C400887A8F /* UIWebView+AFNetworking.h */,
+				EB518216201B32C400887A8F /* UIWebView+AFNetworking.m */,
+			);
+			path = "UIKit+AFNetworking";
+			sourceTree = "<group>";
+		};
+		EB518226201B32CA00887A8F /* NetWorking */ = {
+			isa = PBXGroup;
+			children = (
+				EB518227201B32CA00887A8F /* NetWorking.h */,
+				EB518228201B32CA00887A8F /* NetWorking.m */,
+			);
+			path = NetWorking;
+			sourceTree = "<group>";
+		};
 		EB97704B201706EC00EBEEFE = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +677,10 @@
 			isa = PBXGroup;
 			children = (
 				EB97708F2017196200EBEEFE /* YKHomeViewController.swift */,
+				EB51825520207E8000887A8F /* YKCoinViewController.swift */,
+				EB51825720215E7800887A8F /* YKCoinDetailViewController.swift */,
+				EB51825B2021ADBE00887A8F /* YKCoinDetailContentViewController.swift */,
+				EB04AFCD20232428001F24E8 /* YKKLineViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -208,6 +688,8 @@
 		EB97706B20170D5D00EBEEFE /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				EB51825920219E8D00887A8F /* YKCoinBaseViewController.swift */,
+				EB51825220201B2000887A8F /* YKBaseTableViewController.swift */,
 				EB9770862017149400EBEEFE /* YKTabBarController.swift */,
 				EB97708D201718DA00EBEEFE /* YKBaseViewController.swift */,
 				EB9770972017206800EBEEFE /* YKBaseNavigationController.swift */,
@@ -332,6 +814,7 @@
 		EB9770AC20181FC600EBEEFE /* OC */ = {
 			isa = PBXGroup;
 			children = (
+				EB518150201B2BC900887A8F /* Tools */,
 				EB9770B5201823D200EBEEFE /* swift-Bridge.h */,
 				EB9770CB2018527500EBEEFE /* View */,
 				EB9770AD20181FD100EBEEFE /* Category */,
@@ -371,6 +854,8 @@
 		EB9770CB2018527500EBEEFE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EB51822A201B336C00887A8F /* Y_StockChartViewController.h */,
+				EB51822B201B336C00887A8F /* Y_StockChartViewController.m */,
 				EB9770CC2018529600EBEEFE /* FDSPageControl.h */,
 				EB9770CD2018529600EBEEFE /* FDSPageControl.m */,
 			);
@@ -443,9 +928,13 @@
 			files = (
 				EB977062201706EC00EBEEFE /* LaunchScreen.storyboard in Resources */,
 				EB9770A020172C3600EBEEFE /* home_hover@2x.png in Resources */,
+				EB5181E8201B322D00887A8F /* Info.plist in Resources */,
 				EB97705F201706EC00EBEEFE /* Assets.xcassets in Resources */,
+				EB51819A201B2FAD00887A8F /* MA-EMA-MACD介绍.md in Resources */,
 				EB97705D201706EC00EBEEFE /* Main.storyboard in Resources */,
+				EB518199201B2FAD00887A8F /* KDJ介绍.md in Resources */,
 				EB97709F20172C3600EBEEFE /* home_hover@3x.png in Resources */,
+				EB51819F201B2FAD00887A8F /* 指标公式.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +984,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SGPagingView/SGPagingView.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -502,6 +992,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SGPagingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,41 +1007,94 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB51822C201B336D00887A8F /* Y_StockChartViewController.m in Sources */,
+				EB5181A0201B2FAD00887A8F /* Y_StockChartRightYView.m in Sources */,
+				EB518190201B2FAD00887A8F /* Y_StockChartGlobalVariable.m in Sources */,
 				EB9770962017199600EBEEFE /* YKUserCenterViewController.swift in Sources */,
+				EB04AFCE20232428001F24E8 /* YKKLineViewController.swift in Sources */,
+				EB518193201B2FAD00887A8F /* Y_KLineAccessory.m in Sources */,
+				EB51821F201B32C400887A8F /* AFNetworkActivityIndicatorManager.m in Sources */,
 				EB9770AA2017324200EBEEFE /* UIView+UIViewController.swift in Sources */,
+				EB51819D201B2FAD00887A8F /* Y_KLinePositionModel.m in Sources */,
 				EB97707F20170D5E00EBEEFE /* AlamofireSessionDelegate.swift in Sources */,
 				EB9770982017206800EBEEFE /* YKBaseNavigationController.swift in Sources */,
+				EB5181A1201B2FAD00887A8F /* Y_StockChartSegmentView.m in Sources */,
+				EB518195201B2FAD00887A8F /* Y_KLineMAView.m in Sources */,
+				EB518196201B2FAD00887A8F /* Y_KLine.m in Sources */,
 				EB51813A2018943100887A8F /* UIViewController+SelectPhotoIcon.m in Sources */,
 				EB9770A82017324200EBEEFE /* UIButton+Extension.swift in Sources */,
+				EB5181F0201B322D00887A8F /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				EB9770922017197700EBEEFE /* YKVirtualViewController.swift in Sources */,
+				EB518217201B32C400887A8F /* AFHTTPSessionManager.m in Sources */,
+				EB518218201B32C400887A8F /* AFNetworkReachabilityManager.m in Sources */,
+				EB518225201B32C400887A8F /* UIWebView+AFNetworking.m in Sources */,
+				EB5181A5201B2FAD00887A8F /* Y_KLineView.m in Sources */,
+				EB518197201B2FAD00887A8F /* Y_MALine.m in Sources */,
 				EB9770CE2018529600EBEEFE /* FDSPageControl.m in Sources */,
+				EB518191201B2FAD00887A8F /* UIColor+Y_StockChart.m in Sources */,
+				EB5181EE201B322D00887A8F /* MASViewConstraint.m in Sources */,
 				EB97709A201724E200EBEEFE /* common.swift in Sources */,
+				EB518192201B2FAD00887A8F /* Y_AccessoryMAView.m in Sources */,
 				EB9770A32017317600EBEEFE /* UIBarbuttonItem+Extension.swift in Sources */,
+				EB51825320201B2100887A8F /* YKBaseTableViewController.swift in Sources */,
+				EB5181EC201B322D00887A8F /* MASLayoutConstraint.m in Sources */,
+				EB51825820215E7800887A8F /* YKCoinDetailViewController.swift in Sources */,
 				EB9770942017198900EBEEFE /* YKInfomationViewController.swift in Sources */,
+				EB51825A20219E8D00887A8F /* YKCoinBaseViewController.swift in Sources */,
 				EB9770C420184ECE00EBEEFE /* UIButton+Category.m in Sources */,
+				EB518198201B2FAD00887A8F /* Y_KLineMainView.m in Sources */,
 				EB51813E201972CC00887A8F /* YKNetworkStatus.swift in Sources */,
+				EB518222201B32C400887A8F /* UIImageView+AFNetworking.m in Sources */,
 				EB9770C120184D8600EBEEFE /* UIView+Extension.m in Sources */,
 				EB97705A201706EC00EBEEFE /* ViewController.swift in Sources */,
+				EB51821E201B32C400887A8F /* AFImageDownloader.m in Sources */,
 				EB9770A92017324200EBEEFE /* UIImage+Extension.swift in Sources */,
 				EB9770B4201822E000EBEEFE /* UIButton+EnlargeTouchArea.m in Sources */,
+				EB518194201B2FAD00887A8F /* Y_KLineAccessoryView.m in Sources */,
 				EB97708020170D5E00EBEEFE /* RequestMenager.swift in Sources */,
 				EB97708220170D5E00EBEEFE /* AlamofireMenager.swift in Sources */,
 				EB97708520170D5E00EBEEFE /* KRCodeHandler.swift in Sources */,
+				EB51819E201B2FAD00887A8F /* Y_KLineVolumePositionModel.m in Sources */,
+				EB5181A3201B2FAD00887A8F /* Y_KLineVolume.m in Sources */,
 				EB97708420170D5E00EBEEFE /* AlamofireMenagerMap.swift in Sources */,
 				EB9770BE20184CE700EBEEFE /* UIViewController+NaviLine.m in Sources */,
 				EB977058201706EC00EBEEFE /* AppDelegate.swift in Sources */,
+				EB51825C2021ADBE00887A8F /* YKCoinDetailContentViewController.swift in Sources */,
+				EB51821C201B32C400887A8F /* AFURLSessionManager.m in Sources */,
+				EB5181E9201B322D00887A8F /* MASCompositeConstraint.m in Sources */,
+				EB5181EA201B322D00887A8F /* MASConstraint.m in Sources */,
 				EB51814D2019F25A00887A8F /* UIButton+CS_FixMultiClick.m in Sources */,
+				EB51821B201B32C400887A8F /* AFURLResponseSerialization.m in Sources */,
+				EB518221201B32C400887A8F /* UIButton+AFNetworking.m in Sources */,
+				EB5181EB201B322D00887A8F /* MASConstraintMaker.m in Sources */,
 				EB9770B82018255500EBEEFE /* UIButton+DUIButton_Extension.m in Sources */,
+				EB51819B201B2FAD00887A8F /* Y_KLineGroupModel.m in Sources */,
 				EB9770CA2018518E00EBEEFE /* YKGuideViewController.swift in Sources */,
 				EB97707C20170D5E00EBEEFE /* DataModel.swift in Sources */,
+				EB51819C201B2FAD00887A8F /* Y_KLineModel.m in Sources */,
+				EB5181F1201B322D00887A8F /* View+MASAdditions.m in Sources */,
 				EB9770AB2017324200EBEEFE /* UILabel+Extension.swift in Sources */,
 				EB5181412019B1EB00887A8F /* YKNoNetView.swift in Sources */,
 				EB97708320170D5E00EBEEFE /* AlamofireGetProperty.swift in Sources */,
+				EB518219201B32C400887A8F /* AFSecurityPolicy.m in Sources */,
 				EB9770D02018607800EBEEFE /* UIWindow+Extension.swift in Sources */,
+				EB518223201B32C400887A8F /* UIProgressView+AFNetworking.m in Sources */,
+				EB51821A201B32C400887A8F /* AFURLRequestSerialization.m in Sources */,
 				EB97708E201718DA00EBEEFE /* YKBaseViewController.swift in Sources */,
+				EB5181ED201B322D00887A8F /* MASViewAttribute.m in Sources */,
+				EB518224201B32C400887A8F /* UIRefreshControl+AFNetworking.m in Sources */,
+				EB518229201B32CA00887A8F /* NetWorking.m in Sources */,
+				EB51825620207E8000887A8F /* YKCoinViewController.swift in Sources */,
+				EB5181A2201B2FAD00887A8F /* Y_VolumeMAView.m in Sources */,
 				EB97708120170D5E00EBEEFE /* RespnseCodeMenager.swift in Sources */,
+				EB5181A6201B2FAD00887A8F /* Y_StockChartView.m in Sources */,
+				EB5181F2201B322D00887A8F /* ViewController+MASAdditions.m in Sources */,
+				EB518220201B32C400887A8F /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				EB97707E20170D5E00EBEEFE /* AlamofireSession.swift in Sources */,
+				EB5181A4201B2FAD00887A8F /* Y_KLineVolumeView.m in Sources */,
+				EB5181EF201B322D00887A8F /* NSArray+MASAdditions.m in Sources */,
 				EB9770872017149400EBEEFE /* YKTabBarController.swift in Sources */,
+				EB51821D201B32C400887A8F /* AFAutoPurgingImageCache.m in Sources */,
 				EB9770902017196200EBEEFE /* YKHomeViewController.swift in Sources */,
 				EB97707D20170D5E00EBEEFE /* AlamafireMenager_Configuration.swift in Sources */,
 			);
@@ -693,6 +1237,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6XHG8BFC8N;
 				INFOPLIST_FILE = ICO/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -715,6 +1260,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6XHG8BFC8N;
 				INFOPLIST_FILE = ICO/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

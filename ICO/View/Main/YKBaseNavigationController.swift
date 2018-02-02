@@ -14,11 +14,12 @@ class YKBaseNavigationController: UINavigationController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) , NSAttributedStringKey.font : yksysFont(font: 34.0)]
+        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) , NSAttributedStringKey.font : yksysFont(font: 34.0)]
         navigationBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        navigationBar.barTintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        navigationBar.barTintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         navigationBar.isTranslucent = false
-     
+//        self.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
+//        self.interactivePopGestureRecognizer?.isEnabled = true
    
     }
     //重写push方法

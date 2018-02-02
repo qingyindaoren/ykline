@@ -32,8 +32,13 @@ class AlamofireMenager: NSObject {
     lazy var ykNoNetv = YKNoNetView()
     
     private func hideView(){
-        let vc =  getCurrentVC()
-        for v in (vc?.view.subviews)! {
+        guard let vc =  getCurrentVC()  else {
+            return
+        }
+        guard let array: [UIView] = vc.view.subviews else {
+            return
+        }
+        for v in (array) {
             if v.classForCoder == YKNoNetView.classForCoder(){
                 v.removeFromSuperview()
             }
@@ -80,7 +85,7 @@ class AlamofireMenager: NSObject {
     func loadData<T:BaseMappable>(Path path: String, HTTPMethod method: HTTPMethod? = .get,_ parameters: [String:Any]? = nil,_ parametersType: ParamaetersType? = nil,_ setRequest: ((_ request: DataRequest) -> Void)? = nil,Success success: @escaping (_ M:T,_ response:DataResponse<T>) -> Void, Failure failure:@escaping(_ errorMsg:String) -> Void) -> (DataRequest?) {
     
         hideView()
-        if !YKNetworkStatus.sharedInstance.isConnect {
+        if YKNetworkStatus.sharedInstance.isConnect == false {
             showView()
          print(noNetString)
             return nil
@@ -109,7 +114,7 @@ class AlamofireMenager: NSObject {
     @discardableResult
     func loadData(Path path: String, HTTPMethod method: HTTPMethod? = .get,_ parameters: [String:Any]? = nil,_ parametersType: ParamaetersType? = nil,_ setRequest: ((_ request: DataRequest) -> Void)? = nil,Success success: @escaping (_ json: Any,_ response: DataResponse<Any>) -> Void, Failure failure:@escaping(_ errorMsg:String) -> Void) -> (DataRequest?) {
         hideView()
-        if !YKNetworkStatus.sharedInstance.isConnect {
+        if YKNetworkStatus.sharedInstance.isConnect == false {
             showView()
             print(noNetString)
             return nil
@@ -138,7 +143,7 @@ class AlamofireMenager: NSObject {
     @discardableResult
     func loadData<T:BaseMappable>(Path path: String, HTTPMethod method: HTTPMethod? = .get,_ parameters: [String:Any]? = nil,_ parametersType: ParamaetersType? = nil,_ setRequest: ((_ request: DataRequest) -> Void)? = nil,Success success: @escaping ([T],_ response: DataResponse<[T]>) -> Void, Failure failure:@escaping(_ errorMsg:String) -> Void) -> (DataRequest?) {
         hideView()
-        if !YKNetworkStatus.sharedInstance.isConnect {
+        if YKNetworkStatus.sharedInstance.isConnect == false {
             showView()
             print(noNetString)
             return nil
@@ -172,7 +177,7 @@ class AlamofireMenager: NSObject {
     ///   - failture: 失败 -- 如果没有数据，相当于失败。
     func uploadImage(_ urlStr : String,_ method: HTTPMethod, _ params:[String:String],_ images: [UIImage],_ names:String,_ fileNames:[String], _ headers: [String:String]?,_ compressionQuality: CGFloat? = 0.1 , _ mimeType: String ,success : @escaping (_ response : [String : AnyObject])->(), failture : @escaping (_ error : Error)->()) {
        
-        if !YKNetworkStatus.sharedInstance.isConnect {
+        if YKNetworkStatus.sharedInstance.isConnect == false {
            
             print(noNetString)
             return
@@ -195,7 +200,7 @@ class AlamofireMenager: NSObject {
     ///   - failture: 失败 -- 如果没有数据，相当于失败。
     func upload(_ urlStr : String,_ method: HTTPMethod, _ params:[String:String],_ data: [Data],_ names:[String],_ fileNames:[String], _ headers: [String:String]?,_ mimeType: String, success : @escaping (_ response : [String : AnyObject])->(), failture : @escaping (_ error : Error)->()) {
    
-        if !YKNetworkStatus.sharedInstance.isConnect {
+        if YKNetworkStatus.sharedInstance.isConnect == false {
          
             print(noNetString)
             return
@@ -315,7 +320,7 @@ private extension AlamofireMenager {
         }
         
         setRequest?(request)
-        
+
         request.responseArray(completionHandler: { [weak self] (netDate:DataResponse<[T]>) in
             if self == nil{
                 dPrint("🌶网络请求工具 AlamofireMenager，被销毁请检查")

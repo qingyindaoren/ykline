@@ -20,3 +20,7 @@
 #import "UIViewController+SelectPhotoIcon.h"
 #import "UIButton+CS_FixMultiClick.h"
 
+#import "Y_StockChartViewController.h"
+
+
+
