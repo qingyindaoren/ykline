@@ -18,8 +18,8 @@
  *  @return 转换后的结果
  */
 +(UIColor *)colorWithRGBHex:(UInt32)hex;
-
-
+//选中subview按钮的颜色
++(UIColor*)selectColor;
 /**
  *  所有图表的背景颜色
  */
@@ -29,7 +29,9 @@
  *  辅助背景色
  */
 +(UIColor *)assistBackgroundColor;
-
++(UIColor*)lightBackgroundColor;
++(UIColor*)whiteLightColor;
++(UIColor *)assistColor;
 /**
  *  涨的颜色
  */
@@ -45,6 +47,8 @@
  *  主文字颜色
  */
 +(UIColor *)mainTextColor;
++(UIColor *)lightMainTextColor;
++(UIColor *)subBtnColor;
 
 /**
  *  辅助文字颜色

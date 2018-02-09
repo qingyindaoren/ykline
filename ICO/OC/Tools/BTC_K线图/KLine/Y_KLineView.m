@@ -7,34 +7,20 @@
 //
 
 #import "Y_KLineView.h"
-#import "Y_KLineMainView.h"
-#import "Y_KLineMAView.h"
+
+
 #import "Y_VolumeMAView.h"
-#import "Y_AccessoryMAView.h"
 #import "Masonry.h"
 #import "UIColor+Y_StockChart.h"
 
 #import "Y_StockChartGlobalVariable.h"
-#import "Y_KLineVolumeView.h"
+
 #import "Y_StockChartRightYView.h"
-#import "Y_KLineAccessoryView.h"
+
 @interface Y_KLineView() <UIScrollViewDelegate, Y_KLineMainViewDelegate, Y_KLineVolumeViewDelegate, Y_KLineAccessoryViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
-/**
- *  主K线图
- */
-@property (nonatomic, strong) Y_KLineMainView *kLineMainView;
 
-/**
- *  成交量图
- */
-@property (nonatomic, strong) Y_KLineVolumeView *kLineVolumeView;
-
-/**
- *  副图
- */
-@property (nonatomic, strong) Y_KLineAccessoryView *kLineAccessoryView;
 
 /**
  *  右侧价格图
@@ -56,20 +42,14 @@
  */
 @property (nonatomic, assign) CGFloat oldExactOffset;
 
-/**
- *  kLine-MAView
- */
-@property (nonatomic, strong) Y_KLineMAView *kLineMAView;
+
 
 /**
  *  Volume-MAView
  */
 @property (nonatomic, strong) Y_VolumeMAView *volumeMAView;
 
-/**
- *  Accessory-MAView
- */
-@property (nonatomic, strong) Y_AccessoryMAView *accessoryMAView;
+@property (nonatomic, strong) UIView *rightLineView;
 
 /**
  *  长按后显示的View
@@ -124,12 +104,22 @@
         [self addSubview:_scrollView];
         
         [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self);
-            make.right.equalTo(self).offset(-48);
+            make.top.equalTo(self).offset(15);
+            make.right.equalTo(self).offset(-Y_StockRightViewWidth);
             make.left.equalTo(self.mas_left);
             make.bottom.equalTo(self.mas_bottom);
         }];
-        
+        UIView *rightLine  = [UIView new];
+        rightLine.backgroundColor = [UIColor colorWithRGBHex:0x494442];
+         [self addSubview:rightLine];
+        [rightLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(30);
+            make.right.equalTo(self).offset(-Y_StockRightViewWidth-0.5);
+            make.width.equalTo(@(0.5));
+            make.bottom.equalTo(self.mas_bottom);
+        }];
+       
+        self.rightLineView = rightLine;
         [self layoutIfNeeded];
     }
     return _scrollView;
@@ -143,8 +133,8 @@
         [_kLineMAView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self);
             make.left.equalTo(self);
-            make.top.equalTo(self).offset(5);
-            make.height.equalTo(@10);
+            make.top.equalTo(self).offset(0);
+            make.height.equalTo(@30);
         }];
     }
     return _kLineMAView;
@@ -187,7 +177,7 @@
         _kLineMainView.delegate = self;
         [self.scrollView addSubview:_kLineMainView];
         [_kLineMainView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.scrollView).offset(5);
+            make.top.equalTo(self.scrollView).offset(0);
             make.left.equalTo(self.scrollView);
             self.kLineMainViewHeightConstraint = make.height.equalTo(self.scrollView).multipliedBy(self.mainViewRatio);
             make.width.equalTo(@0);
@@ -244,7 +234,7 @@
         _priceView = [Y_StockChartRightYView new];
         [self insertSubview:_priceView aboveSubview:self.scrollView];
         [_priceView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).offset(15);
+            make.top.equalTo(self).offset(30);
             make.right.equalTo(self.mas_right);
             make.width.equalTo(@(Y_StockChartKLinePriceViewWidth));
             make.bottom.equalTo(self.kLineMainView.mas_bottom).offset(-15);
@@ -315,9 +305,19 @@
     if(targetLineStatus < 103)
     {
         if(targetLineStatus == Y_StockChartTargetLineStatusAccessoryClose){
-            
+            CGFloat h = [UIScreen mainScreen].bounds.size.height;
+            if (self.isFull) {
+                h = [UIScreen mainScreen].bounds.size.width;
+            }
+            if (h>617) {
+                [Y_StockChartGlobalVariable setkLineMainViewRadio:0.66];
+                
+                [Y_StockChartGlobalVariable setkLineVolumeViewRadio:0.3];
+            }else{
             [Y_StockChartGlobalVariable setkLineMainViewRadio:0.65];
+            
             [Y_StockChartGlobalVariable setkLineVolumeViewRadio:0.28];
+            }
 
         } else {
             [Y_StockChartGlobalVariable setkLineMainViewRadio:0.5];
@@ -483,6 +483,8 @@
 {
     self.kLineVolumeView.needDrawKLineModels = needDrawKLineModels;
     self.kLineAccessoryView.needDrawKLineModels = needDrawKLineModels;
+    
+
 }
 - (void)kLineMainViewCurrentNeedDrawKLinePositionModels:(NSArray *)needDrawKLinePositionModels
 {

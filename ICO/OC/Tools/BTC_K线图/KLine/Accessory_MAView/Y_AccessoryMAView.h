@@ -19,5 +19,5 @@
  *  Accessory指标种类
  */
 @property (nonatomic, assign) Y_StockChartTargetLineStatus targetLineStatus;
-
+@property (strong, nonatomic) UILabel *MACDLabel;
 @end

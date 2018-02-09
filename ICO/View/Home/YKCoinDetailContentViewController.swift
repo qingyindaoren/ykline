@@ -18,7 +18,7 @@ class YKCoinDetailContentViewController: YKCoinBaseViewController {
                 creatTable(className: "UITableView")
 //        creatTable(className:"YKCoinDetailContentTableView")
      
-        self.tableView?.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height:ScreenHeight -  detailSectionHeight - navStatusHeight() )
+        self.tableView?.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height:ScreenHeight -  detailSectionHeight - navStatusHeight()-dangerousHeight() )
 
         // Do any additional setup after loading the view.
         tableView?.register(UITableViewCell.self, forCellReuseIdentifier: YKCoinDetailContentId)

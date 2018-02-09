@@ -118,11 +118,39 @@
     CGContextFillRect(context, rect);
     
     //设置显示日期的区域背景颜色
-    CGContextSetFillColorWithColor(context, [UIColor assistBackgroundColor].CGColor);
-    CGContextFillRect(context, CGRectMake(0, Y_StockChartKLineMainViewMaxY, self.frame.size.width, self.frame.size.height - Y_StockChartKLineMainViewMaxY));
+    NSInteger  saveTNumber =  [[NSUserDefaults standardUserDefaults] integerForKey:@"segToneIndexKey"];
     
+    NSInteger n = saveTNumber  - 400 - 2000;
+    switch (n) {
+        case 1:{
+            CGContextSetStrokeColorWithColor(context,[UIColor assistColor].CGColor);
+            CGContextSetLineWidth(context, 0.5);
+              CGContextStrokeRect(context, CGRectMake(0, Y_StockChartKLineMainViewMaxY, self.frame.size.width+0.5, self.frame.size.height - Y_StockChartKLineMainViewMaxY));
+            
+            
+        }
+            break;
+        case 2:{
+            CGContextSetFillColorWithColor(context, [UIColor assistColor].CGColor);
+             CGContextFillRect(context, CGRectMake(0, Y_StockChartKLineMainViewMaxY, self.frame.size.width+0.5, self.frame.size.height - Y_StockChartKLineMainViewMaxY));
+        }
+            break;
+        case 3:{
+            CGContextSetLineWidth(context, 0.5);
+              CGContextSetStrokeColorWithColor(context,[UIColor assistColor].CGColor);
+              CGContextStrokeRect(context, CGRectMake(0, Y_StockChartKLineMainViewMaxY, self.frame.size.width+0.5, self.frame.size.height - Y_StockChartKLineMainViewMaxY));
+         
+        }
+            break;
+            
+        default:{
+            CGContextSetFillColorWithColor(context, [UIColor assistColor].CGColor);
+           CGContextFillRect(context, CGRectMake(0, Y_StockChartKLineMainViewMaxY, self.frame.size.width+0.5, self.frame.size.height - Y_StockChartKLineMainViewMaxY));
+        }
+            break;
+    }
     
-    
+
     
     
     Y_MALine *MALine = [[Y_MALine alloc]initWithContext:context];
@@ -156,13 +184,15 @@
             
             //日期
             
-            NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.needDrawKLineModels[idx].Date.doubleValue];
+            NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.needDrawKLineModels[idx].Date.doubleValue/1000];
             NSDateFormatter *formatter = [NSDateFormatter new];
             formatter.dateFormat = @"HH:mm";
             NSString *dateStr = [formatter stringFromDate:date];
             
-            CGPoint drawDatePoint = CGPointMake(point.x + 1, Y_StockChartKLineMainViewMaxY + 1.5);
-            if(CGPointEqualToPoint(lastDrawDatePoint, CGPointZero) || point.x - lastDrawDatePoint.x > 60 )
+            CGPoint drawDatePoint = CGPointMake(point.x + 10, Y_StockChartKLineMainViewMaxY + 1.5);
+            CGFloat w = [UIScreen mainScreen].bounds.size.width;
+            CGFloat d =(w-48-20)/6;
+            if(CGPointEqualToPoint(lastDrawDatePoint, CGPointZero) || point.x - lastDrawDatePoint.x > d )
             {
                 [dateStr drawAtPoint:drawDatePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:11],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
                 lastDrawDatePoint = drawDatePoint;

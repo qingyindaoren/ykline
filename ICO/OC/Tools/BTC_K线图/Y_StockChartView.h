@@ -25,7 +25,10 @@ typedef NS_ENUM(NSInteger, Y_KLineType) {
     KLineType12Hour,
     KLineType1Day,
     KLineType3Day,
-    KLineType1Week
+    KLineType1Week,
+    KLineType1Month,
+   
+    
 };
 
 /**
@@ -45,6 +48,8 @@ typedef NS_ENUM(NSInteger, Y_KLineType) {
 @protocol Y_StockChartViewDataSource <NSObject>
 
 -(id) stockDatasWithIndex:(NSInteger)index;
+-(void)addTapGeogresWithView:(UIView*)view;
+-(void)removeTapGeogresWithView:(UIView*)view;
 
 @end
 
@@ -65,15 +70,8 @@ typedef NS_ENUM(NSInteger, Y_KLineType) {
 
 
 -(void) reloadData;
-@end
-
-/************************ItemModel类************************/
-@interface Y_StockChartViewItemModel : NSObject
-
-@property (nonatomic, copy) NSString *title;
-
-@property (nonatomic, assign) Y_StockChartCenterViewType centerViewType;
-
-+ (instancetype)itemModelWithTitle:(NSString *)title type:(Y_StockChartCenterViewType)type;
+-(void)hideKLine;
 
 @end
+
+

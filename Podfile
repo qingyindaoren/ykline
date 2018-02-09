@@ -9,6 +9,7 @@ pod 'AlamofireObjectMapper'
 pod 'ObjectMapper'
 pod 'SnapKit'
  pod 'SGPagingView'
+ pod 'SVProgressHUD'
   # Pods for ICO
 
 end

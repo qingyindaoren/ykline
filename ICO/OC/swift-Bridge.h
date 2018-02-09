@@ -19,8 +19,11 @@
 #import "FDSPageControl.h"
 #import "UIViewController+SelectPhotoIcon.h"
 #import "UIButton+CS_FixMultiClick.h"
-
-#import "Y_StockChartViewController.h"
-
-
+#import "Y_KLineModel.h"
+#import "Y_StockChartView.h"
+#import "Y_KLineGroupModel.h"
+#import "UIColor+Y_StockChart.h"
+#import "DataMD5.h"
+#import "Y_StockChartViewItemModel.h"
+#import "Y_StockChartConstant.h"
 

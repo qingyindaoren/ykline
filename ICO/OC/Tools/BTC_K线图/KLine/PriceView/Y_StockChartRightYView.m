@@ -9,6 +9,7 @@
 #import "Y_StockChartRightYView.h"
 #import "UIColor+Y_StockChart.h"
 #import "Masonry.h"
+#import "Y_StockChartConstant.h"
 
 @interface Y_StockChartRightYView ()
 
@@ -57,6 +58,7 @@
         [_maxValueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.right.width.equalTo(self);
             make.height.equalTo(@20);
+//            make.width.equalTo(@(Y_StockRightViewWidth));
         }];
     }
     return _maxValueLabel;
@@ -71,6 +73,7 @@
         [_middleValueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.right.equalTo(self);
             make.height.width.equalTo(self.maxValueLabel);
+//             make.width.equalTo(@(Y_StockRightViewWidth));
         }];
     }
     return _middleValueLabel;
@@ -85,6 +88,7 @@
         [_minValueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.right.equalTo(self);
             make.height.width.equalTo(self.maxValueLabel);
+//             make.width.equalTo(@(Y_StockRightViewWidth));
         }];
     }
     return _minValueLabel;
@@ -97,7 +101,7 @@
     UILabel *label = [UILabel new];
     label.font = [UIFont systemFontOfSize:10];
     label.textColor = [UIColor assistTextColor];
-    label.textAlignment = NSTextAlignmentLeft;
+    label.textAlignment = NSTextAlignmentCenter;
     label.adjustsFontSizeToFitWidth = YES;
     [self addSubview:label];
     return label;

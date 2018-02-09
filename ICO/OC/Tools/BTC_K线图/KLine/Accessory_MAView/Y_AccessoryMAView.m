@@ -19,7 +19,7 @@
 
 @property (strong, nonatomic) UILabel *DEALabel;
 
-@property (strong, nonatomic) UILabel *MACDLabel;
+
 
 @end
 @implementation Y_AccessoryMAView
@@ -37,7 +37,7 @@
         
         _DIFLabel.textColor = [UIColor ma7Color];
         _DEALabel.textColor = [UIColor ma30Color];
-        _MACDLabel.textColor = [UIColor colorWithRGBHex:0xffffff];
+        _MACDLabel.textColor = [UIColor mainTextColor];
 
         
         [_accessoryDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -80,14 +80,14 @@
     if(self.targetLineStatus != Y_StockChartTargetLineStatusKDJ)
     {
         _accessoryDescLabel.text = @" MACD(12,26,9)";
-        _DIFLabel.text = [NSString stringWithFormat:@"  DIF：%.4f ",model.DIF.floatValue];
-        _DEALabel.text = [NSString stringWithFormat:@"  DEA：%.4f",model.DEA.floatValue];
-        _MACDLabel.text = [NSString stringWithFormat:@"  MACD：%.4f",model.MACD.floatValue];
+        _DIFLabel.text = [NSString stringWithFormat:@" DIF:%.2f ",model.DIF.floatValue];
+        _DEALabel.text = [NSString stringWithFormat:@" DEA:%.2f",model.DEA.floatValue];
+        _MACDLabel.text = [NSString stringWithFormat:@" MACD:%.2f",model.MACD.floatValue];
     } else {
         _accessoryDescLabel.text = @" KDJ(9,3,3)";
-        _DIFLabel.text = [NSString stringWithFormat:@"  K：%.8f ",model.KDJ_K.floatValue];
-        _DEALabel.text = [NSString stringWithFormat:@"  D：%.8f",model.KDJ_D.floatValue];
-        _MACDLabel.text = [NSString stringWithFormat:@"  J：%.8f",model.KDJ_J.floatValue];
+        _DIFLabel.text = [NSString stringWithFormat:@" K:%.2f ",model.KDJ_K.floatValue];
+        _DEALabel.text = [NSString stringWithFormat:@" D:%.2f",model.KDJ_D.floatValue];
+        _MACDLabel.text = [NSString stringWithFormat:@" J:%.2f",model.KDJ_J.floatValue];
     }
 
 

@@ -6,6 +6,7 @@ PODS:
   - ObjectMapper (3.1.0)
   - SGPagingView (1.3.5)
   - SnapKit (4.0.0)
+  - SVProgressHUD (2.2.2)
 
 DEPENDENCIES:
   - Alamofire
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - ObjectMapper
   - SGPagingView
   - SnapKit
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
@@ -20,7 +22,8 @@ SPEC CHECKSUMS:
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   SGPagingView: b001e3c761386ac6f33be9ff073bcf250b394874
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
 
-PODFILE CHECKSUM: 8a5672c0d810bf85739afe24026cb3ff8439de14
+PODFILE CHECKSUM: 4e60783dc511642cfe1aca598b7e1e094de9f577
 
 COCOAPODS: 1.4.0

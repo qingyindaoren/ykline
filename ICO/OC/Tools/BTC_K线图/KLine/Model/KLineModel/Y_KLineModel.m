@@ -10,7 +10,9 @@
 #import "Y_KLineGroupModel.h"
 #import "Y_StockChartGlobalVariable.h"
 @implementation Y_KLineModel
-
+-(NSString *)Date{
+    return [NSString stringWithFormat:@"%@000",_Date];
+}
 - (NSNumber *)RSV_9
 {
     if (!_RSV_9) {

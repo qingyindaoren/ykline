@@ -26,13 +26,7 @@
 
 @property (strong, nonatomic) UILabel *lowDescLabel;
 
-@property (strong, nonatomic) UILabel *openLabel;
 
-@property (strong, nonatomic) UILabel *closeLabel;
-
-@property (strong, nonatomic) UILabel *highLabel;
-
-@property (strong, nonatomic) UILabel *lowLabel;
 
 @end
 
@@ -42,6 +36,7 @@
 {
     self = [super init];
     if (self) {
+        self.backgroundColor = [UIColor lightBackgroundColor];
         _MA7Label = [self private_createLabel];
         _MA30Label = [self private_createLabel];
         _dateDescLabel = [self private_createLabel];
@@ -65,88 +60,89 @@
         
         _MA7Label.textColor = [UIColor ma7Color];
         _MA30Label.textColor = [UIColor ma30Color];
-        _openLabel.textColor = [UIColor whiteColor];
-        _highLabel.textColor = [UIColor whiteColor];
-        _lowLabel.textColor = [UIColor whiteColor];
-        _closeLabel.textColor = [UIColor whiteColor];
+        _openLabel.textColor = [UIColor mainTextColor];
+        _highLabel.textColor = [UIColor mainTextColor];
+        _lowLabel.textColor = [UIColor mainTextColor];
+        _closeLabel.textColor = [UIColor mainTextColor];
 
-        NSNumber *labelWidth = [NSNumber numberWithInt:47];
+//        NSNumber *labelWidth = [NSNumber numberWithInt:47];
         
         [_dateDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.mas_left);
+            make.left.equalTo(self.mas_left).offset(10);
             make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
-            make.width.equalTo(@100);
+            make.height.equalTo(self);
+//            make.bottom.equalTo(self.mas_bottom);
+//            make.width.equalTo(@100);
 
         }];
         
         [_openDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_dateDescLabel.mas_right);
-            make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
+            make.left.equalTo(_dateDescLabel.mas_right).offset(2);
+            make.top.equalTo(self.mas_top).offset(3);
+//            make.bottom.equalTo(self.mas_bottom);
         }];
         
         [_openLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_openDescLabel.mas_right);
-            make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
-            make.width.equalTo(labelWidth);
+            make.top.equalTo(self.mas_top).offset(3);
+//            make.bottom.equalTo(self.mas_bottom);
+//            make.width.equalTo(labelWidth);
  
         }];
         
         [_highDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_openLabel.mas_right);
-            make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
+            make.left.equalTo(_openLabel.mas_right).offset(1);
+            make.top.equalTo(self.mas_top).offset(3);
+//            make.bottom.equalTo(self.mas_bottom);
         }];
         
         [_highLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_highDescLabel.mas_right);
-            make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
-            make.width.equalTo(labelWidth);
+            make.top.equalTo(self.mas_top).offset(3);
+//            make.bottom.equalTo(self.mas_bottom);
+//            make.width.equalTo(labelWidth);
 
         }];
         
         [_lowDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_highLabel.mas_right);
-            make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
+            make.left.equalTo(_highLabel.mas_right).offset(1);
+            make.top.equalTo(self.mas_top).offset(3);
+//            make.bottom.equalTo(self.mas_bottom);
         }];
         
         [_lowLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_lowDescLabel.mas_right);
-            make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
-            make.width.equalTo(labelWidth);
+            make.top.equalTo(self.mas_top).offset(3);
+//            make.bottom.equalTo(self.mas_bottom);
+//            make.width.equalTo(labelWidth);
 
         }];
         
         [_closeDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_lowLabel.mas_right);
-            make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
+            make.left.equalTo(_lowLabel.mas_right).offset(1);
+            make.top.equalTo(self.mas_top).offset(3);
+//            make.bottom.equalTo(self.mas_bottom);
         }];
         
         [_closeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_closeDescLabel.mas_right);
-            make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
-            make.width.equalTo(labelWidth);
+            make.top.equalTo(self.mas_top).offset(3);
+//            make.bottom.equalTo(self.mas_bottom);
+//            make.width.equalTo(labelWidth);
 
         }];
         
         [_MA7Label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_closeLabel.mas_right);
-            make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
+            make.left.equalTo(_dateDescLabel.mas_right).offset(2);
+            make.top.equalTo(_openLabel.mas_bottom).offset(3);
+//            make.bottom.equalTo(self.mas_bottom);
             
         }];
         
         [_MA30Label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_MA7Label.mas_right);
-            make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
+            make.left.equalTo(_MA7Label.mas_right).offset(3);
+            make.top.equalTo(_MA7Label);
+//            make.bottom.equalTo(self.mas_bottom);
         }];
         
     }
@@ -163,22 +159,27 @@
 {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.Date.doubleValue/1000];
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    formatter.dateFormat = @"yyyy/MM/dd HH:mm";
     NSString *dateStr = [formatter stringFromDate:date];
     _dateDescLabel.text = [@" " stringByAppendingString: dateStr];
+
     
     _openLabel.text = [NSString stringWithFormat:@"%.2f",model.Open.floatValue];
+
     _highLabel.text = [NSString stringWithFormat:@"%.2f",model.High.floatValue];
+
     _lowLabel.text = [NSString stringWithFormat:@"%.2f",model.Low.floatValue];
+
     _closeLabel.text = [NSString stringWithFormat:@"%.2f",model.Close.floatValue];
+
  
-    _MA7Label.text = [NSString stringWithFormat:@" MA7：%.2f ",model.MA7.floatValue];
-    _MA30Label.text = [NSString stringWithFormat:@" MA30：%.2f",model.MA30.floatValue];
+    _MA7Label.text = [NSString stringWithFormat:@" MA7: %.2f ",model.MA7.floatValue];
+    _MA30Label.text = [NSString stringWithFormat:@" MA30: %.2f",model.MA30.floatValue];
 }
 - (UILabel *)private_createLabel
 {
     UILabel *label = [UILabel new];
-    label.font = [UIFont systemFontOfSize:10];
+    label.font = [UIFont boldSystemFontOfSize:9];
     label.textColor = [UIColor assistTextColor];
     [self addSubview:label];
     return label;

@@ -15,7 +15,7 @@ import UIKit
 var baseServerWord: String = "api"
 var baseURL: String {
     get {
-        return "http://\(baseServerWord).dianping.com/"
+        return "https://\(baseServerWord).huobi.pro/"
     }
 }
 

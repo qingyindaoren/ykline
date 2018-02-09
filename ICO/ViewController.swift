@@ -16,11 +16,11 @@ import UIKit
 class ViewController: YKBaseViewController {
 
     @objc private func didClickPush(btn: UIButton){
-                let v = Y_StockChartViewController()
+//                let v = Y_StockChartViewController()
 //        let v = ViewController()
-        v.view.backgroundColor = ykrandomColor()
-        v.modalTransitionStyle = .crossDissolve
-        self.present(v, animated: true, completion: nil)
+//        v.view.backgroundColor = ykrandomColor()
+//        v.modalTransitionStyle = .crossDissolve
+//        self.present(v, animated: true, completion: nil)
         
         
     }
@@ -58,16 +58,12 @@ class ViewController: YKBaseViewController {
                           "page":"1",
                           "sign":"93AD7448260235FCB3F691EF4CE8B2B12E6C0472"]
 
-//        AlamofireMenager.shared.loadData(Path: "v1/deal/find_deals", HTTPMethod: .get, parameters, .query, Success: { (banner: DataModel,netData)  in
-//
-//        }) { (str) in
-//
-//        }
-        AlamofireMenager.shared.loadData(Path: "v1/deal/find_deals", HTTPMethod: .get, parameters,  .query, Success: { (banner:[DataModelArray], netData) in
-            
+        AlamofireMenager.shared.loadData(Path: "v1/deal/find_deals", HTTPMethod: .get, parameters, .query, Success: { (banner: DataModel,netData)  in
+
         }) { (str) in
-            
+
         }
+
  
         
 

@@ -23,14 +23,7 @@ open class YKBaseViewController: UIViewController,UIGestureRecognizerDelegate{
 //            self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 //        }
     }
-//    - (UIInterfaceOrientationMask)supportedInterfaceOrientations
-//    {
-//    return UIInterfaceOrientationMaskLandscape;
-//    }
-//    - (BOOL)shouldAutorotate
-//    {
-//    return NO;
-//    }
+
 
     override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -17,11 +17,14 @@
  */
 #define Y_StockChartKLineNeedLoadMoreDataNotification @"Y_StockChartKLineNeedLoadMoreDataNotification"
 
+#define segmentHeight 44
+#define leftM  10
+static NSInteger const Y_StockChartSegmentStartTag = 2000;
 /**
  *  K线图Y的View的宽度
  */
 #define Y_StockChartKLinePriceViewWidth 47
-
+#define Y_StockRightViewWidth 48
 /**
  *  K线图的X的View的高度
  */
@@ -75,7 +78,7 @@
 /**
  *  长按时的线的宽度
  */
-#define Y_StockChartLongPressVerticalViewWidth 0.5
+#define Y_StockChartLongPressVerticalViewWidth 0.8
 
 /**
  *  MA线的宽度
@@ -165,12 +168,21 @@
 
 //Kline种类
 typedef NS_ENUM(NSInteger, Y_StockChartCenterViewType) {
-    Y_StockChartcenterViewTypeKline= 1, //K线
+    Y_StockChartcenterViewTypeKline= 0, //K线
     Y_StockChartcenterViewTypeTimeLine,  //分时图
-    Y_StockChartcenterViewTypeOther
+    Y_StockChartcenterViewTypeOther,
+
 };
-
-
+//Segitem种类
+typedef NS_ENUM(NSInteger, Y_StockChartSegViewType) {
+    Y_StockChartSegViewTypeKline= 0, //K线
+//    Y_StockChartSegViewTypeTimeLine,  //分时图
+ 
+    Y_StockChartSegViewTypeMainIndex,//主指标
+    Y_StockChartSegViewTypeIndex,//指标
+    Y_StockChartSegViewTypeTone,//色调
+    Y_StockChartSegViewTypeFullScreen
+};
 //Accessory指标种类
 typedef NS_ENUM(NSInteger, Y_StockChartTargetLineStatus) {
     Y_StockChartTargetLineStatusMACD = 100,    //MACD线

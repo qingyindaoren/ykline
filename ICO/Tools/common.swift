@@ -8,11 +8,16 @@
 
 import UIKit
 import SnapKit
+
 //cell的标识
 let YKCoinDetailCellId = "YKCoinDetailCellId"
 let YKCoinId = "YKCoinId"
 let YKCoinDetailContentId = "YKCoinDetailContentId"
 
+let segkLineKey = "segkLineKey"
+let segMAKey = "segMAKey"
+let segKDJKey = "segKDJKey"
+let segToneKey = "segToneKey"
 
 let namespace = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
 let guideCount = 4

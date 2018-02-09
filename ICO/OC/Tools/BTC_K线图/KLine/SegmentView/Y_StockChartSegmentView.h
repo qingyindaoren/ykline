@@ -9,10 +9,21 @@
 #import <UIKit/UIKit.h>
 
 @class Y_StockChartSegmentView;
-
+@class  Y_StockChartViewItemModel;
 @protocol Y_StockChartSegmentViewDelegate <NSObject>
+-(void)addKlineSelectView:(Y_StockChartViewItemModel*)model;
+-(void)showKlineView;
 
-- (void)y_StockChartSegmentView:(Y_StockChartSegmentView *)segmentView clickSegmentButtonIndex:(NSInteger)index;
+-(void)addMASelectView:(Y_StockChartViewItemModel*)model;
+-(void)showMAView;
+
+-(void)addKDJSelectView:(Y_StockChartViewItemModel*)model;
+-(void)showKDJView;
+
+-(void)addToneSelectView:(Y_StockChartViewItemModel*)model;
+-(void)showToneView;
+
+
 
 @end
 
@@ -25,6 +36,7 @@
 
 @property (nonatomic, weak) id <Y_StockChartSegmentViewDelegate> delegate;
 
-@property (nonatomic, assign) NSUInteger selectedIndex;
+@property (nonatomic, copy) NSMutableArray *btnArray;
+@property (nonatomic, strong) NSArray *itemModels;
 
 @end

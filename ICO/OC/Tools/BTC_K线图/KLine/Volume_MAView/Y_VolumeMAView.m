@@ -67,10 +67,10 @@
 {
 
 
-    _volumeDescLabel.text = [NSString stringWithFormat:@" 成交量(7,30):%.4f ",model.Volume];
+    _volumeDescLabel.text = [NSString stringWithFormat:@" 量(7,30):%.2f ",model.Volume];
  
-    _VolumeMA7Label.text = [NSString stringWithFormat:@"  MA7：%.8f ",model.Volume_MA7.floatValue];
-    _VolumeMA30Label.text = [NSString stringWithFormat:@"  MA30：%.8f",model.Volume_MA30.floatValue];
+    _VolumeMA7Label.text = [NSString stringWithFormat:@" MA7:%.2f ",model.Volume_MA7.floatValue];
+    _VolumeMA30Label.text = [NSString stringWithFormat:@" MA30:%.2f",model.Volume_MA30.floatValue];
 }
 - (UILabel *)private_createLabel
 {

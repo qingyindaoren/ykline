@@ -9,11 +9,40 @@
 import UIKit
 import SGPagingView
 class YKCoinDetailViewController: YKBaseTableViewController {
-    
+    @objc private func fullScreen(){
+        if let pragrams = self.klineVC?.pragrams {
+            //取出交易所 交易对
+            let sysm = pragrams["symbol"]
+            
+            let kline = YKKLineViewController()
+            //给新控制器的交易所，交易对赋值
+            
+            
+            kline.isFullScreen = true
+            let appdlegate: AppDelegate =  UIApplication.shared.delegate as! AppDelegate
+            appdlegate.isEable = true
+            kline.modalTransitionStyle = .crossDissolve
+            self.present(kline, animated: false, completion: nil)
+        }
+    }
+    private var tap: UITapGestureRecognizer? = nil
+
+    private var klineVC:YKKLineViewController?
     private var childVCScrollView:UIScrollView?
    private  var sectionTitleArray = ["K线图","详情","全部价格"]
     private var childArr:[UIViewController] = []
-    private var currentIndex: Int?
+    private var currentIndex: Int = 0{
+        didSet{
+            if currentIndex == 0 {
+         self.tableView?.bounces = false
+                self.pageContentView.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height:  self.view.height - detailSectionHeight-coinDetailtopViewHeight-dangerousHeight())
+                self.view.backgroundColor = UIColor .background()
+            }else{
+                self.tableView?.bounces = true
+                self.pageContentView.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height:  self.view.height - detailSectionHeight-dangerousHeight())
+            }
+        }
+    }
     private  lazy var topView: UIView = {
        let v = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: coinDetailtopViewHeight))
         v.backgroundColor = ykrandomColor()
@@ -33,7 +62,7 @@ class YKCoinDetailViewController: YKBaseTableViewController {
         return t!
     }()
     private lazy var pageContentView: SGPageContentView = {
-        let content = SGPageContentView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: self.view.height - detailSectionHeight), parentVC: self, childVCs: self.childArr)
+        let content = SGPageContentView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: self.view.height - detailSectionHeight-dangerousHeight()), parentVC: self, childVCs: self.childArr)
         content?.delegatePageContentView = self
      
         return content!
@@ -42,12 +71,12 @@ class YKCoinDetailViewController: YKBaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-
+        NotificationCenter.default.addObserver(self, selector: #selector(fullScreen), name: NSNotification.Name(rawValue: "fullScreen"), object: nil)
     }
     private func setupUI(){
 
               creatTable(className:"YKCoinDetailTableView")
-        self.tableView?.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - navStatusHeight() )
+        self.tableView?.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - navStatusHeight()-dangerousHeight() )
         tableView?.tableHeaderView = self.topView
 
         tableView?.sectionHeaderHeight = detailSectionHeight
@@ -57,20 +86,48 @@ class YKCoinDetailViewController: YKBaseTableViewController {
         for newsTitle in sectionTitleArray {
            
             if newsTitle == "K线图"{
-             let   coinType = YKKLineViewController()
-                coinType.title = newsTitle
-                self.childArr.append(coinType)
-            }else{
-          let   coinType =  YKCoinDetailContentViewController()
-                coinType.delegate = self
-                coinType.title = newsTitle
-                self.childArr.append(coinType)
+             let   coin = YKKLineViewController()
+                self.klineVC = coin
+                coin.addTapBlock = {[weak self] view in
+               
+                    self!.view.isUserInteractionEnabled = true
+                    self?.tap = UITapGestureRecognizer.init(target: self!, action: #selector(self?.tohiden))
+                    self!.view.addGestureRecognizer((self?.tap)!)
+                }
+                coin.removeTapBlock = {view in
+                    if let t = self.tap {
+                        self.view.removeGestureRecognizer(t)
+                        self.tap = nil
+                        self.view.backgroundColor = UIColor.background()
+                    }
+
+                }
+                coin.title = newsTitle
+                self.childArr.append(coin)
+            }else if newsTitle == "详情"{
+          let   coin =  YKCoinDetailContentViewController()
+                coin.delegate = self
+                coin.title = newsTitle
+                self.childArr.append(coin)
+            }else if newsTitle == "全部价格"{
+               let coin = YKCoinAllPriceViewController()
+                coin.delegate = self
+                coin.title = newsTitle
+                self.childArr.append(coin)
             }
             
            
         }
     }
-
+    @objc private func tohiden(){
+      self.klineVC?.stockChartView.hideKLine()
+        if let t = self.tap {
+          self.view.removeGestureRecognizer(t)
+            self.tap = nil
+        }
+     
+       
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -102,7 +159,8 @@ class YKCoinDetailViewController: YKBaseTableViewController {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-      return self.view.height - detailSectionHeight
+        let h = self.currentIndex == 0 ? self.view.height - detailSectionHeight-coinDetailtopViewHeight-dangerousHeight() : self.view.height - detailSectionHeight-dangerousHeight()
+      return  h
     }
 
     
@@ -143,6 +201,7 @@ extension YKCoinDetailViewController: SGPageTitleViewDelegate, SGPageContentView
     
         self.pageContentView.setPageCententViewCurrentIndex(selectedIndex)
         self.currentIndex = selectedIndex
+        self.tableView?.reloadData()
     }
     
     /// 联动 SGPageTitleView 的方法
@@ -150,6 +209,7 @@ extension YKCoinDetailViewController: SGPageTitleViewDelegate, SGPageContentView
         self.tableView?.isScrollEnabled = false
         self.pageTitleView.setPageTitleViewWithProgress(progress, originalIndex: originalIndex, targetIndex: targetIndex)
     self.currentIndex = targetIndex
+        self.tableView?.reloadData()
     }
     func pageContentView(_ pageContentView: SGPageContentView!, offsetX: CGFloat) {
         self.tableView?.isScrollEnabled = true

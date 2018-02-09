@@ -70,8 +70,12 @@
     formatter.dateFormat = @"HH:mm";
     NSString *dateStr = [formatter stringFromDate:date];
     
-    CGPoint drawDatePoint = CGPointMake(self.kLinePositionModel.LowPoint.x + 1, self.maxY + 1.5);
-    if(CGPointEqualToPoint(self.lastDrawDatePoint, CGPointZero) || drawDatePoint.x - self.lastDrawDatePoint.x > 60 )
+
+    CGFloat w = [UIScreen mainScreen].bounds.size.width;
+    CGFloat d =(w-48-20)/6;
+    
+    CGPoint drawDatePoint = CGPointMake(self.kLinePositionModel.LowPoint.x + 10, self.maxY + 1.5);
+    if(CGPointEqualToPoint(self.lastDrawDatePoint, CGPointZero) || drawDatePoint.x - self.lastDrawDatePoint.x > d )
     {
         [dateStr drawAtPoint:drawDatePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:11],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
         self.lastDrawDatePoint = drawDatePoint;

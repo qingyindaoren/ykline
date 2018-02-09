@@ -9,8 +9,11 @@
 #import "Y_StockChartSegmentView.h"
 #import "Masonry.h"
 #import "UIColor+Y_StockChart.h"
+#import "Y_StockChartConstant.h"
+#import "Y_StockChartViewItemModel.h"
+#define mar 10
 
-static NSInteger const Y_StockChartSegmentStartTag = 2000;
+
 
 //static CGFloat const Y_StockChartSegmentIndicatorViewHeight = 2;
 //
@@ -18,13 +21,7 @@ static NSInteger const Y_StockChartSegmentStartTag = 2000;
 
 @interface Y_StockChartSegmentView()
 
-@property (nonatomic, strong) UIButton *selectedBtn;
 
-@property (nonatomic, strong) UIView *indicatorView;
-
-@property (nonatomic, strong) UIButton *secondLevelSelectedBtn1;
-
-@property (nonatomic, strong) UIButton *secondLevelSelectedBtn2;
 
 @end
 
@@ -35,6 +32,7 @@ static NSInteger const Y_StockChartSegmentStartTag = 2000;
     self = [super initWithFrame:CGRectZero];
     if(self)
     {
+       
         self.items = items;
     }
     return self;
@@ -46,71 +44,18 @@ static NSInteger const Y_StockChartSegmentStartTag = 2000;
     if(self)
     {
         self.clipsToBounds = YES;
-        self.backgroundColor = [UIColor assistBackgroundColor];
+     
+             self.backgroundColor = [UIColor assistBackgroundColor];
+  
     }
     return self;
 }
 
-- (UIView *)indicatorView
-{
-    if(!_indicatorView)
-    {
-        _indicatorView = [UIView new];
-        _indicatorView.backgroundColor = [UIColor assistBackgroundColor];
-        
-        NSArray *titleArr = @[@"MACD",@"KDJ",@"关闭",@"MA",@"EMA",@"BOLL",@"关闭"];
-        __block UIButton *preBtn;
-        [titleArr enumerateObjectsUsingBlock:^(NSString*  _Nonnull title, NSUInteger idx, BOOL * _Nonnull stop) {
-            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btn setTitleColor:[UIColor mainTextColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor ma30Color] forState:UIControlStateSelected];
-            btn.titleLabel.font = [UIFont systemFontOfSize:13];
-            btn.tag = Y_StockChartSegmentStartTag + 100 + idx;
-            [btn addTarget:self action:@selector(event_segmentButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-            [btn setTitle:title forState:UIControlStateNormal];
-            [_indicatorView addSubview:btn];
-            
-            [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.height.equalTo(_indicatorView).multipliedBy(1.0f/titleArr.count);
-                make.width.equalTo(_indicatorView);
-                make.left.equalTo(_indicatorView);
-                if(preBtn)
-                {
-                    make.top.equalTo(preBtn.mas_bottom);
-                } else {
-                    make.top.equalTo(_indicatorView);
-                }
-            }];
-            UIView *view = [UIView new];
-            view.backgroundColor = [UIColor colorWithRed:52.f/255.f green:56.f/255.f blue:67/255.f alpha:1];
-            [_indicatorView addSubview:view];
-            [view mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.right.equalTo(btn);
-                make.top.equalTo(btn.mas_bottom);
-                make.height.equalTo(@0.5);
-            }];
-            preBtn = btn;
-        }];
-        UIButton *firstBtn = _indicatorView.subviews[0];
-        [firstBtn setSelected:YES];
-        _secondLevelSelectedBtn1 = firstBtn;
-        UIButton *firstBtn2 = _indicatorView.subviews[6];
-        [firstBtn2 setSelected:YES];
-        _secondLevelSelectedBtn2 = firstBtn2;
-        [self addSubview:_indicatorView];
-        [_indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(self);
-            make.bottom.equalTo(self);
-            make.width.equalTo(self);
-            make.right.equalTo(self.mas_left);
-        }];
-    }
-    return _indicatorView;
-}
+
 
 - (void)setItems:(NSArray *)items
 {
+     _btnArray = [NSMutableArray array];
     _items = items;
     if(items.count == 0 || !items)
     {
@@ -119,128 +64,161 @@ static NSInteger const Y_StockChartSegmentStartTag = 2000;
     NSInteger index = 0;
     NSInteger count = items.count;
     UIButton *preBtn = nil;
-    
-    for (NSString *title in items)
+    CGFloat w = ([UIScreen mainScreen].bounds.size.width - leftM *2)/count;
+    if (![items.lastObject[0] isEqualToString:@"全屏"]) {
+        if ([UIScreen mainScreen].bounds.size.height == 812) {
+           w = ([UIScreen mainScreen].bounds.size.height-2*[UIApplication sharedApplication].statusBarFrame.size.height - leftM *2)/count;
+        }else{
+             w = ([UIScreen mainScreen].bounds.size.height - leftM *2)/count;
+        }
+       
+    }
+    for (NSArray *titles in items)
     {
+        NSString *title = titles.firstObject;
         UIButton *btn = [self private_createButtonWithTitle:title tag:Y_StockChartSegmentStartTag+index];
-        UIView *view = [UIView new];
+        [btn addTarget:self action:@selector(segmentButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        UIImageView *view;
+        if (index<count-1) {
+            view = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"home_hover"]];
+        }else{
+      view = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"home_hover"]];
+        }
+        
         view.backgroundColor = [UIColor colorWithRed:52.f/255.f green:56.f/255.f blue:67/255.f alpha:1];
         [self addSubview:btn];
         [self addSubview:view];
+   
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.mas_left);
-            make.height.equalTo(self).multipliedBy(1.0f/count);
-            make.width.equalTo(self);
+            make.top.equalTo(self.mas_top);
+            
+            make.width.equalTo(@(w));
+            make.height.equalTo(self);
             if(preBtn)
             {
-                make.top.equalTo(preBtn.mas_bottom).offset(0.5);
+                make.left.equalTo(preBtn.mas_right).offset(0.0);
             } else {
-                make.top.equalTo(self);
+                make.left.equalTo(self).offset(leftM);
             }
         }];
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(btn);
-            make.top.equalTo(btn.mas_bottom);
-            make.height.equalTo(@0.5);
+                if (index<count-1) {
+            make.right.equalTo(btn.titleLabel).offset(mar);
+            make.bottom.equalTo(btn.mas_bottom).offset(-mar-6);
+            make.height.width.equalTo(@(mar-2));
+                }else{
+                    make.right.equalTo(btn.titleLabel).offset(mar*1.6+2);
+                    make.bottom.equalTo(btn.mas_bottom).offset(-(44-mar*1.6)/2);
+                    make.height.width.equalTo(@(mar*1.6));
+                }
+            
         }];
+        [_btnArray addObject:btn];
         preBtn = btn;
         index++;
     }
 }
-
-#pragma mark 设置底部按钮index
-- (void)setSelectedIndex:(NSUInteger)selectedIndex
-{
-    _selectedIndex = selectedIndex;
-    UIButton *btn = (UIButton *)[self viewWithTag:Y_StockChartSegmentStartTag + selectedIndex];
-    NSAssert(btn, @"按钮初始化出错");
-    [self event_segmentButtonClicked:btn];
-}
-
-- (void)setSelectedBtn:(UIButton *)selectedBtn
-{
-    if(_selectedBtn == selectedBtn)
-    {
-        if(selectedBtn.tag != Y_StockChartSegmentStartTag)
-        {
-            return;
-        } else {
-            
+-(void)setItemModels:(NSArray *)itemModels{
+    _itemModels = itemModels;
+    for (Y_StockChartViewItemModel *model in itemModels) {
+        switch (model.segViewType) {
+            case Y_StockChartSegViewTypeKline:{
+                if (self.delegate && [self.delegate respondsToSelector:@selector(addKlineSelectView:)]) {
+                    [self.delegate addKlineSelectView:model];
+                }
+   
+            }
+                
+                break;
+            case Y_StockChartSegViewTypeMainIndex:{
+                if (self.delegate && [self.delegate respondsToSelector:@selector(addMASelectView:)]) {
+                    [self.delegate addMASelectView :model];
+                }
+            }
+                break;
+            case Y_StockChartSegViewTypeIndex:{
+                if (self.delegate && [self.delegate respondsToSelector:@selector(addKDJSelectView:)]) {
+                    [self.delegate addKDJSelectView:model];
+                }
+            }
+                break;
+            case Y_StockChartSegViewTypeTone:{
+                if (self.delegate && [self.delegate respondsToSelector:@selector(addToneSelectView:)]) {
+                    [self.delegate addToneSelectView:model];
+                }
+            }
+                break;
+            case Y_StockChartSegViewTypeFullScreen:{
+      
+            }
+                break;
+                
+            default:
+                break;
         }
     }
     
-    if(selectedBtn.tag >= 2100 && selectedBtn.tag < 2103)
-    {
-        [_secondLevelSelectedBtn1 setSelected:NO];
-        [selectedBtn setSelected:YES];
-        _secondLevelSelectedBtn1 = selectedBtn;
-        
-    } else if(selectedBtn.tag >= 2103) {
-        [_secondLevelSelectedBtn2 setSelected:NO];
-        [selectedBtn setSelected:YES];
-        _secondLevelSelectedBtn2 = selectedBtn;
-    } else if(selectedBtn.tag != Y_StockChartSegmentStartTag){
-        [_selectedBtn setSelected:NO];
-        [selectedBtn setSelected:YES];
-        _selectedBtn = selectedBtn;
-    }
-
-    _selectedIndex = selectedBtn.tag - Y_StockChartSegmentStartTag;
     
-    if(_selectedIndex == 0 && self.indicatorView.frame.origin.x < 0)
-    {
-        [self.indicatorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(self);
-            make.left.equalTo(self);
-            make.bottom.equalTo(self);
-            make.width.equalTo(self);
-        }];
-        [UIView animateWithDuration:0.2f animations:^{
-            [self layoutIfNeeded];
-        }];
-    } else {
-        [self.indicatorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(self);
-            make.right.equalTo(self.mas_left);
-            make.bottom.equalTo(self);
-            make.width.equalTo(self);
-        }];
-        [UIView animateWithDuration:0.2f animations:^{
-            [self layoutIfNeeded];
-        }];
-
-    }
-    [self layoutIfNeeded];
 }
+
 
 #pragma mark - 私有方法
 #pragma mark 创建底部按钮
 - (UIButton *)private_createButtonWithTitle:(NSString *)title tag:(NSInteger)tag
 {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setTitleColor:[UIColor mainTextColor] forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor ma30Color] forState:UIControlStateSelected];
+            [btn setTitleColor:[UIColor mainTextColor] forState:UIControlStateNormal];
+//    [btn setTitleColor:[UIColor ma30Color] forState:UIControlStateSelected];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
     btn.tag = tag;
-    [btn addTarget:self action:@selector(event_segmentButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
     [btn setTitle:title forState:UIControlStateNormal];
     return btn;
 }
-
-#pragma mark 底部按钮点击事件
-- (void)event_segmentButtonClicked:(UIButton *)btn
-{
-    self.selectedBtn = btn;
+- (void)segmentButtonClicked:(UIButton *)btn{
     
-    if(btn.tag == Y_StockChartSegmentStartTag)
-    {
-        return;
-    }
-    
-    if(self.delegate && [self.delegate respondsToSelector:@selector(y_StockChartSegmentView:clickSegmentButtonIndex:)])
-    {
-        [self.delegate y_StockChartSegmentView:self clickSegmentButtonIndex: btn.tag-Y_StockChartSegmentStartTag];
+    switch (btn.tag-Y_StockChartSegmentStartTag) {
+        case Y_StockChartSegViewTypeKline:{
+            if (self.delegate && [self.delegate respondsToSelector:@selector(showKlineView)]) {
+                [self.delegate showKlineView];
+            }
+        }
+        
+            break;
+        case Y_StockChartSegViewTypeMainIndex:{
+            if (self.delegate && [self.delegate respondsToSelector:@selector(showMAView)]) {
+                [self.delegate showMAView];
+            }
+        }
+            break;
+        case Y_StockChartSegViewTypeIndex:{
+            if (self.delegate && [self.delegate respondsToSelector:@selector(showKDJView)]) {
+                [self.delegate showKDJView];
+            }
+            
+        }
+            break;
+        case Y_StockChartSegViewTypeTone:{
+            if (self.delegate && [self.delegate respondsToSelector:@selector(showToneView)]) {
+                [self.delegate showToneView];
+            }
+        }
+            break;
+        case Y_StockChartSegViewTypeFullScreen:{
+            if ([btn.titleLabel.text isEqualToString:@"全屏"]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"fullScreen" object:nil];
+            }else {
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"dismissFullScreen" object:nil];
+            }
+            
+        }
+            break;
+            
+        default:
+            break;
     }
 }
+
+
 
 @end

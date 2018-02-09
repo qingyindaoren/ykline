@@ -14,4 +14,11 @@
 +(instancetype)view;
 
 -(void)maProfileWithModel:(Y_KLineModel *)model;
+@property (strong, nonatomic) UILabel *openLabel;
+
+@property (strong, nonatomic) UILabel *closeLabel;
+
+@property (strong, nonatomic) UILabel *highLabel;
+
+@property (strong, nonatomic) UILabel *lowLabel;
 @end

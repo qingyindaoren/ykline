@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
+import SVProgressHUD
 
 
 ///网络请求工具 对alamofire的封装
@@ -25,9 +26,10 @@ class AlamofireMenager: NSObject {
     ///请求错误的时候提示信息
     var errorShowMassage: String = "请求网络失败"
     let noNetString = "您处在离线状态"
+    //是否展示无网视图
     var isShowNoWorking: Bool = true
     
-    private var requestDictionary = [String:DataRequest]()
+    private var requestDictionary = [String:String]()
     
     lazy var ykNoNetv = YKNoNetView()
     
@@ -35,14 +37,23 @@ class AlamofireMenager: NSObject {
         guard let vc =  getCurrentVC()  else {
             return
         }
-        guard let array: [UIView] = vc.view.subviews else {
-            return
-        }
-        for v in (array) {
-            if v.classForCoder == YKNoNetView.classForCoder(){
-                v.removeFromSuperview()
+        if vc.view.subviews.count > 0 {
+            let array: [UIView] = vc.view.subviews
+            for v in (array) {
+                if v.classForCoder == YKNoNetView.classForCoder(){
+                    v.removeFromSuperview()
+                }
             }
         }
+//        guard let array: [UIView] = vc.view.subviews else {
+//            return
+//        }
+        
+//        for v in (array) {
+//            if v.classForCoder == YKNoNetView.classForCoder(){
+//                v.removeFromSuperview()
+//            }
+//        }
     }
     private func showView(){
         if self.isShowNoWorking {
@@ -60,12 +71,12 @@ class AlamofireMenager: NSObject {
         }
     }
     
-    private func cancelRequest(path:String){
-        let request  = self.requestDictionary[path]
-        request?.cancel()
-    self.requestDictionary.removeValue(forKey: path)
-        
-    }
+//    private func cancelRequest(path:String){
+//        let request  = self.requestDictionary[path]
+//        request?.cancel()
+//    self.requestDictionary.removeValue(forKey: path)
+//
+//    }
     
     
     //MARK: - 下载数据 相关接口
@@ -90,14 +101,24 @@ class AlamofireMenager: NSObject {
          print(noNetString)
             return nil
         }
-        
-        guard let dataTask = self.loadDataObject(Path: path, HTTPMethod: method, parameters, parametersType, setRequest, Success: success, Failure: failure) else {
+        //是否存在，存在 return 不存在请求
+        //存入id
+         let da = DataMD5.share()
+        let id = da?.createMd5Id(parameters) ?? ""
+        if self.requestDictionary[id] != nil {
             return nil
         }
-        cancelRequest(path: path)
-        self.requestDictionary[path] = dataTask
+           self.requestDictionary[id] = id
+     
+        
+        guard let dataRequest = self.loadDataObject(Path: path,Id:id, HTTPMethod: method, parameters, parametersType, setRequest, Success: success, Failure: failure) else {
+            return nil
+        }
+       
+//        cancelRequest(path: path)
+     //        self.requestDictionary[path] = dataTask
    
-        return dataTask
+        return dataRequest
     }
     
     /// alamofire 数据请求 (数据Json)
@@ -119,13 +140,21 @@ class AlamofireMenager: NSObject {
             print(noNetString)
             return nil
         }
-        guard let dataTask = self.loadDataJson(Path: path, HTTPMethod: method, parameters, parametersType, setRequest, Success: success, Failure: failure) else {
+        let da = DataMD5.share()
+        let id = da?.createMd5Id(parameters) ?? ""
+        if self.requestDictionary[id] != nil {
             return nil
         }
-        cancelRequest(path: path)
-        self.requestDictionary[path] = dataTask
+      self.requestDictionary[id] = id
         
-        return dataTask
+        guard let dataRequest = self.loadDataJson(Path: path,Id:id, HTTPMethod: method, parameters, parametersType, setRequest, Success: success, Failure: failure) else {
+            return nil
+        }
+   
+//        cancelRequest(path: path)
+//        self.requestDictionary[path] = dataTask
+        
+        return dataRequest
        
     }
     
@@ -148,11 +177,19 @@ class AlamofireMenager: NSObject {
             print(noNetString)
             return nil
         }
-        guard let dataTask = self.loadDataArray(Path: path, HTTPMethod: method, parameters, parametersType, setRequest, Success: success, Failure: failure) else {
+        //是否存在，存在 return 不存在请求
+        //存入id
+        let da = DataMD5.share()
+        let id = da?.createMd5Id(parameters) ?? ""
+        if self.requestDictionary[id] != nil {
             return nil
         }
-        cancelRequest(path: path)
-        self.requestDictionary[path] = dataTask
+        self.requestDictionary[id] = id
+        guard let dataTask = self.loadDataArray(Path: path,Id:id, HTTPMethod: method, parameters, parametersType, setRequest, Success: success, Failure: failure) else {
+            return nil
+        }
+//        cancelRequest(path: path)
+//        self.requestDictionary[path] = dataTask
         
         return dataTask
        
@@ -227,7 +264,7 @@ private extension AlamofireMenager {
     ///   - failure: 失败的回调
     /// - Returns: Request
     @discardableResult
-    func loadDataObject<T:BaseMappable>(Path path: String, HTTPMethod method: HTTPMethod? = .get,_ parameters: [String:Any]? = nil,_ parametersType: ParamaetersType? = nil,_ setRequest: ((_ request: DataRequest) -> Void)? = nil,Success success: @escaping (T,_ response: DataResponse<T>) -> Void, Failure failure:@escaping(_ errorMsg:String) -> Void) -> (DataRequest?) {
+    func loadDataObject<T:BaseMappable>(Path path: String,Id id: String , HTTPMethod method: HTTPMethod? = .get,_ parameters: [String:Any]? = nil,_ parametersType: ParamaetersType? = nil,_ setRequest: ((_ request: DataRequest) -> Void)? = nil,Success success: @escaping (T,_ response: DataResponse<T>) -> Void, Failure failure:@escaping(_ errorMsg:String) -> Void) -> (DataRequest?) {
    
         let httpMethod = HTTPMethod.init(rawValue: (method?.rawValue ?? "GET"))
         let dateRequest = RequestMenager.getDataRequest(Path: path, HTTPMethod: httpMethod, parameters, parametersType)
@@ -236,7 +273,7 @@ private extension AlamofireMenager {
         }
         
         setRequest?(request)
-        
+        SVProgressHUD.show()
         request.responseObject(completionHandler: { [weak self] (netDate:DataResponse<T>) in
             if self == nil{
                 dPrint("🌶网络请求工具 AlamofireMenager，被销毁请检查")
@@ -249,12 +286,14 @@ private extension AlamofireMenager {
                     dPrint(dataStr ?? "")
                 }
                 success(netDate.result.value!,netDate)
-           
+                 SVProgressHUD.dismiss()
             }else{
                 
                 failure((self?.errorShowMassage) ?? "")
+                  SVProgressHUD.showError(withStatus: (self?.errorShowMassage) ?? "")
             }
-             self?.cancelRequest(path: path)
+//             self?.cancelRequest(path: path)
+            self?.requestDictionary.removeValue(forKey: id)
         })
         
         return request
@@ -271,7 +310,7 @@ private extension AlamofireMenager {
     ///   - failure: 失败的回调
     /// - Returns: Request
     @discardableResult
-    func loadDataJson(Path path: String, HTTPMethod method: HTTPMethod? = .get,_ parameters: [String:Any]? = nil,_ parametersType: ParamaetersType? = nil,_ setRequest: ((_ request: DataRequest) -> Void)? = nil,Success success: @escaping (_ json: Any, DataResponse<Any>) -> Void, Failure failure:@escaping(_ errorMsg:String) -> Void) -> (DataRequest?) {
+    func loadDataJson(Path path: String,Id id:String, HTTPMethod method: HTTPMethod? = .get,_ parameters: [String:Any]? = nil,_ parametersType: ParamaetersType? = nil,_ setRequest: ((_ request: DataRequest) -> Void)? = nil,Success success: @escaping (_ json: Any, DataResponse<Any>) -> Void, Failure failure:@escaping(_ errorMsg:String) -> Void) -> (DataRequest?) {
         
         let httpMethod = HTTPMethod.init(rawValue: (method?.rawValue ?? "GET"))
         let dateRequest = RequestMenager.getDataRequest(Path: path, HTTPMethod: httpMethod, parameters, parametersType)
@@ -280,7 +319,7 @@ private extension AlamofireMenager {
         }
         
         setRequest?(request)
-        
+         SVProgressHUD.show()
         request.responseJSON(completionHandler: { [weak self] (netDate:DataResponse<Any>) in
             if self == nil{
                 dPrint("🌶网络请求工具 AlamofireMenager，被销毁请检查")
@@ -291,10 +330,13 @@ private extension AlamofireMenager {
                     dPrint(netDate.result.value ?? "没有数据")
                 }
                 success(netDate.result.value!,netDate)
+                  SVProgressHUD.dismiss()
             }else{
                 failure((self?.errorShowMassage) ?? "")
+                     SVProgressHUD.showError(withStatus: (self?.errorShowMassage) ?? "")
             }
-            self?.cancelRequest(path: path)
+//            self?.cancelRequest(path: path)
+            self?.requestDictionary.removeValue(forKey: id)
         })
         return request
     }
@@ -311,7 +353,7 @@ private extension AlamofireMenager {
     ///   - failure: 失败的回调
     /// - Returns: Request
     @discardableResult
-    func loadDataArray<T:BaseMappable>(Path path: String, HTTPMethod method: HTTPMethod? = .get,_ parameters: [String:Any]? = nil,_ parametersType: ParamaetersType? = nil,_ setRequest: ((_ request: DataRequest) -> Void)? = nil,Success success: @escaping ([T],DataResponse<[T]>) -> Void, Failure failure:@escaping(_ errorMsg:String) -> Void) -> (DataRequest?) {
+    func loadDataArray<T:BaseMappable>(Path path: String,Id id:String, HTTPMethod method: HTTPMethod? = .get,_ parameters: [String:Any]? = nil,_ parametersType: ParamaetersType? = nil,_ setRequest: ((_ request: DataRequest) -> Void)? = nil,Success success: @escaping ([T],DataResponse<[T]>) -> Void, Failure failure:@escaping(_ errorMsg:String) -> Void) -> (DataRequest?) {
         
         let httpMethod = HTTPMethod.init(rawValue: (method?.rawValue ?? "GET"))
         let dateRequest = RequestMenager.getDataRequest(Path: path, HTTPMethod: httpMethod, parameters, parametersType)
@@ -320,7 +362,7 @@ private extension AlamofireMenager {
         }
         
         setRequest?(request)
-
+ SVProgressHUD.show()
         request.responseArray(completionHandler: { [weak self] (netDate:DataResponse<[T]>) in
             if self == nil{
                 dPrint("🌶网络请求工具 AlamofireMenager，被销毁请检查")
@@ -334,10 +376,13 @@ private extension AlamofireMenager {
                     dPrint(dataStr ?? "")
                 }
                 success(netDate.result.value!,netDate)
+                 SVProgressHUD.dismiss()
             }else{
                 failure((self?.errorShowMassage) ?? "")
+                  SVProgressHUD.showError(withStatus: (self?.errorShowMassage) ?? "")
             }
-            self?.cancelRequest(path: path)
+//            self?.cancelRequest(path: path)
+            self?.requestDictionary.removeValue(forKey: id)
         })
         return request
     }

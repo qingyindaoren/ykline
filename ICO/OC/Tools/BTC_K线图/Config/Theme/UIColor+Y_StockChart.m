@@ -20,17 +20,90 @@
                             blue:b / 255.0f
                            alpha:1.0f];
 }
-
++(UIColor*)selectColor{
+    return [UIColor blueColor];
+}
 #pragma mark 所有图表的背景颜色
 +(UIColor *)backgroundColor
 {
+    NSInteger  saveTNumber =  [[NSUserDefaults standardUserDefaults] integerForKey:@"segToneIndexKey"];
+    
+    NSInteger n = saveTNumber  - 400 - 2000;
+    switch (n) {
+        case 1:{
+           return [UIColor whiteLightColor];
+        }
+            break;
+        case 2:{
+            return  [UIColor colorWithRGBHex:0x181c20];
+        }
+            break;
+        case 3:{
+             return  [UIColor whiteLightColor];
+        }
+            break;
+            
+        default:
+            break;
+    }
     return [UIColor colorWithRGBHex:0x181c20];
 }
-
++(UIColor*)lightBackgroundColor{
+    NSInteger  saveTNumber =  [[NSUserDefaults standardUserDefaults] integerForKey:@"segToneIndexKey"];
+    
+    NSInteger n = saveTNumber  - 400 - 2000;
+    switch (n) {
+        case 1:{
+            return [UIColor lightBlackColor];
+        }
+            break;
+        case 2:{
+            return  [UIColor backgroundColor];
+        }
+            break;
+        case 3:{
+            return  [UIColor lightBlackColor];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    return [UIColor colorWithRGBHex:0x1d2227];
+}
++(UIColor*)lightBlackColor{
+    return [UIColor colorWithRGBHex:0xe6e6e6];
+}
 #pragma mark 辅助背景色
 +(UIColor *)assistBackgroundColor
 {
-    return [UIColor colorWithRGBHex:0x1d2227];
+    NSInteger  saveTNumber =  [[NSUserDefaults standardUserDefaults] integerForKey:@"segToneIndexKey"];
+    
+    NSInteger n = saveTNumber  - 400 - 2000;
+    switch (n) {
+        case 1:{
+            return [UIColor whiteLightColor];
+        }
+            break;
+        case 2:{
+            return [self assistColor];
+        }
+            break;
+        case 3:{
+            return  [UIColor whiteLightColor];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    return [self assistColor];
+}
++(UIColor *)assistColor{
+    return  [UIColor colorWithRGBHex:0x1d2227];
+}
++(UIColor*)whiteLightColor{
+    return [UIColor whiteColor];
 }
 
 #pragma mark 涨的颜色
@@ -48,13 +121,42 @@
 #pragma mark 主文字颜色
 +(UIColor *)mainTextColor
 {
-    return [UIColor colorWithRGBHex:0xe1e2e6];
+    NSInteger  saveTNumber =  [[NSUserDefaults standardUserDefaults] integerForKey:@"segToneIndexKey"];
+    
+    NSInteger n = saveTNumber  - 400 - 2000;
+    switch (n) {
+        case 1:{
+            return [UIColor lightMainTextColor];
+        }
+            break;
+        case 2:{
+      
+            return [UIColor subBtnColor];
+        }
+            break;
+        case 3:{
+            return  [UIColor lightMainTextColor];
+        }
+            break;
+            
+        default:
+            break;
+    }
+  
+    return [UIColor subBtnColor];
 }
-
++(UIColor *)subBtnColor{
+    return [UIColor colorWithRGBHex:0xdcdcdc];
+}
++(UIColor *)lightMainTextColor
+{
+    return [UIColor colorWithRGBHex:0x333333];
+}
 #pragma mark 辅助文字颜色
 +(UIColor *)assistTextColor
 {
-    return [UIColor colorWithRGBHex:0x565a64];
+
+    return [UIColor colorWithRGBHex:0x727F8A];
 }
 
 #pragma mark 分时线下面的成交量线的颜色
@@ -73,7 +175,7 @@
 +(UIColor *)longPressLineColor
 {
 //    return [UIColor colorWithRGBHex:0xff5353];
-    return [UIColor colorWithRGBHex:0xe1e2e6];
+    return [UIColor colorWithRGBHex:0xDE5E26];
 }
 
 #pragma mark ma5的颜色
