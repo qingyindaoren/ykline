@@ -64,14 +64,14 @@
             CGPoint point = [self.BOLLPositions[idx] CGPointValue];
             CGContextAddLineToPoint(self.context, point.x, point.y);
         }
-        
+        CGContextStrokePath(self.context);
         
     } else {
         if(!self.MAPositions) {
             return;
         }
         
-        UIColor *lineColor = self.MAType == Y_MA7Type ? [UIColor ma7Color] : (self.MAType == Y_MA30Type ? [UIColor ma30Color] : [UIColor mainTextColor]);
+        UIColor *lineColor = self.MAType == Y_MA7Type ? [UIColor ma7Color] : (self.MAType == Y_MA30Type ? [UIColor ma30Color] : [UIColor timeLineLineColor]);
         
         CGContextSetStrokeColorWithColor(self.context, lineColor.CGColor);
         
@@ -101,11 +101,29 @@
             //        }
         }
         //
-        
+        CGContextStrokePath(self.context);
+        if (self.MAType == Y_Fill) {
+            CGContextSetFillColorWithColor(self.context, [UIColor YYStock_timeLineBgColor].CGColor);
+            CGPoint lastPoint = [self.MAPositions.lastObject CGPointValue];
+            //画背景色
+            CGContextMoveToPoint(self.context, firstPoint.x, firstPoint.y);
+            for (NSInteger idx = 1; idx < self.MAPositions.count ; idx++)
+            {
+                CGPoint point = [self.MAPositions[idx] CGPointValue];
+                CGContextAddLineToPoint(self.context, point.x, point.y);
+            }
+            CGContextAddLineToPoint(self.context, lastPoint.x, self.maxY);
+            CGContextAddLineToPoint(self.context, firstPoint.x,self.maxY);
+            CGContextClosePath(self.context);
+            CGContextFillPath(self.context);
+        }
+       
         
     }
     
-    CGContextStrokePath(self.context);
+ 
+    
+    
 }
 
 @end

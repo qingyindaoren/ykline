@@ -69,4 +69,5 @@
  */
 @property (nonatomic, strong) Y_AccessoryMAView *accessoryMAView;
 @property (nonatomic,assign)BOOL isFull;
+@property (nonatomic,copy)void(^hideBlock)();
 @end

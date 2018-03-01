@@ -95,4 +95,6 @@
  */
 +(UIColor *)BOLL_DNColor;
 
++(UIColor *)YYStock_timeLineBgColor;
+
 @end

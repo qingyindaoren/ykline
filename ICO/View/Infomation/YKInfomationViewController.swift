@@ -52,7 +52,7 @@ class YKInfomationViewController: YKBaseViewController {
         self.view.addSubview(self.pageTitleView!)
         //根据不同类型创建不同的控制器
         for newsTitle in titleArray {
-            let coinType =  YKCoinViewController()
+            let coinType =  YKNewsListViewController()
             coinType.title = newsTitle
             self.addChildViewController(coinType)
         }

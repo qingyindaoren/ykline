@@ -16,7 +16,8 @@
 #import "Y_StockChartGlobalVariable.h"
 
 #import "Y_StockChartRightYView.h"
-
+#import "YKSetting.h"
+  static CGFloat oldPositionX = 0;
 @interface Y_KLineView() <UIScrollViewDelegate, Y_KLineMainViewDelegate, Y_KLineVolumeViewDelegate, Y_KLineAccessoryViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -64,7 +65,9 @@
 @property (nonatomic, strong) MASConstraint *priceViewHeightConstraint;
 
 @property (nonatomic, strong) MASConstraint *volumeViewHeightConstraint;
+@property (nonatomic, assign) CGFloat oldOffset;
 
+@property (nonatomic,strong) NSTimer *Timer;
 @end
 
 @implementation Y_KLineView
@@ -74,6 +77,7 @@
 {
     self = [super initWithFrame:frame];
     if(self) {
+        self.oldOffset = -0.1;
         self.mainViewRatio = [Y_StockChartGlobalVariable kLineMainViewRadio];
         self.volumeViewRatio = [Y_StockChartGlobalVariable kLineVolumeViewRadio];
     }
@@ -93,12 +97,15 @@
         _scrollView.delegate = self;
         _scrollView.bounces = NO;
         
+//        UITapGestureRecognizer *pan = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(endLongPress)];
+//        [_scrollView addGestureRecognizer:pan];
         //缩放手势
         UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(event_pichMethod:)];
         [_scrollView addGestureRecognizer:pinchGesture];
         
         //长按手势
         UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(event_longPressMethod:)];
+        longPressGesture.minimumPressDuration = 0.5;
         [_scrollView addGestureRecognizer:longPressGesture];
         
         [self addSubview:_scrollView];
@@ -109,26 +116,41 @@
             make.left.equalTo(self.mas_left);
             make.bottom.equalTo(self.mas_bottom);
         }];
-        UIView *rightLine  = [UIView new];
-        rightLine.backgroundColor = [UIColor colorWithRGBHex:0x494442];
-         [self addSubview:rightLine];
-        [rightLine mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).offset(30);
-            make.right.equalTo(self).offset(-Y_StockRightViewWidth-0.5);
-            make.width.equalTo(@(0.5));
-            make.bottom.equalTo(self.mas_bottom);
-        }];
-       
-        self.rightLineView = rightLine;
+//        UIView *rightLine  = [UIView new];
+//        rightLine.backgroundColor = [UIColor assistColor];
+//         [self addSubview:rightLine];
+//        [rightLine mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self).offset(30);
+//            make.right.equalTo(self).offset(-Y_StockRightViewWidth);
+//            make.width.equalTo(@(0.5));
+//            make.bottom.equalTo(self.mas_bottom);
+//        }];
+//
+//        self.rightLineView = rightLine;
+        
         [self layoutIfNeeded];
     }
     return _scrollView;
 }
-
+- (void)drawRect:(CGRect)rect{
+    [super drawRect:rect];
+    
+    //如果数组为空，则不进行绘制，直接设置本view为背景
+    CGContextRef context = UIGraphicsGetCurrentContext();
+//        CGContextClearRect(context, rect);
+        CGContextSetStrokeColorWithColor(context, [UIColor assistColor].CGColor);
+     CGContextSetLineWidth(context, 0.5);
+    CGContextSetAllowsAntialiasing(context, true);
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, self.frame.size.width - Y_StockRightViewWidth+0.5, 30);  //起点坐标
+    CGContextAddLineToPoint(context, self.frame.size.width - Y_StockRightViewWidth+0.5, self.frame.size.height);   //终点坐标
+ CGContextStrokePath(context);
+}
 - (Y_KLineMAView *)kLineMAView
 {
     if (!_kLineMAView) {
         _kLineMAView = [Y_KLineMAView view];
+        _kLineMAView.isFull = self.isFull;
         [self addSubview:_kLineMAView];
         [_kLineMAView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self);
@@ -151,7 +173,9 @@
             make.top.equalTo(self.kLineVolumeView.mas_top);
             make.height.equalTo(@10);
         }];
+        _volumeMAView.isFull = self.isFull;
     }
+ 
     return _volumeMAView;
 }
 
@@ -166,6 +190,7 @@
             make.top.equalTo(self.kLineAccessoryView.mas_top);
             make.height.equalTo(@10);
         }];
+        _accessoryMAView.isFull = self.isFull;
     }
     return _accessoryMAView;
 }
@@ -239,6 +264,7 @@
             make.width.equalTo(@(Y_StockChartKLinePriceViewWidth));
             make.bottom.equalTo(self.kLineMainView.mas_bottom).offset(-15);
         }];
+        _priceView.isFull = self.isFull;
     }
     return _priceView;
 }
@@ -268,7 +294,7 @@
         [_accessoryView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.kLineAccessoryView.mas_top).offset(10);
             make.right.width.equalTo(self.volumeView);
-            make.height.equalTo(self.kLineAccessoryView.mas_height);
+            make.bottom.equalTo(self.kLineAccessoryView).offset(5);
         }];
     }
     return _accessoryView;
@@ -285,16 +311,26 @@
     [self private_drawKLineMainView];
     //设置contentOffset
     CGFloat kLineViewWidth = self.kLineModels.count * [Y_StockChartGlobalVariable kLineWidth] + (self.kLineModels.count + 1) * [Y_StockChartGlobalVariable kLineGap] + 10;
-    CGFloat offset = kLineViewWidth - self.scrollView.frame.size.width;
-    if (offset > 0)
+//    CGFloat offset = kLineViewWidth - self.scrollView.frame.size.width;
+    if (self.oldOffset == -0.1) {
+           self.oldOffset = kLineViewWidth - self.scrollView.frame.size.width;
+    }
+ 
+    if (self.oldOffset > 0)
     {
-        self.scrollView.contentOffset = CGPointMake(offset, 0);
+        self.scrollView.contentOffset = CGPointMake(self.oldOffset, 0);
     } else {
-        self.scrollView.contentOffset = CGPointMake(0, 0);
+        self.scrollView.contentOffset = CGPointMake(-0.1, 0);
     }
     
     Y_KLineModel *model = [kLineModels lastObject];
-    [self.kLineMAView maProfileWithModel:model];
+    if (self.verticalView && self.verticalView.hidden == NO) {
+        
+    }else{
+         [self.kLineMAView maProfileWithModel:model];
+    }
+   
+
     [self.volumeMAView maProfileWithModel:model];
     self.accessoryMAView.targetLineStatus = self.targetLineStatus;
     [self.accessoryMAView maProfileWithModel:model];
@@ -367,10 +403,31 @@
         [self.kLineMainView drawMainView];
     }
 }
+-(void)endLongPress{
+    if (_Timer) {
+        [_Timer invalidate];
+        _Timer = nil;
+    }
+    NSLog(@"dayin");
+    //取消竖线
+    if(self.verticalView)
+    {
+        self.verticalView.hidden = YES;
+    }
+    oldPositionX = 0;
+    //恢复scrollView的滑动
+    self.scrollView.scrollEnabled = YES;
+    
+    Y_KLineModel *lastModel = self.kLineModels.lastObject;
+    [self.kLineMAView maProfileWithModel:lastModel];
+    [self.volumeMAView maProfileWithModel:lastModel];
+    [self.accessoryMAView maProfileWithModel:lastModel];
+}
+
 #pragma mark 长按手势执行方法
 - (void)event_longPressMethod:(UILongPressGestureRecognizer *)longPress
 {
-    static CGFloat oldPositionX = 0;
+   
     if(UIGestureRecognizerStateChanged == longPress.state || UIGestureRecognizerStateBegan == longPress.state)
     {
         CGPoint location = [longPress locationInView:self.scrollView];
@@ -378,7 +435,11 @@
         {
             return;
         }
-        
+        if (_Timer) {
+            [_Timer invalidate];
+            _Timer = nil;
+        }
+       
         //暂停滑动
         self.scrollView.scrollEnabled = NO;
         oldPositionX = location.x;
@@ -409,22 +470,40 @@
     
     if(longPress.state == UIGestureRecognizerStateEnded)
     {
-        //取消竖线
-        if(self.verticalView)
-        {
-            self.verticalView.hidden = YES;
-        }
-        oldPositionX = 0;
-        //恢复scrollView的滑动
-        self.scrollView.scrollEnabled = YES;
+       
+  
+        [self startTimer];
+   
+  
+//                    //取消竖线
+//                    if(self.verticalView&& self.verticalView.hidden == NO)
+//                    {
+//
+//                        self.verticalView.hidden = YES;
+//                        oldPositionX = 0;
+//                        //恢复scrollView的滑动
+//                        self.scrollView.scrollEnabled = YES;
+//
+//                        Y_KLineModel *lastModel = self.kLineModels.lastObject;
+//                        [self.kLineMAView maProfileWithModel:lastModel];
+//                        [self.volumeMAView maProfileWithModel:lastModel];
+//                        [self.accessoryMAView maProfileWithModel:lastModel];
+//                    }
         
-        Y_KLineModel *lastModel = self.kLineModels.lastObject;
-        [self.kLineMAView maProfileWithModel:lastModel];
-        [self.volumeMAView maProfileWithModel:lastModel];
-        [self.accessoryMAView maProfileWithModel:lastModel];
+    
+
     }
 }
+-(void)startTimer
+{
+ 
+  
+    if (!_Timer) {
+            _Timer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(endLongPress) userInfo:nil repeats:YES];
 
+    }
+    
+}
 #pragma mark 重绘
 - (void)reDraw
 {
@@ -527,8 +606,16 @@
 //    } else {
 //        isNeedPostNotification = YES;
 //    }
+    self.oldOffset = scrollView.contentOffset.x;
+//    NSLog(@"这是  %f-----%f=====%f",scrollView.bounds.size.width,scrollView.contentSize.width-scrollView.contentOffset.x,self.kLineMainView.frame.size.width);
+//    if (fabs(scrollView.bounds.size.width-(scrollView.contentSize.width-scrollView.contentOffset.x))>10) {
+//        [YKSetting shareYKSetting].isNeedReload = NO;
+//    //不刷新了
+//    }else {
+//        //刷新
+//        [YKSetting shareYKSetting].isNeedReload = YES;
+//    }
     
-    NSLog(@"这是  %f-----%f=====%f",scrollView.contentSize.width,scrollView.contentOffset.x,self.kLineMainView.frame.size.width);
 }
 
 - (void)dealloc

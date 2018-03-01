@@ -23,23 +23,50 @@
 
 
 @implementation Y_StockChartRightYView
-
+-(void)setIsFull:(BOOL)isFull{
+    _isFull = isFull;
+}
 -(void)setMaxValue:(CGFloat)maxValue
 {
     _maxValue = maxValue;
+    if (fabs(maxValue)<1000&&fabs(maxValue)>=10) {
+        self.maxValueLabel.text = [NSString stringWithFormat:@"%.4f",maxValue];
+    }else if (fabs(maxValue)<10){
+       self.maxValueLabel.text = [NSString stringWithFormat:@"%.6f",maxValue];
+    }
+    else{
     self.maxValueLabel.text = [NSString stringWithFormat:@"%.2f",maxValue];
+    }
 }
 
 -(void)setMiddleValue:(CGFloat)middleValue
 {
     _middleValue = middleValue;
-    self.middleValueLabel.text = [NSString stringWithFormat:@"%.2f",middleValue];
+    
+    if (fabs(middleValue)<1000&&fabs(middleValue)>=10) {
+     self.middleValueLabel.text = [NSString stringWithFormat:@"%.4f",middleValue];
+    }else if (fabs(middleValue)<10){
+        self.middleValueLabel.text = [NSString stringWithFormat:@"%.6f",middleValue];
+    }
+    else{
+        self.middleValueLabel.text = [NSString stringWithFormat:@"%.2f",middleValue];
+    }
+    
 }
 
 -(void)setMinValue:(CGFloat)minValue
 {
     _minValue = minValue;
+    
+    if (fabs(minValue)<1000&&fabs(minValue)>=10) {
+      self.minValueLabel.text = [NSString stringWithFormat:@"%.4f",minValue];
+    }else if (fabs(minValue)<10){
+        self.minValueLabel.text = [NSString stringWithFormat:@"%.6f",minValue];
+    }
+    else{
     self.minValueLabel.text = [NSString stringWithFormat:@"%.2f",minValue];
+    }
+    
 }
 
 -(void)setMinLabelText:(NSString *)minLabelText
@@ -99,7 +126,11 @@
 - (UILabel *)private_createLabel
 {
     UILabel *label = [UILabel new];
-    label.font = [UIFont systemFontOfSize:10];
+//    CGFloat scale = [UIScreen mainScreen].bounds.size.width/375.0;
+//    if (_isFull) {
+//        scale = [UIScreen mainScreen].bounds.size.height/375.0;
+//    }
+//    label.font = [UIFont systemFontOfSize:9*scale];
     label.textColor = [UIColor assistTextColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.adjustsFontSizeToFitWidth = YES;

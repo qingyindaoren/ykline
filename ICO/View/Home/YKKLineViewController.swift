@@ -16,7 +16,8 @@ class YKKLineViewController: YKBaseViewController {
     var pragrams:[String:String]?
     //交易所
     //交易对
-     lazy var stockChartView:Y_StockChartView = {
+    private  var timer:DispatchSourceTimer?
+    lazy var stockChartView:Y_StockChartView = {
  UserDefaults.standard.integer(forKey: "segToneIndexKey")
         
         if  UserDefaults.standard.integer(forKey: "segToneIndexKey") == 0  {
@@ -78,7 +79,7 @@ class YKKLineViewController: YKBaseViewController {
             make.edges.equalTo(self.view).inset(UIEdgeInsetsMake(0, 0, coinDetailtopViewHeight, 0))
             }
         })
-       
+       s.clipsToBounds = true
        return s
     }()
 //    private var currentIndex: NSInteger?
@@ -94,11 +95,16 @@ class YKKLineViewController: YKBaseViewController {
         if self.isFullScreen == true {
          UIApplication.shared.isStatusBarHidden = true
         }
-  
+    
+         startTimer()
+     
+
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.shared.isStatusBarHidden = false
+        timer?.cancel()
+        timer = nil
     }
     
     override func viewDidLoad() {
@@ -110,20 +116,21 @@ class YKKLineViewController: YKBaseViewController {
         if isFullScreen == true {
          NotificationCenter.default.addObserver(self, selector: #selector(dismissScreen), name: NSNotification.Name(rawValue: "dismissFullScreen"), object: nil)    
         }else{
-              NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name(rawValue: "reloadKlineData"), object: nil)
+//              NotificationCenter.default.addObserver(self, selector: #selector(resumeTimer), name: NSNotification.Name(rawValue: "reloadKlineData"), object: nil)
         }
         self.stockChartView.backgroundColor = UIColor.background()
         self.view.backgroundColor = UIColor.background()
     }
- @objc   private func  reloadData(){
+
+    private func  reloadData(){
         
-        let  parameters = ["period":(self.type ?? "1min"),//配置传过来的交易所，交易对
-                          "symbol":"btcusdt",
-                          "size":"300"
+        let  parameters = ["period":(self.type ?? "0"),//配置传过来的交易所，交易对
+                          "symbol":"NEO/BTC",
+                          "size":"100"
                         ]
         self.pragrams = parameters;
-
-        AlamofireMenager.shared.loadData(Path: "market/history/kline", HTTPMethod: .get, parameters, .query,Success: { (response, netData) in
+    AlamofireMenager.shared.isShowLoading = false
+        AlamofireMenager.shared.loadData(Path: "market/index.php", HTTPMethod: .get, parameters, .query,Success: { (response, netData) in
             
             let dictionary = response as! Dictionary<String, Any>
             
@@ -169,47 +176,51 @@ class YKKLineViewController: YKBaseViewController {
 
 }
 extension YKKLineViewController:Y_StockChartViewDataSource{
+  internal  func changeColor() {
+       self.view.backgroundColor = UIColor.background()
+    }
+    
     internal   func stockDatas(with index: Int) -> Any! {
-        var t: String = "1min"
+        var t: String = "0"
         switch index {
         case 0:
-            t = "1min"
+            t = "0"
             
         case 1:
-            t = "1min"
+            t = "0"
             
         case 2:
-            t = "1min"
+            t = "0"
             
         case 3:
-            t = "3min"
+            t = "0"
             
         case 4:
-            t = "5min"
+            t = "0"
         case 5:
-            t = "10min"
+            t = "0"
         case 6:
-            t = "15min"
+            t = "0"
         case 7:
-            t = "30min"
+            t = "0"
         case 8:
-            t = "60min"
+            t = "0"
         case 9:
             t = "2hour"
         case 10:
-            t = "4hour"
+            t = "0"
         case 11:
-            t = "6hour"
+            t = "0"
         case 12:
-            t = "12hour"
+            t = "0"
         case 13:
-            t = "1day"
+            t = "0"
         case 14:
-            t = "3day"
+            t = "0"
         case 15:
-            t = "1week"
+            t = "0"
         case 16:
-            t = "1month"
+            t = "0"
   
         default:
             break
@@ -223,10 +234,33 @@ extension YKKLineViewController:Y_StockChartViewDataSource{
 //            self.groupModel = model
 //            self.stockChartView.reloadData()
         }else{
-            self.reloadData()
+            
+           startTimer()
+         
 
         }
         return nil
+    }
+//    @objc func resumeTimer(){
+//
+//    }
+    func startTimer(){
+     
+        if self.timer != nil {
+            return
+        }
+        var i = 0
+        timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.global())
+      timer!.schedule(deadline: .now(), repeating: ykTimerInterval)
+        timer!.setEventHandler {
+            DispatchQueue.main.async {
+                i = i+1
+                print("第" + "\(i)")
+              self.reloadData()
+            }
+           
+        }
+        timer!.resume()
     }
     internal  func addTapGeogres(with view: UIView!) {
         addTapBlock?(view)
@@ -250,8 +284,11 @@ extension YKKLineViewController:Y_StockChartViewDataSource{
     @objc func dismissScreen(){
         let appdlegate: AppDelegate =  UIApplication.shared.delegate as! AppDelegate
         appdlegate.isEable = false
+  
         self.dismiss(animated: true) {
-              NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadKlineData"), object: nil)
+            
+//              NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadKlineData"), object: nil)
+            
         }
        
         

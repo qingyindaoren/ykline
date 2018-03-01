@@ -21,6 +21,7 @@
  *  最后一个绘制日期点
  */
 @property (nonatomic, assign) CGPoint lastDrawDatePoint;
+@property (nonatomic, assign) CGPoint firstDrawDatePoint;
 
 @end
 
@@ -75,9 +76,12 @@
     CGFloat d =(w-48-20)/6;
     
     CGPoint drawDatePoint = CGPointMake(self.kLinePositionModel.LowPoint.x + 10, self.maxY + 1.5);
-    if(CGPointEqualToPoint(self.lastDrawDatePoint, CGPointZero) || drawDatePoint.x - self.lastDrawDatePoint.x > d )
+    if(CGPointEqualToPoint(self.lastDrawDatePoint, CGPointZero) || (drawDatePoint.x - self.lastDrawDatePoint.x >= d && drawDatePoint.x - self.firstDrawDatePoint.x<5*d+20))
     {
         [dateStr drawAtPoint:drawDatePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:11],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
+        if (CGPointEqualToPoint(self.lastDrawDatePoint, CGPointZero)) {
+            self.firstDrawDatePoint = drawDatePoint;
+        }
         self.lastDrawDatePoint = drawDatePoint;
     }
     return strokeColor;

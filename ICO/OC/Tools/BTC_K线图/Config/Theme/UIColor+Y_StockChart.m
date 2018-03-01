@@ -146,7 +146,8 @@
     return [UIColor subBtnColor];
 }
 +(UIColor *)subBtnColor{
-    return [UIColor colorWithRGBHex:0xdcdcdc];
+    return [UIColor colorWithRGBHex:0xffffff];
+ 
 }
 +(UIColor *)lightMainTextColor
 {
@@ -164,18 +165,29 @@
 {
     return [UIColor colorWithRGBHex:0x2d333a];
 }
-
++ (UIColor *)colorWithHex:(UInt32)hex alpha:(CGFloat)alpha {
+    int r = (hex >> 16) & 0xFF;
+    int g = (hex >> 8) & 0xFF;
+    int b = (hex) & 0xFF;
+    
+    return [UIColor colorWithRed:r / 255.0f
+                           green:g / 255.0f
+                            blue:b / 255.0f
+                           alpha:alpha];
+}
 #pragma mark 分时线界面线的颜色
 +(UIColor *)timeLineLineColor
 {
     return [UIColor colorWithRGBHex:0x49a5ff];
 }
-
++(UIColor *)YYStock_timeLineBgColor {
+    return [UIColor colorWithHex:0x60CFFF alpha:0.1f];
+}
 #pragma mark 长按时线的颜色
 +(UIColor *)longPressLineColor
 {
 //    return [UIColor colorWithRGBHex:0xff5353];
-    return [UIColor colorWithRGBHex:0xDE5E26];
+    return [UIColor colorWithRGBHex:0x646464];
 }
 
 #pragma mark ma5的颜色
@@ -187,7 +199,7 @@
 #pragma mark ma30颜色
 +(UIColor *)ma30Color
 {
-    return [UIColor colorWithRGBHex:0x49a5ff];
+    return [UIColor colorWithRGBHex:0xE03FDF];
 }
 
 #pragma mark BOLL_MB的颜色

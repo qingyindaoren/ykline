@@ -10,7 +10,7 @@ import UIKit
 import SVProgressHUD
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+ class AppDelegate: UIResponder, UIApplicationDelegate {
     
    public var isEable: Bool =  false
    var window: UIWindow?
@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //设置根视图
         window?.swichRootViewController()
+//        window?.rootViewController = UINavigationController(rootViewController: ViewController())
         //可视化window
         window?.makeKeyAndVisible()
 

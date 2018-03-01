@@ -10,7 +10,10 @@
 @class Y_KLineModel;
 @interface Y_VolumeMAView : UIView
 
+
+@property (nonatomic,assign)BOOL isFull;
 +(instancetype)view;
 
 -(void)maProfileWithModel:(Y_KLineModel *)model;
+
 @end

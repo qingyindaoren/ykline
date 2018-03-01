@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Y_StockChartConstant.h"
 @interface Y_StockChartViewItemModel : NSObject
-@property (nonatomic, copy) NSMutableArray *titles;
+@property (nonatomic, strong) NSMutableArray *titles;
 
 @property (nonatomic, assign) Y_StockChartSegViewType segViewType;
 

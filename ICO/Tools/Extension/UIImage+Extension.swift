@@ -26,7 +26,7 @@ extension UIImage {
     }
     
     
-    //将图片缩放到指定宽度
+    //将图片比例缩放到指定宽度
     func scaleImage(width: CGFloat) -> UIImage{
         let imageW = self.size.width
         let imageH = self.size.height
@@ -48,6 +48,7 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return image!
     }
+    //压缩 等宽高
     func scaleImageEquelWH(width: CGFloat) -> UIImage{
         let newSize = CGSize.init(width: width, height: width)
         UIGraphicsBeginImageContext(newSize);

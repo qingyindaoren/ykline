@@ -11,11 +11,11 @@
 #import "Y_StockChartGlobalVariable.h"
 @implementation Y_KLineModel
 -(NSString *)Date{
-    return [NSString stringWithFormat:@"%@000",_Date];
+    return [NSString stringWithFormat:@"%@",_Date];
 }
 - (NSNumber *)RSV_9
 {
-    if (!_RSV_9) {
+    if (_RSV_9 == nil) {
         if(self.NineClocksMinPrice == self.NineClocksMaxPrice) {
             _RSV_9 = @100;
         } else {
@@ -26,22 +26,22 @@
 }
 - (NSNumber *)KDJ_K
 {
-    if (!_KDJ_K) {
-        _KDJ_K = @((self.RSV_9.floatValue + 2 * (self.PreviousKlineModel.KDJ_K ? self.PreviousKlineModel.KDJ_K.floatValue : 50) )/3);
+    if (_KDJ_K == nil) {
+        _KDJ_K = @((self.RSV_9.floatValue + 2 * (self.PreviousKlineModel.KDJ_K.boolValue ? self.PreviousKlineModel.KDJ_K.floatValue : 50) )/3);
     }
     return _KDJ_K;
 }
 
 - (NSNumber *)KDJ_D
 {
-    if(!_KDJ_D) {
-        _KDJ_D = @((self.KDJ_K.floatValue + 2 * (self.PreviousKlineModel.KDJ_D ? self.PreviousKlineModel.KDJ_D.floatValue : 50))/3);
+    if(_KDJ_D == nil) {
+        _KDJ_D = @((self.KDJ_K.floatValue + 2 * (self.PreviousKlineModel.KDJ_D.boolValue ? self.PreviousKlineModel.KDJ_D.floatValue : 50))/3);
     }
     return _KDJ_D;
 }
 - (NSNumber *)KDJ_J
 {
-    if(!_KDJ_J) {
+    if(_KDJ_J == nil) {
         _KDJ_J = @(3*self.KDJ_K.floatValue - 2*self.KDJ_D.floatValue);
     }
     return _KDJ_J;
@@ -51,7 +51,7 @@
 {
     if([Y_StockChartGlobalVariable isEMALine] == Y_StockChartTargetLineStatusMA)
     {
-        if (!_MA7) {
+        if (_MA7 == nil) {
             NSInteger index = [self.ParentGroupModel.models indexOfObject:self];
             if (index >= 6) {
                 if (index > 6) {
@@ -71,7 +71,7 @@
 {
     if([Y_StockChartGlobalVariable isEMALine] == Y_StockChartTargetLineStatusMA)
     {
-        if (!_Volume_MA7) {
+        if (_Volume_MA7 == nil) {
             NSInteger index = [self.ParentGroupModel.models indexOfObject:self];
             if (index >= 6) {
                 if (index > 6) {
@@ -88,7 +88,7 @@
 }
 - (NSNumber *)Volume_EMA7
 {
-    if(!_Volume_EMA7) {
+    if(_Volume_EMA7 == nil) {
         _Volume_EMA7 = @((self.Volume + 3 * self.PreviousKlineModel.Volume_EMA7.floatValue)/4);
     }
     return _Volume_EMA7;
@@ -96,7 +96,7 @@
 //// EMA（N）=2/（N+1）*（C-昨日EMA）+昨日EMA；
 - (NSNumber *)EMA7
 {
-    if(!_EMA7) {
+    if(_EMA7 == nil) {
         _EMA7 = @((self.Close.floatValue + 3 * self.PreviousKlineModel.EMA7.floatValue)/4);
     }
     return _EMA7;
@@ -104,7 +104,7 @@
 
 - (NSNumber *)EMA30
 {
-    if(!_EMA30) {
+    if(_EMA30 == nil) {
         _EMA30 = @((2 * self.Close.floatValue + 29 * self.PreviousKlineModel.EMA30.floatValue)/31);
     }
     return _EMA30;
@@ -112,7 +112,7 @@
 
 - (NSNumber *)EMA12
 {
-    if(!_EMA12) {
+    if(_EMA12 == nil) {
         _EMA12 = @((2 * self.Close.floatValue + 11 * self.PreviousKlineModel.EMA12.floatValue)/13);
     }
     return _EMA12;
@@ -120,7 +120,7 @@
 
 - (NSNumber *)EMA26
 {
-    if (!_EMA26) {
+    if (_EMA26 == nil) {
         _EMA26 = @((2 * self.Close.floatValue + 25 * self.PreviousKlineModel.EMA26.floatValue)/27);
     }
     return _EMA26;
@@ -130,7 +130,7 @@
 {
     if([Y_StockChartGlobalVariable isEMALine] == Y_StockChartTargetLineStatusMA)
     {
-        if (!_MA30) {
+        if (_MA30 == nil) {
             NSInteger index = [self.ParentGroupModel.models indexOfObject:self];
             if (index >= 29) {
                 if (index > 29) {
@@ -150,7 +150,7 @@
 {
     if([Y_StockChartGlobalVariable isEMALine] == Y_StockChartTargetLineStatusMA)
     {
-        if (!_Volume_MA30) {
+        if (_Volume_MA30 == nil) {
             NSInteger index = [self.ParentGroupModel.models indexOfObject:self];
             if (index >= 29) {
                 if (index > 29) {
@@ -168,14 +168,14 @@
 
 - (NSNumber *)Volume_EMA30
 {
-    if(!_Volume_EMA30) {
+    if(_Volume_EMA30 == nil) {
         _Volume_EMA30 = @((2 * self.Volume + 29 * self.PreviousKlineModel.Volume_EMA30.floatValue)/31);
     }
     return _Volume_EMA30;
 }
 - (NSNumber *)MA12
 {
-    if (!_MA12) {
+    if (_MA12 == nil) {
         NSInteger index = [self.ParentGroupModel.models indexOfObject:self];
         if (index >= 11) {
             if (index > 11) {
@@ -190,7 +190,7 @@
 
 - (NSNumber *)MA26
 {
-    if (!_MA26) {
+    if (_MA26 == nil) {
         NSInteger index = [self.ParentGroupModel.models indexOfObject:self];
         if (index >= 25) {
             if (index > 25) {
@@ -205,7 +205,7 @@
 
 - (NSNumber *)SumOfLastClose
 {
-    if(!_SumOfLastClose) {
+    if(_SumOfLastClose == nil) {
         _SumOfLastClose = @(self.PreviousKlineModel.SumOfLastClose.floatValue + self.Close.floatValue);
     }
     return _SumOfLastClose;
@@ -213,7 +213,7 @@
 
 - (NSNumber *)SumOfLastVolume
 {
-    if(!_SumOfLastVolume) {
+    if(_SumOfLastVolume == nil) {
         _SumOfLastVolume = @(self.PreviousKlineModel.SumOfLastVolume.floatValue + self.Volume);
     }
     return _SumOfLastVolume;
@@ -221,7 +221,7 @@
 
 - (NSNumber *)NineClocksMinPrice
 {
-    if (!_NineClocksMinPrice) {
+    if (_NineClocksMinPrice == nil) {
 //        if([self.ParentGroupModel.models indexOfObject:self] >= 8)
 //        {
             [self rangeLastNinePriceByArray:self.ParentGroupModel.models condition:NSOrderedDescending];
@@ -233,7 +233,7 @@
 }
 
 - (NSNumber *)NineClocksMaxPrice {
-    if (!_NineClocksMaxPrice) {
+    if (_NineClocksMaxPrice == nil) {
         if([self.ParentGroupModel.models indexOfObject:self] >= 8)
         {
             [self rangeLastNinePriceByArray:self.ParentGroupModel.models condition:NSOrderedAscending];
@@ -251,7 +251,7 @@
 
 - (NSNumber *)DIF
 {
-    if(!_DIF) {
+    if(_DIF == nil) {
         _DIF = @(self.EMA12.floatValue - self.EMA26.floatValue);
     }
     return _DIF;
@@ -260,7 +260,7 @@
 //已验证
 -(NSNumber *)DEA
 {
-    if(!_DEA) {
+    if(_DEA == nil) {
         _DEA = @(self.PreviousKlineModel.DEA.floatValue * 0.8 + 0.2*self.DIF.floatValue);
     }
     return _DEA;
@@ -269,7 +269,7 @@
 //已验证
 - (NSNumber *)MACD
 {
-    if(!_MACD) {
+    if(_MACD == nil) {
         _MACD = @(2*(self.DIF.floatValue - self.DEA.floatValue));
     }
     return _MACD;
@@ -279,7 +279,7 @@
 
 - (NSNumber *)MA20{
     
-    if (!_MA20) {
+    if (_MA20 == nil) {
         
         NSInteger index = [self.ParentGroupModel.models indexOfObject:self];
         if (index >= 19) {
@@ -296,7 +296,7 @@
 
 - (NSNumber *)BOLL_MB {
     
-    if(!_BOLL_MB) {
+    if(_BOLL_MB == nil) {
         
         NSInteger index = [self.ParentGroupModel.models indexOfObject:self];
         if (index >= 19) {
@@ -320,7 +320,7 @@
 
 - (NSNumber *)BOLL_MD {
     
-    if (!_BOLL_MD) {
+    if (_BOLL_MD == nil) {
         
         NSInteger index = [self.ParentGroupModel.models indexOfObject:self];
         
@@ -338,7 +338,7 @@
 }
 
 - (NSNumber *)BOLL_UP {
-    if (!_BOLL_UP) {
+    if (_BOLL_UP == nil) {
         NSInteger index = [self.ParentGroupModel.models indexOfObject:self];
         if (index >= 20) {
             _BOLL_UP = @(self.BOLL_MB.floatValue + 2 * self.BOLL_MD.floatValue);
@@ -351,7 +351,7 @@
 }
 
 - (NSNumber *)BOLL_DN {
-    if (!_BOLL_DN) {
+    if (_BOLL_DN == nil) {
         NSInteger index = [self.ParentGroupModel.models indexOfObject:self];
         if (index >= 20) {
             _BOLL_DN = @(self.BOLL_MB.floatValue - 2 * self.BOLL_MD.floatValue);
@@ -365,7 +365,7 @@
 
 - (NSNumber *)BOLL_SUBMD_SUM {
     
-    if (!_BOLL_SUBMD_SUM) {
+    if (_BOLL_SUBMD_SUM == nil) {
         
         NSInteger index = [self.ParentGroupModel.models indexOfObject:self];
         if (index >= 20) {
@@ -382,7 +382,7 @@
 
 - (NSNumber *)BOLL_SUBMD{
     
-    if (!_BOLL_SUBMD) {
+    if (_BOLL_SUBMD == nil) {
         
         NSInteger index = [self.ParentGroupModel.models indexOfObject:self];
         

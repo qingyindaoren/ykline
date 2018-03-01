@@ -36,7 +36,7 @@
 
 @property (nonatomic, weak) id <Y_StockChartSegmentViewDelegate> delegate;
 
-@property (nonatomic, copy) NSMutableArray *btnArray;
+@property (nonatomic, strong) NSMutableArray *btnArray;
 @property (nonatomic, strong) NSArray *itemModels;
 
 @end

@@ -50,6 +50,7 @@ typedef NS_ENUM(NSInteger, Y_KLineType) {
 -(id) stockDatasWithIndex:(NSInteger)index;
 -(void)addTapGeogresWithView:(UIView*)view;
 -(void)removeTapGeogresWithView:(UIView*)view;
+-(void)changeColor;
 
 @end
 

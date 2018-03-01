@@ -28,6 +28,8 @@ class AlamofireMenager: NSObject {
     let noNetString = "您处在离线状态"
     //是否展示无网视图
     var isShowNoWorking: Bool = true
+    //是否有加载菊花提示视图
+    var isShowLoading: Bool  = true
     
     private var requestDictionary = [String:String]()
     
@@ -273,7 +275,10 @@ private extension AlamofireMenager {
         }
         
         setRequest?(request)
-        SVProgressHUD.show()
+        if isShowLoading {
+           SVProgressHUD.show()
+        }
+       
         request.responseObject(completionHandler: { [weak self] (netDate:DataResponse<T>) in
             if self == nil{
                 dPrint("🌶网络请求工具 AlamofireMenager，被销毁请检查")
@@ -290,6 +295,7 @@ private extension AlamofireMenager {
             }else{
                 
                 failure((self?.errorShowMassage) ?? "")
+                
                   SVProgressHUD.showError(withStatus: (self?.errorShowMassage) ?? "")
             }
 //             self?.cancelRequest(path: path)
@@ -319,7 +325,9 @@ private extension AlamofireMenager {
         }
         
         setRequest?(request)
-         SVProgressHUD.show()
+        if isShowLoading {
+            SVProgressHUD.show()
+        }
         request.responseJSON(completionHandler: { [weak self] (netDate:DataResponse<Any>) in
             if self == nil{
                 dPrint("🌶网络请求工具 AlamofireMenager，被销毁请检查")
@@ -333,7 +341,10 @@ private extension AlamofireMenager {
                   SVProgressHUD.dismiss()
             }else{
                 failure((self?.errorShowMassage) ?? "")
-                     SVProgressHUD.showError(withStatus: (self?.errorShowMassage) ?? "")
+                if (self?.isShowLoading)! {
+                  SVProgressHUD.showError(withStatus: (self?.errorShowMassage) ?? "")
+                }
+                
             }
 //            self?.cancelRequest(path: path)
             self?.requestDictionary.removeValue(forKey: id)
@@ -362,7 +373,9 @@ private extension AlamofireMenager {
         }
         
         setRequest?(request)
- SVProgressHUD.show()
+        if isShowLoading {
+            SVProgressHUD.show()
+        }
         request.responseArray(completionHandler: { [weak self] (netDate:DataResponse<[T]>) in
             if self == nil{
                 dPrint("🌶网络请求工具 AlamofireMenager，被销毁请检查")

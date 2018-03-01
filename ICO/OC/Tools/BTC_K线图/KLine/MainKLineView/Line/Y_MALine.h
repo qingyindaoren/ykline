@@ -13,7 +13,8 @@ typedef NS_ENUM(NSInteger, Y_MAType){
     Y_MA30Type,
     Y_BOLL_MB,
     Y_BOLL_UP,
-    Y_BOLL_DN
+    Y_BOLL_DN,
+    Y_Fill
 };
 
 /**

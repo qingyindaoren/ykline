@@ -13,12 +13,14 @@ import SnapKit
 let YKCoinDetailCellId = "YKCoinDetailCellId"
 let YKCoinId = "YKCoinId"
 let YKCoinDetailContentId = "YKCoinDetailContentId"
+let YKCoinDetailContentAllPriceId = "YKCoinDetailContentAllPriceId"
+let YKNewsId = "YKNewsId"
 
 let segkLineKey = "segkLineKey"
 let segMAKey = "segMAKey"
 let segKDJKey = "segKDJKey"
 let segToneKey = "segToneKey"
-
+let ykTimerInterval = 10.0  //定时器时间间隔
 let namespace = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
 let guideCount = 4
 //屏幕的尺寸信息
@@ -46,7 +48,7 @@ func ykboldFont(font:CGFloat) -> UIFont {
     return  UIFont.boldSystemFont(ofSize: font * scale / pt2x)
 }
 //颜色
-func ykColor(rgbValue:NSInteger,alpha:CGFloat) -> UIColor {
+func ykColor(rgbValue:NSInteger,alpha:CGFloat = 1.0) -> UIColor {
     return UIColor.init(red:  CGFloat((rgbValue & 0xFF0000) >> 16)/255.0, green: CGFloat((rgbValue & 0xFF00) >> 8)/255.0, blue: CGFloat(rgbValue & 0xFF)/255.0, alpha: alpha)
 }
 

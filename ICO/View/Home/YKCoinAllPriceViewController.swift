@@ -18,7 +18,7 @@ class YKCoinAllPriceViewController: YKCoinBaseViewController {
         self.tableView?.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height:ScreenHeight -  detailSectionHeight - navStatusHeight()-dangerousHeight() )
         
         // Do any additional setup after loading the view.
-        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: YKCoinDetailContentId)
+        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: YKCoinDetailContentAllPriceId)
         
         
         
@@ -39,7 +39,7 @@ class YKCoinAllPriceViewController: YKCoinBaseViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: YKCoinDetailContentId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: YKCoinDetailContentAllPriceId, for: indexPath)
         cell.selectionStyle = .none
         cell.backgroundColor = ykrandomColor()
         // Configure the cell...

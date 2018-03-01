@@ -10,7 +10,7 @@
 /**
  *  K线图的宽度，默认20
  */
-static CGFloat Y_StockChartKLineWidth = 4;
+static CGFloat Y_StockChartKLineWidth = 8;
 
 /**
  *  K线图的间隔，默认1
@@ -57,6 +57,7 @@ static Y_StockChartTargetLineStatus Y_StockChartKLineIsBOLLLine = Y_StockChartTa
         kLineWidth = Y_StockChartKLineMinWidth;
     }
     Y_StockChartKLineWidth = kLineWidth;
+
 }
 
 

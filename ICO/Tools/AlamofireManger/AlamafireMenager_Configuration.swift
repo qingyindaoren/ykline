@@ -11,11 +11,11 @@
 
 import UIKit
 
-///域名 配置
-var baseServerWord: String = "api"
+///域名 配置 //http://192.168.1.55/api/market/index.php?symbol=NEO/BTC&period=0&size=300
+var baseServerWord: String = "192.168.1.55/api"
 var baseURL: String {
     get {
-        return "https://\(baseServerWord).huobi.pro/"
+        return "http://\(baseServerWord)/"
     }
 }
 
@@ -33,7 +33,7 @@ let k_codeMenager: RespnseCodeMenager.Type = KRCodeHandler.self
 
 //MARK: - 超时时间
 ///超时时间
-let Alamafire_TimeoutIntervalForRequest:TimeInterval = 10
+let Alamafire_TimeoutIntervalForRequest:TimeInterval = 15
 
 
 //MARK: - 所有请求都会带的东西比如 版本和 cookie

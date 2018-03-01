@@ -21,4 +21,5 @@
 @property (strong, nonatomic) UILabel *highLabel;
 
 @property (strong, nonatomic) UILabel *lowLabel;
+@property (nonatomic,assign)BOOL isFull;
 @end

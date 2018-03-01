@@ -24,39 +24,42 @@
 {
     self = [super init];
     if (self) {
-        _VolumeMA7Label = [self private_createLabel];
-        _VolumeMA30Label = [self private_createLabel];
-        _volumeDescLabel = [self private_createLabel];
-
-
-        
-        _VolumeMA7Label.textColor = [UIColor ma7Color];
-        _VolumeMA30Label.textColor = [UIColor ma30Color];
-        
-        [_volumeDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.mas_left);
-            make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
-        }];
-        
-        
-        [_VolumeMA7Label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_volumeDescLabel.mas_right);
-            make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
-            
-        }];
-        
-        [_VolumeMA30Label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_VolumeMA7Label.mas_right);
-            make.top.equalTo(self.mas_top);
-            make.bottom.equalTo(self.mas_bottom);
-        }];
+       
         
     }
     return self;
 }
-
+-(void)setIsFull:(BOOL)isFull{
+    _isFull = isFull;
+    _VolumeMA7Label = [self private_createLabel];
+    _VolumeMA30Label = [self private_createLabel];
+    _volumeDescLabel = [self private_createLabel];
+    
+    
+    
+    _VolumeMA7Label.textColor = [UIColor ma7Color];
+    _VolumeMA30Label.textColor = [UIColor ma30Color];
+    
+    [_volumeDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_bottom);
+    }];
+    
+    
+    [_VolumeMA7Label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_volumeDescLabel.mas_right);
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_bottom);
+        
+    }];
+    
+    [_VolumeMA30Label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_VolumeMA7Label.mas_right);
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_bottom);
+    }];
+}
 +(instancetype)view
 {
     Y_VolumeMAView *MAView = [[Y_VolumeMAView alloc]init];
@@ -65,17 +68,31 @@
 }
 -(void)maProfileWithModel:(Y_KLineModel *)model
 {
-
-
-    _volumeDescLabel.text = [NSString stringWithFormat:@" 量(7,30):%.2f ",model.Volume];
- 
-    _VolumeMA7Label.text = [NSString stringWithFormat:@" MA7:%.2f ",model.Volume_MA7.floatValue];
-    _VolumeMA30Label.text = [NSString stringWithFormat:@" MA30:%.2f",model.Volume_MA30.floatValue];
+         _volumeDescLabel.text = [NSString stringWithFormat:@" 量(7,30):%.4f ",model.Volume];
+    if (model.Volume_MA7.floatValue<100) {
+        _VolumeMA7Label.text = [NSString stringWithFormat:@" MA7:%.8f ",model.Volume_MA7.floatValue];
+    }else{
+     _VolumeMA7Label.text = [NSString stringWithFormat:@" MA7:%.4f ",model.Volume_MA7.floatValue];
+    }
+    if (model.Volume_MA30.floatValue<100) {
+        _VolumeMA30Label.text = [NSString stringWithFormat:@" MA30:%.8f",model.Volume_MA30.floatValue];
+    }else{
+        _VolumeMA30Label.text = [NSString stringWithFormat:@" MA30:%.4f",model.Volume_MA30.floatValue];
+    }
+    if (self.isFull) {
+         _VolumeMA7Label.text = [NSString stringWithFormat:@" MA7:%.8f ",model.Volume_MA7.floatValue];
+      _VolumeMA30Label.text = [NSString stringWithFormat:@" MA30:%.8f",model.Volume_MA30.floatValue];
+    }
+    
 }
 - (UILabel *)private_createLabel
 {
     UILabel *label = [UILabel new];
-    label.font = [UIFont systemFontOfSize:10];
+      CGFloat scale = [UIScreen mainScreen].bounds.size.width/375.0;
+    if (_isFull) {
+        scale = [UIScreen mainScreen].bounds.size.height/375.0;
+    }
+    label.font = [UIFont systemFontOfSize:10*scale];
     label.textColor = [UIColor assistTextColor];
     [self addSubview:label];
     return label;

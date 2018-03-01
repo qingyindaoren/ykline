@@ -155,7 +155,7 @@
     {
         [kLineModels enumerateObjectsUsingBlock:^(Y_KLineModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            if(model.DIF)
+            if(model.DIF.boolValue)
             {
                 if(model.DIF.floatValue < minValue) {
                     minValue = model.DIF.floatValue;
@@ -165,7 +165,7 @@
                 }
             }
             
-            if(model.DEA)
+            if(model.DEA.boolValue)
             {
                 if (minValue > model.DEA.floatValue) {
                     minValue = model.DEA.floatValue;
@@ -174,7 +174,7 @@
                     maxValue = model.DEA.floatValue;
                 }
             }
-            if(model.MACD)
+            if(model.MACD.boolValue)
             {
                 if (minValue > model.MACD.floatValue) {
                     minValue = model.MACD.floatValue;
@@ -211,7 +211,7 @@
             CGFloat DEAY = maxY;
             if(unitValue > 0.0000001)
             {
-                if(model.DIF)
+                if(model.DIF.boolValue)
                 {
                     DIFY = -(model.DIF.floatValue - 0)/unitValue + Y_StockChartKLineAccessoryViewMiddleY;
 //                    DIFY = maxY - (model.DIF.floatValue - minValue)/unitValue;
@@ -220,7 +220,7 @@
             }
             if(unitValue > 0.0000001)
             {
-                if(model.DEA)
+                if(model.DEA.boolValue)
                 {
                     DEAY = -(model.DEA.floatValue - 0)/unitValue + Y_StockChartKLineAccessoryViewMiddleY;
 //                    DEAY = maxY - (model.DEA.floatValue - minValue)/unitValue;
@@ -233,11 +233,11 @@
             CGPoint DIFPoint = CGPointMake(xPosition, DIFY);
             CGPoint DEAPoint = CGPointMake(xPosition, DEAY);
             
-            if(model.DIF)
+            if(model.DIF.boolValue)
             {
                 [self.Accessory_DIFPositions addObject: [NSValue valueWithCGPoint: DIFPoint]];
             }
-            if(model.DEA)
+            if(model.DEA.boolValue)
             {
                 [self.Accessory_DEAPositions addObject: [NSValue valueWithCGPoint: DEAPoint]];
             }
@@ -245,7 +245,7 @@
     } else {
         [kLineModels enumerateObjectsUsingBlock:^(Y_KLineModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            if(model.KDJ_K)
+            if(model.KDJ_K.boolValue)
             {
                 if (minValue > model.KDJ_K.floatValue) {
                     minValue = model.KDJ_K.floatValue;
@@ -255,7 +255,7 @@
                 }
             }
             
-            if(model.KDJ_D)
+            if(model.KDJ_D.boolValue)
             {
                 if (minValue > model.KDJ_D.floatValue) {
                     minValue = model.KDJ_D.floatValue;
@@ -264,7 +264,7 @@
                     maxValue = model.KDJ_D.floatValue;
                 }
             }
-            if(model.KDJ_J)
+            if(model.KDJ_J.boolValue)
             {
                 if (minValue > model.KDJ_J.floatValue) {
                     minValue = model.KDJ_J.floatValue;
@@ -292,7 +292,7 @@
             CGFloat KDJ_J_Y = maxY;
             if(unitValue > 0.0000001)
             {
-                if(model.KDJ_K)
+                if(model.KDJ_K.boolValue)
                 {
                     KDJ_K_Y = maxY - (model.KDJ_K.floatValue - minValue)/unitValue;
                 }
@@ -300,14 +300,14 @@
             }
             if(unitValue > 0.0000001)
             {
-                if(model.KDJ_D)
+                if(model.KDJ_D.boolValue)
                 {
                     KDJ_D_Y = maxY - (model.KDJ_D.floatValue - minValue)/unitValue;
                 }
             }
             if(unitValue > 0.0000001)
             {
-                if(model.KDJ_J)
+                if(model.KDJ_J.boolValue)
                 {
                     KDJ_J_Y = maxY - (model.KDJ_J.floatValue - minValue)/unitValue;
                 }
@@ -320,15 +320,15 @@
             CGPoint KDJ_JPoint = CGPointMake(xPosition, KDJ_J_Y);
 
             
-            if(model.KDJ_K)
+            if(model.KDJ_K.boolValue)
             {
                 [self.Accessory_KDJ_KPositions addObject: [NSValue valueWithCGPoint: KDJ_KPoint]];
             }
-            if(model.KDJ_D)
+            if(model.KDJ_D.boolValue)
             {
                 [self.Accessory_KDJ_DPositions addObject: [NSValue valueWithCGPoint: KDJ_DPoint]];
             }
-            if(model.KDJ_J)
+            if(model.KDJ_J.boolValue)
             {
                 [self.Accessory_KDJ_JPositions addObject: [NSValue valueWithCGPoint: KDJ_JPoint]];
             }

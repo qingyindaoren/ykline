@@ -43,7 +43,7 @@
 @property(nonatomic,assign) Y_StockChartCenterViewType currentCenterViewType;
 @property (nonatomic, strong) UIButton *firstSegmentSelectBtn;
 @property (nonatomic,assign)BOOL isNoData;
-
+@property (nonatomic,assign)BOOL isNeedHide;
 @end
 
 @implementation Y_StockChartView 
@@ -52,6 +52,7 @@
 {
     if(!_kLineView)
     {
+        
         _kLineView = [Y_KLineView new];
         [self addSubview:_kLineView];
         [_kLineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -90,7 +91,7 @@
     if(itemModels)
     {
        
-     
+        self.isNeedHide = YES;
         NSMutableArray *items = [NSMutableArray array];
         for(Y_StockChartViewItemModel *item in itemModels)
         {
@@ -125,7 +126,15 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
         UIButton *b = [self viewWithTag:saveKNumber];
-        [self segmentKlineButtonClicked:b];
+    
+        [self segmentReload:b];
+    
+    
+}
+-(void)segmentReload:(UIButton*)b {
+    self.isNeedHide = NO;
+     [self segmentKlineButtonClicked:b];
+    
 }
 #pragma mark - 代理方法
 //tone色调
@@ -153,7 +162,7 @@
     UIButton *preBtn = nil;
     for (NSString * subItem in model.titles) {
         UIButton *btn = [self private_createButtonWithTitle:subItem tag:Y_StockChartSegmentStartTag+400+index];
-        [btn addTarget:self action:@selector(segmentToneButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(segmentToneButtonClickPre:) forControlEvents:UIControlEventTouchUpInside];
         [toneView addSubview:btn];
         [btn setBackgroundColor:subViewColor];
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -199,7 +208,7 @@
     UIButton *preBtn = nil;
     for (NSString * subItem in model.titles) {
         UIButton *btn = [self private_createButtonWithTitle:subItem tag:Y_StockChartSegmentStartTag+300+index];
-        [btn addTarget:self action:@selector(segmentIndexButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(segmentIndexButtonClickPre:) forControlEvents:UIControlEventTouchUpInside];
         [indexView addSubview:btn];
         [btn setBackgroundColor:subViewColor];
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -245,7 +254,7 @@
     UIButton *preBtn = nil;
     for (NSString * subItem in model.titles) {
         UIButton *btn = [self private_createButtonWithTitle:subItem tag:Y_StockChartSegmentStartTag+200+index];
-        [btn addTarget:self action:@selector(segmentMainIndexButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(segmentMainIndexButtonClickPre:) forControlEvents:UIControlEventTouchUpInside];
             [mainIndexView addSubview:btn];
             [btn setBackgroundColor:subViewColor];
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -281,7 +290,7 @@
                     UIButton *preBtn = nil;
                     for (NSString * subItem in model.titles) {
                         UIButton *btn = [self private_createButtonWithTitle:subItem tag:Y_StockChartSegmentStartTag+100+index];
-                        [btn addTarget:self action:@selector(segmentKlineButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+                        [btn addTarget:self action:@selector(segmentKlineButtonClickedPre:) forControlEvents:UIControlEventTouchUpInside];
                         if (preBtn) {
                         [segLineView addSubview:btn];
                         }else{
@@ -319,8 +328,13 @@
                     }
     segLineView.hidden = YES;
 }
+-(void)segmentToneButtonClickPre:(UIButton*)btn{
+    self.isNeedHide = YES;
+    [self segmentToneButtonClick:btn];
+}
 //色调的subview点击
 -(void)segmentToneButtonClick:(UIButton*)btn{
+    
     NSInteger index = btn.tag - 400 - Y_StockChartSegmentStartTag;
     if (index == 0) {
         [self hideToneView];
@@ -364,9 +378,17 @@
     self.kLineView.kLineMAView.closeLabel.textColor = [UIColor mainTextColor];
     self.kLineView.accessoryMAView.MACDLabel.textColor = [UIColor mainTextColor];
     [self.kLineView reDraw];
+    if ([self.dataSource respondsToSelector:@selector(changeColor)]) {
+        [self.dataSource changeColor];
+    }
+}
+-(void)segmentIndexButtonClickPre:(UIButton*)btn{
+      self.isNeedHide = YES;
+    [self segmentIndexButtonClick:btn];
 }
 //指标的subview点击
 -(void)segmentIndexButtonClick:(UIButton*)btn{
+  
     NSInteger index = btn.tag - 300 - Y_StockChartSegmentStartTag;
     if (index == 0) {
         [self hideKDJView];
@@ -412,8 +434,13 @@
             break;
     }
 }
+-(void)segmentMainIndexButtonClickPre:(UIButton*)btn{
+    self.isNeedHide = YES;
+    [self segmentMainIndexButtonClick:btn];
+}
 //主指标subview点击
 -(void)segmentMainIndexButtonClick:(UIButton*)btn{
+ 
     NSInteger index = btn.tag - 200 - Y_StockChartSegmentStartTag;
     if (index == 0) {
         [self hideMAView];
@@ -464,11 +491,16 @@
             break;
     }
 }
+-(void)segmentKlineButtonClickedPre:(UIButton*)btn{
+     self.isNeedHide = YES;
+    [self segmentKlineButtonClicked:btn];
+}
 //k线subview点击
 -(void)segmentKlineButtonClicked:(UIButton*)btn{
+   
     NSInteger index = btn.tag - 100 - Y_StockChartSegmentStartTag;
     if (index == 0) {
-        [self hideKlineView];
+           [self hideKlineView];
         return;
     }
     for (UIButton *b in klineBtnArray) {
@@ -483,7 +515,9 @@
   
     [[NSUserDefaults standardUserDefaults] setInteger:btn.tag forKey:@"segkLineIndexKey"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
     [self hideKlineView];
+    
     if(self.dataSource && [self.dataSource respondsToSelector:@selector(stockDatasWithIndex:)])
     {
         id stockData = [self.dataSource stockDatasWithIndex:index];
@@ -546,6 +580,9 @@
   
 }
 -(void)hideToneView{
+    if (self.isNeedHide == NO) {
+        return;
+    }
     [UIView animateWithDuration:0.2f animations:^{
         toneView.hidden = YES;
         
@@ -567,6 +604,9 @@
     }
 }
 -(void)hideKDJView{
+    if (self.isNeedHide == NO) {
+        return;
+    }
     [UIView animateWithDuration:0.2f animations:^{
         indexView.hidden = YES;
     }];
@@ -591,6 +631,9 @@
     
 }
 -(void)hideMAView{
+    if (self.isNeedHide == NO) {
+        return;
+    }
     [UIView animateWithDuration:0.2f animations:^{
         mainIndexView.hidden = YES;
     }];
@@ -613,6 +656,9 @@
     
 }
 -(void)hideKlineView{
+    if (self.isNeedHide == NO) {
+        return;
+    }
     [UIView animateWithDuration:0.2f animations:^{
         segLineView.hidden = YES;
         [_segmentView viewWithTag:Y_StockChartSegmentStartTag +100].hidden = YES;

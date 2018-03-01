@@ -33,12 +33,12 @@ static NSInteger const Y_StockChartSegmentStartTag = 2000;
 /**
  *  K线最大的宽度
  */
-#define Y_StockChartKLineMaxWidth 20
+#define Y_StockChartKLineMaxWidth 17
 
 /**
  *  K线图最小的宽度
  */
-#define Y_StockChartKLineMinWidth 2
+#define Y_StockChartKLineMinWidth 5
 
 /**
  *  K线图缩放界限

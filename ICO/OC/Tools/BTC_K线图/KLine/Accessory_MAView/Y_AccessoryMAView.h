@@ -20,4 +20,5 @@
  */
 @property (nonatomic, assign) Y_StockChartTargetLineStatus targetLineStatus;
 @property (strong, nonatomic) UILabel *MACDLabel;
+@property (nonatomic,assign)BOOL isFull;
 @end

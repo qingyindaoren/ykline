@@ -14,6 +14,7 @@
 #import "Y_KLinePositionModel.h"
 #import "Y_StockChartGlobalVariable.h"
 #import "Masonry.h"
+#import "YKSetting.h"
 @interface Y_KLineMainView()
 
 /**
@@ -125,7 +126,7 @@
         case 1:{
             CGContextSetStrokeColorWithColor(context,[UIColor assistColor].CGColor);
             CGContextSetLineWidth(context, 0.5);
-              CGContextStrokeRect(context, CGRectMake(0, Y_StockChartKLineMainViewMaxY, self.frame.size.width+0.5, self.frame.size.height - Y_StockChartKLineMainViewMaxY));
+              CGContextStrokeRect(context, CGRectMake(0, Y_StockChartKLineMainViewMaxY, self.frame.size.width+0.5, self.frame.size.height - Y_StockChartKLineMainViewMaxY-0.5));
             
             
         }
@@ -138,7 +139,7 @@
         case 3:{
             CGContextSetLineWidth(context, 0.5);
               CGContextSetStrokeColorWithColor(context,[UIColor assistColor].CGColor);
-              CGContextStrokeRect(context, CGRectMake(0, Y_StockChartKLineMainViewMaxY, self.frame.size.width+0.5, self.frame.size.height - Y_StockChartKLineMainViewMaxY));
+              CGContextStrokeRect(context, CGRectMake(0, Y_StockChartKLineMainViewMaxY, self.frame.size.width+0.5, self.frame.size.height - Y_StockChartKLineMainViewMaxY-0.5));
          
         }
             break;
@@ -173,11 +174,13 @@
             [kLineColors addObject:strokeColor];
             [positions addObject:[NSValue valueWithCGPoint:positionModel.ClosePoint]];
         }];
+        MALine.maxY = Y_StockChartKLineMainViewMaxY;
         MALine.MAPositions = positions;
-        MALine.MAType = -1;
+        MALine.MAType = Y_Fill;
         [MALine draw];
         //
         __block CGPoint lastDrawDatePoint = CGPointZero;//fix
+          __block CGPoint firstDrawDatePoint = CGPointZero;//fix
         [self.needDrawKLinePositionModels enumerateObjectsUsingBlock:^(Y_KLinePositionModel * _Nonnull positionModel, NSUInteger idx, BOOL * _Nonnull stop) {
             
             CGPoint point = [positions[idx] CGPointValue];
@@ -192,9 +195,13 @@
             CGPoint drawDatePoint = CGPointMake(point.x + 10, Y_StockChartKLineMainViewMaxY + 1.5);
             CGFloat w = [UIScreen mainScreen].bounds.size.width;
             CGFloat d =(w-48-20)/6;
-            if(CGPointEqualToPoint(lastDrawDatePoint, CGPointZero) || point.x - lastDrawDatePoint.x > d )
+  
+            if(CGPointEqualToPoint(lastDrawDatePoint, CGPointZero) || (point.x - lastDrawDatePoint.x >= d && point.x-firstDrawDatePoint.x < 5*d +20 ))
             {
                 [dateStr drawAtPoint:drawDatePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:11],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
+                if (CGPointEqualToPoint(lastDrawDatePoint, CGPointZero)) {
+                    firstDrawDatePoint = drawDatePoint;
+                }
                 lastDrawDatePoint = drawDatePoint;
             }
         }];
@@ -335,7 +342,7 @@
     }
     
     
-    NSLog(@"这是模型开始的index-----------%lu",needDrawKLineStartIndex);
+//    NSLog(@"这是模型开始的index-----------%lu",needDrawKLineStartIndex);
     [self.needDrawKLineModels removeAllObjects];
     
     //赋值数组
@@ -387,7 +394,7 @@
         
         if (_targetLineStatus == Y_StockChartTargetLineStatusBOLL) {
             
-            if(kLineModel.BOLL_MB)
+            if(kLineModel.BOLL_MB.boolValue)
             {
                 if (minAssert > kLineModel.BOLL_MB.floatValue) {
                     minAssert = kLineModel.BOLL_MB.floatValue;
@@ -396,7 +403,7 @@
                     maxAssert = kLineModel.BOLL_MB.floatValue;
                 }
             }
-            if(kLineModel.BOLL_UP)
+            if(kLineModel.BOLL_UP.boolValue)
             {
                 if (minAssert > kLineModel.BOLL_UP.floatValue) {
                     minAssert = kLineModel.BOLL_UP.floatValue;
@@ -406,7 +413,7 @@
                 }
             }
             
-            if(kLineModel.BOLL_DN)
+            if(kLineModel.BOLL_DN.boolValue)
             {
                 if (minAssert > kLineModel.BOLL_DN.floatValue) {
                     minAssert = kLineModel.BOLL_DN.floatValue;
@@ -421,7 +428,7 @@
         } else {
             
             
-            if(kLineModel.MA7)
+            if(kLineModel.MA7.boolValue)
             {
                 if (minAssert > kLineModel.MA7.floatValue) {
                     minAssert = kLineModel.MA7.floatValue;
@@ -430,7 +437,7 @@
                     maxAssert = kLineModel.MA7.floatValue;
                 }
             }
-            if(kLineModel.MA30)
+            if(kLineModel.MA30.boolValue)
             {
                 if (minAssert > kLineModel.MA30.floatValue) {
                     minAssert = kLineModel.MA30.floatValue;
@@ -523,7 +530,7 @@
         CGFloat ma30Y = maxY;
         if(unitValue > 0.0000001)
         {
-            if(kLineModel.MA7)
+            if(kLineModel.MA7.boolValue)
             {
                 ma7Y = maxY - (kLineModel.MA7.floatValue - minAssert)/unitValue;
             }
@@ -531,7 +538,7 @@
         }
         if(unitValue > 0.0000001)
         {
-            if(kLineModel.MA30)
+            if(kLineModel.MA30.boolValue)
             {
                 ma30Y = maxY - (kLineModel.MA30.floatValue - minAssert)/unitValue;
             }
@@ -542,11 +549,11 @@
         CGPoint ma7Point = CGPointMake(xPosition, ma7Y);
         CGPoint ma30Point = CGPointMake(xPosition, ma30Y);
         
-        if(kLineModel.MA7)
+        if(kLineModel.MA7.boolValue)
         {
             [self.MA7Positions addObject: [NSValue valueWithCGPoint: ma7Point]];
         }
-        if(kLineModel.MA30)
+        if(kLineModel.MA30.boolValue)
         {
             [self.MA30Positions addObject: [NSValue valueWithCGPoint: ma30Point]];
         }
@@ -566,7 +573,7 @@
             if(unitValue > 0.0000001)
             {
                 
-                if(kLineModel.BOLL_MB)
+                if(kLineModel.BOLL_MB.boolValue)
                 {
                     boll_mbY = maxY - (kLineModel.BOLL_MB.floatValue - minAssert)/unitValue;
                 }
@@ -574,7 +581,7 @@
             }
             if(unitValue > 0.0000001)
             {
-                if(kLineModel.BOLL_DN)
+                if(kLineModel.BOLL_DN.boolValue)
                 {
                     boll_dnY = maxY - (kLineModel.BOLL_DN.floatValue - minAssert)/unitValue ;
                 }
@@ -582,7 +589,7 @@
             
             if(unitValue > 0.0000001)
             {
-                if(kLineModel.BOLL_UP)
+                if(kLineModel.BOLL_UP.boolValue)
                 {
                     boll_upY = maxY - (kLineModel.BOLL_UP.floatValue - minAssert)/unitValue;
                 }
@@ -595,14 +602,14 @@
             CGPoint boll_dnPoint = CGPointMake(xPosition, boll_dnY);
             
             
-            if (kLineModel.BOLL_MB) {
+            if (kLineModel.BOLL_MB.boolValue) {
                 [self.BOLL_MBPositions addObject:[NSValue valueWithCGPoint:boll_mbPoint]];
             }
             
-            if (kLineModel.BOLL_UP) {
+            if (kLineModel.BOLL_UP.boolValue) {
                 [self.BOLL_UPPositions addObject:[NSValue valueWithCGPoint:boll_upPoint]];
             }
-            if (kLineModel.BOLL_DN) {
+            if (kLineModel.BOLL_DN.boolValue) {
                 [self.BOLL_DNPositions addObject:[NSValue valueWithCGPoint:boll_dnPoint]];
             }
             
@@ -642,6 +649,12 @@ static char *observerContext = NULL;
     CGFloat scrollViewOffsetX = self.parentScrollView.contentOffset.x < 0 ? 0 : self.parentScrollView.contentOffset.x;
     NSUInteger leftArrCount = ABS(scrollViewOffsetX - [Y_StockChartGlobalVariable kLineGap]) / ([Y_StockChartGlobalVariable kLineGap] + [Y_StockChartGlobalVariable kLineWidth]);
     _needDrawStartIndex = leftArrCount;
+//    NSLog(@"第几个%ld，%lf",leftArrCount,scrollViewOffsetX);
+    
+
+    
+
+    
     return _needDrawStartIndex;
 }
 

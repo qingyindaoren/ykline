@@ -16,6 +16,6 @@
 @property(nonatomic,assign) CGFloat minValue;
 
 @property(nonatomic,copy) NSString *minLabelText;
-
+@property (nonatomic,assign)BOOL isFull;
 
 @end

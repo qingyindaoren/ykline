@@ -17,7 +17,6 @@
 #import "UIView+Extension.h"
 #import "UIButton+Category.h"
 #import "FDSPageControl.h"
-#import "UIViewController+SelectPhotoIcon.h"
 #import "UIButton+CS_FixMultiClick.h"
 #import "Y_KLineModel.h"
 #import "Y_StockChartView.h"
@@ -26,4 +25,6 @@
 #import "DataMD5.h"
 #import "Y_StockChartViewItemModel.h"
 #import "Y_StockChartConstant.h"
-
+#import "YKSetting.h"
+#import "PureCamera.h"
+#import "TOCropViewController.h"

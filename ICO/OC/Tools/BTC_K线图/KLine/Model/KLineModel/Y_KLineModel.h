@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, YCoinType) {
 /**
  *  父ModelArray:用来给当前Model索引到Parent数组
  */
-@property (nonatomic, strong) Y_KLineGroupModel *ParentGroupModel;
+@property (nonatomic, weak) Y_KLineGroupModel *ParentGroupModel;
 
 
 /**

@@ -56,6 +56,7 @@ class YKCoinDetailViewController: YKBaseTableViewController {
 //        configuration.indicatorColor = UIColor.clear
    
         let t = SGPageTitleView.init(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: detailSectionHeight) , delegate: self, titleNames: self.sectionTitleArray, configure: configuration)
+        t?.isNeedBounces = false
         t?.isShowIndicator = false
         t?.isOpenTitleTextZoom = true
         t?.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -64,12 +65,13 @@ class YKCoinDetailViewController: YKBaseTableViewController {
     private lazy var pageContentView: SGPageContentView = {
         let content = SGPageContentView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: self.view.height - detailSectionHeight-dangerousHeight()), parentVC: self, childVCs: self.childArr)
         content?.delegatePageContentView = self
-     
+     content?.isScrollEnabled = false
         return content!
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupUI()
         NotificationCenter.default.addObserver(self, selector: #selector(fullScreen), name: NSNotification.Name(rawValue: "fullScreen"), object: nil)
     }
@@ -90,15 +92,15 @@ class YKCoinDetailViewController: YKBaseTableViewController {
                 self.klineVC = coin
                 coin.addTapBlock = {[weak self] view in
                
-                    self!.view.isUserInteractionEnabled = true
+                    self?.view.isUserInteractionEnabled = true
                     self?.tap = UITapGestureRecognizer.init(target: self!, action: #selector(self?.tohiden))
-                    self!.view.addGestureRecognizer((self?.tap)!)
+                    self?.view.addGestureRecognizer((self?.tap)!)
                 }
-                coin.removeTapBlock = {view in
-                    if let t = self.tap {
-                        self.view.removeGestureRecognizer(t)
-                        self.tap = nil
-                        self.view.backgroundColor = UIColor.background()
+                coin.removeTapBlock = {[weak self] view in
+                    if let t = self?.tap {
+                        self?.view.removeGestureRecognizer(t)
+                        self?.tap = nil
+                        self?.view.backgroundColor = UIColor.background()
                     }
 
                 }
@@ -216,7 +218,7 @@ extension YKCoinDetailViewController: SGPageTitleViewDelegate, SGPageContentView
 //        if offsetX == 0 {
 //             self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
 //        }else{
-//             self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+             self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 //        }
    
     

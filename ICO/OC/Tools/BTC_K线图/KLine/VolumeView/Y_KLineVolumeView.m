@@ -117,7 +117,7 @@
         {
             maxVolume = model.Volume;
         }
-        if(model.Volume_MA7)
+        if(model.Volume_MA7.boolValue)
         {
             if (minVolume > model.Volume_MA7.floatValue) {
                 minVolume = model.Volume_MA7.floatValue;
@@ -126,7 +126,7 @@
                 maxVolume = model.Volume_MA7.floatValue;
             }
         }
-        if(model.Volume_MA30)
+        if(model.Volume_MA30.boolValue)
         {
             if (minVolume > model.Volume_MA30.floatValue) {
                 minVolume = model.Volume_MA30.floatValue;
@@ -161,7 +161,7 @@
         CGFloat ma30Y = maxY;
         if(unitValue > 0.0000001)
         {
-            if(model.Volume_MA7)
+            if(model.Volume_MA7.boolValue)
             {
                 ma7Y = maxY - (model.Volume_MA7.floatValue - minVolume)/unitValue;
             }
@@ -169,7 +169,7 @@
         }
         if(unitValue > 0.0000001)
         {
-            if(model.Volume_MA30)
+            if(model.Volume_MA30.boolValue)
             {
                 ma30Y = maxY - (model.Volume_MA30.floatValue - minVolume)/unitValue;
             }
@@ -180,11 +180,11 @@
         CGPoint ma7Point = CGPointMake(xPosition, ma7Y);
         CGPoint ma30Point = CGPointMake(xPosition, ma30Y);
         
-        if(model.Volume_MA7)
+        if(model.Volume_MA7.boolValue)
         {
             [self.Volume_MA7Positions addObject: [NSValue valueWithCGPoint: ma7Point]];
         }
-        if(model.Volume_MA30)
+        if(model.Volume_MA30.boolValue)
         {
             [self.Volume_MA30Positions addObject: [NSValue valueWithCGPoint: ma30Point]];
         }
