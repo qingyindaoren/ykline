@@ -43,7 +43,7 @@ class YKTabBarController: UITabBarController {
         
       
           vc.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.orange], for: .selected)
-        vc.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.font : yksysFont(font: 20.0)], for: .normal)
+        vc.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.font : yksysFont(font: 10.0)], for: .normal)
         vc.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -3)
 //        vc.tabBarItem.badgeValue = "10"
 //        vc.tabBarItem.badgeValue = nil

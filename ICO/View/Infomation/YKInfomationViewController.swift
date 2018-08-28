@@ -40,7 +40,7 @@ class YKInfomationViewController: YKBaseViewController {
         configuration.titleSelectedColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         configuration.indicatorColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         configuration.indicatorHeight = indicatorHeight
-        configuration.titleFont = yksysFont(font: 34.0)
+        configuration.titleFont = yksysFont(font: 17.0)
         configuration.indicatorStyle = SGIndicatorStyleDynamic
         configuration.spacingBetweenButtons = newsTitleMargin;
         configuration.indicatorDynamicWidth = newsIndicatorWidth

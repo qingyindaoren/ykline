@@ -20,7 +20,7 @@ extension UIBarButtonItem {
         //设置文字颜色
         btn.setTitleColor(UIColor.black, for: .normal)
         btn.setTitleColor(UIColor.gray, for: .highlighted)
-        btn.titleLabel?.font = yksysFont(font: 28)
+        btn.titleLabel?.font = yksysFont(font: 14)
         //设置按钮
         if let img = imageName {
             btn.setImage(UIImage(named: img), for: .normal)

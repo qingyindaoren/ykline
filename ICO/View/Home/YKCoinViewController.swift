@@ -46,7 +46,7 @@ class YKCoinViewController: YKBaseTableViewController {
     }
     
      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let v = YKCoinDetailViewController()
+        let v = YKKlineViewController()
         
         navigationController?.pushViewController(v, animated: true)
     }

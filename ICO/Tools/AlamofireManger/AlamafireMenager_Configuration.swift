@@ -12,7 +12,7 @@
 import UIKit
 
 ///域名 配置 //http://192.168.1.55/api/market/index.php?symbol=NEO/BTC&period=0&size=300
-var baseServerWord: String = "192.168.1.55/api"
+var baseServerWord: String = "api.bitkk.com"
 var baseURL: String {
     get {
         return "http://\(baseServerWord)/"
@@ -67,13 +67,13 @@ func dPrint(_ item: @autoclosure () -> Any) {
 }
 
 ///是否为debug模式
-var isDebug: Bool {
-    get {
-        #if DEBUG
-            return true
-            #else
-            return false
-        #endif
-    }
-}
+//var isDebug: Bool {
+//    get {
+//        #if DEBUG
+//            return true
+//            #else
+//            return false
+//        #endif
+//    }
+//}
 

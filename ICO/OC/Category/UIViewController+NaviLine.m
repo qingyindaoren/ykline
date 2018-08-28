@@ -7,7 +7,7 @@
 //
 
 #import "UIViewController+NaviLine.h"
-#import "ICO-Swift.h"
+//#import "ICO-Swift.h"
 #import "UIView+Extension.h"
 #define status [UIApplication sharedApplication].statusBarFrame.size.height
 

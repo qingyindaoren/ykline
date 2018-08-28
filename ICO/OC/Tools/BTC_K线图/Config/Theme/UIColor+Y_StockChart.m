@@ -205,7 +205,7 @@
 #pragma mark BOLL_MB的颜色
 +(UIColor *)BOLL_MBColor
 {
-    return [UIColor whiteColor];
+    return [UIColor brownColor];
 }
 
 #pragma mark BOLL_UP的颜色

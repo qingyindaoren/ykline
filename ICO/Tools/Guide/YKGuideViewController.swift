@@ -59,16 +59,16 @@ private    let scrollview:UIScrollView = UIScrollView()
     }
     private func addProgressPoint(){
         pots.centerX = view.centerX
-        pots.y = ScreenHeight - ykmargin(margin: 60.0) - 8.0 - dangerousHeight()
+        pots.y = ScreenHeight - ykmargin(margin: 30.0) - 8.0 - dangerousHeight()
         pots.numberOfPages = guideCount
         view.addSubview(pots)
     }
     private func setupLastImageView(imageView : UIImageView){
         imageView.isUserInteractionEnabled = true
-        let startBtn = UIButton.init(title:"开始", fontSize: yksysFont(font: 32.0), textColor: ykColor(rgbValue: 0x333333, alpha: 1.0), action: #selector(startClick), target: self, backImageNormal: nil, backImageHighlighted: nil, backImageDisabled: nil)!
+        let startBtn = UIButton.init(title:"开始", fontSize: yksysFont(font: 16.0), textColor: ykColor(rgbValue: 0x333333, alpha: 1.0), action: #selector(startClick), target: self, backImageNormal: nil, backImageHighlighted: nil, backImageDisabled: nil)!
         
        startBtn.centerX = view.centerX
-        startBtn.y = pots.y - ykmargin(margin: 80.0)
+        startBtn.y = pots.y - ykmargin(margin: 40.0)
         imageView.addSubview(startBtn)
         
        

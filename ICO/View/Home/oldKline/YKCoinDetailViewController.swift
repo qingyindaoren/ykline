@@ -12,7 +12,7 @@ class YKCoinDetailViewController: YKBaseTableViewController {
     @objc private func fullScreen(){
         if let pragrams = self.klineVC?.pragrams {
             //取出交易所 交易对
-            let sysm = pragrams["symbol"]
+            let sysm = pragrams["market"]
             
             let kline = YKKLineViewController()
             //给新控制器的交易所，交易对赋值

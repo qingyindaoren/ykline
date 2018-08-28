@@ -14,6 +14,10 @@ let YKCoinDetailCellId = "YKCoinDetailCellId"
 let YKCoinId = "YKCoinId"
 let YKCoinDetailContentId = "YKCoinDetailContentId"
 let YKCoinDetailContentAllPriceId = "YKCoinDetailContentAllPriceId"
+let YKSubNewsCellId = "YKSubNewsCellId"
+let YKSubPublicCellId = "YKSubPublicCellId"
+let YKSubBriefCellId = "YKSubBriefCellId"
+let YKKlineCellId = "YKKlineCellId"
 let YKNewsId = "YKNewsId"
 
 let segkLineKey = "segkLineKey"
@@ -29,7 +33,7 @@ let ScreenWidth: CGFloat = UIScreen.main.bounds.width
 let ScreenHeight: CGFloat = UIScreen.main.bounds.height
 
 //比例
-let pt2x :CGFloat = 2.0
+let pt2x :CGFloat = 1.0
 
 let scale :CGFloat = ScreenWidth/375.0
 
@@ -96,17 +100,18 @@ func dangerousHeight()->CGFloat{
     return 0.0
 }
 //头视图高
-let coinDetailtopViewHeight: CGFloat = ykmargin(margin:  240.0)
+let coinDetailtopViewHeight: CGFloat = ykmargin(margin:  120.0)
+let klineTopHeight: CGFloat = ykmargin(margin: 593.5)
 //详情section高
 let detailSectionHeight: CGFloat = 44.0
 
 //pageTitle高
 let newsTitleHeight :CGFloat  = 44.0
 //指示器宽
-let newsIndicatorWidth: CGFloat = ykmargin(margin:  40.0)
+let newsIndicatorWidth: CGFloat = ykmargin(margin:  20.0)
 let indicatorHeight: CGFloat = 3.0
 //按钮间距
-let newsTitleMargin :CGFloat = ykmargin(margin: 70.0)
+let newsTitleMargin :CGFloat = ykmargin(margin: 35.0)
 //定义全局的格式化对象
 let sharedDateFormater = DateFormatter()
 //获取当前控制器
@@ -139,5 +144,21 @@ func getCurrentVC() -> UIViewController? {
     }
     return nil
 }
+/// Log信息
+func ykPrint <T>(_ message : T, file : String = #file, method: String = #function, lineNumber : Int = #line) {
+    if isDebug{
+        print("[\((file as NSString).lastPathComponent):\(lineNumber):[\(method)]**\n \(message)\n")
+    }
+}
 
+///是否为debug模式
+var isDebug: Bool {
+    get {
+        #if DEBUG
+            return true
+        #else
+            return false
+        #endif
+    }
+}
 

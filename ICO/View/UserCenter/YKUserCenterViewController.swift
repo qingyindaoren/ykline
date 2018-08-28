@@ -9,10 +9,22 @@
 import UIKit
 
 class YKUserCenterViewController: YKBaseViewController {
-
+    private lazy var btn:UIButton = {
+        let btn = UIButton();
+        btn.setTitle("仿微信相机", for: .normal)
+        btn.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        btn.addTarget(self, action: #selector(push), for: .touchUpInside)
+        return btn;
+    }()
+    @objc private func push(){
+        self.navigationController?.pushViewController(ViewController(), animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.addSubview(btn);
+        btn.snp.makeConstraints { (make) in
+            make.center.equalTo(view);
+        }
         // Do any additional setup after loading the view.
     }
 
