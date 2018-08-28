@@ -126,7 +126,7 @@ class YKKLineViewController: YKBaseViewController {
         
         let  parameters = ["type":(self.type ?? "1min"),//配置传过来的交易所，交易对
                           "market":"btc_usdt",
-                          "size":"1000"
+                          "size":"300"
                         ]
         self.pragrams = parameters;
     AlamofireMenager.shared.isShowLoading = false
